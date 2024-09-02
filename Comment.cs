@@ -4,7 +4,7 @@ namespace elecTorn_HUB_Teams;
 class Comment : Post {
     private string _destinationPostId;
 
-    public Comment(string postId, string authorId, string content, string title, string destinationPostId) : base(postId, authorId, content, title) {
+    public Comment(string postId, User authorId, string content, string title, string destinationPostId) : base(postId, authorId, content, title) {
         _destinationPostId = destinationPostId;
     }
 

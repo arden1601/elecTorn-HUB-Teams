@@ -2,11 +2,11 @@ namespace elecTorn_HUB_Teams;
 
 class Post {
     private string _postId;
-    private string _authorId;
+    private User _authorId;
     private string _content;
     private string _title;
 
-    public Post(string postId, string authorId, string content, string title) {
+    public Post(string postId, User authorId, string content, string title) {
         _postId = postId;
         _authorId = authorId;
         _content = content;
@@ -18,7 +18,7 @@ class Post {
         set { _postId = value; }
     }
 
-    public string AuthorId {
+    public User AuthorId {
         get { return _authorId; }
         set { _authorId = value; }
     }

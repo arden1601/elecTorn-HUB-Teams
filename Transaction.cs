@@ -2,11 +2,11 @@ namespace elecTorn_HUB_Teams;
 
 class Transaction {
     private string _transactionId;
-    private string _productId;
-    private string _buyerId;
-    private string _sellerId;
+    private Products _productId;
+    private User _buyerId;
+    private User _sellerId;
 
-    public Transaction(string transactionId, string productId, string buyerId, string sellerId) {
+    public Transaction(string transactionId, Products productId, User buyerId, User sellerId) {
         _transactionId = transactionId;
         _productId = productId;
         _buyerId = buyerId;
@@ -18,22 +18,22 @@ class Transaction {
         set { _transactionId = value; }
     }
 
-    public string ProductId {
+    public Products ProductId {
         get { return _productId; }
         set { _productId = value; }
     }
 
-    public string BuyerId {
+    public User BuyerId {
         get { return _buyerId; }
         set { _buyerId = value; }
     }
 
-    public string SellerId {
+    public User SellerId {
         get { return _sellerId; }
         set { _sellerId = value; }
     }
 
-    public void UpdateTransaction(string transactionId, string productId, string buyerId, string sellerId) {
+    public void UpdateTransaction(string transactionId, Products productId, User buyerId, User sellerId) {
         _transactionId = transactionId;
         _productId = productId;
         _buyerId = buyerId;

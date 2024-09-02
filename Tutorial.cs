@@ -4,7 +4,7 @@ namespace elecTorn_HUB_Teams;
 class Tutorial : Post {
     private string _videoUrl;
 
-    public Tutorial(string postId, string authorId, string content, string title, string videoUrl) : base(postId, authorId, content, title) {
+    public Tutorial(string postId, User authorId, string content, string title, string videoUrl) : base(postId, authorId, content, title) {
         _videoUrl = videoUrl;
     }
 
