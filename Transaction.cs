@@ -32,4 +32,11 @@ class Transaction {
         get { return _sellerId; }
         set { _sellerId = value; }
     }
+
+    public void UpdateTransaction(string transactionId, string productId, string buyerId, string sellerId) {
+        _transactionId = transactionId;
+        _productId = productId;
+        _buyerId = buyerId;
+        _sellerId = sellerId;
+    }
 }

@@ -32,4 +32,8 @@ class Post {
         get { return _title; }
         set { _title = value; }
     }
+
+    public void Takedown() {
+        _content = "This post has been taken down.";
+    }
 }
