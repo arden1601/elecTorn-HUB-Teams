@@ -11,6 +11,13 @@ public partial class Login : Form
         InitializeComponent();
     }
 
+    // Login on Click
+    private void LoginButton_Click(object sender, EventArgs e)
+    {
+        // Popup a message box
+        MessageBox.Show("Login Button Clicked");
+    }
+
     private void Login_Load(object sender, EventArgs e)
     {
         // Values
@@ -26,7 +33,6 @@ public partial class Login : Form
         loginBox.Height = Variables.ScreenHeight / 2;
 
         // Contents
-
         Panel titleLabel = Components.Labels([
             new ObjLabel(
                 "elec",
@@ -34,7 +40,7 @@ public partial class Login : Form
                 Variables.ColorDarkGray
             ),
             new ObjLabel(
-                "Tron",
+                "Torn",
                 new Font(Variables.PrimaryFont, FontSize, FontStyle.Bold),
                 Variables.ColorAccentOrange
             ),
@@ -49,7 +55,7 @@ public partial class Login : Form
                 Variables.ColorAccentOrange
             )
             ],
-            loginBox.Width - Margin,
+            165,
             true);
 
         Panel titleBox = new Panel();
@@ -60,29 +66,29 @@ public partial class Login : Form
         // Center the titleLabel
         int titleBoxX = (loginBox.Width - titleBox.Width) / 2;
         int titleBoxY = (loginBox.Height - titleBox.Height) / 2;
-        int[] CenterTitle = Functions.CenterFrame(loginBox.Width, loginBox.Height, titleLabel.Width, titleLabel.Height, 1, 1, 1, 1, titleBoxY, titleBoxX);
-        titleLabel.Location = new Point(0, 0);
+        int[] CenterTitle = Functions.CenterFrame(titleBox.Width, titleBox.Height, titleLabel.Width, titleLabel.Height, 1, 1, 1, 1);
+        titleLabel.Location = new Point(CenterTitle[0], CenterTitle[1]);
 
         loginBox.Controls.Add(titleBox);
         titleBox.Controls.Add(titleLabel);
 
         Label usernameLabel = Components.Label(new ObjLabel(
             "Username",
-            new Font(Variables.SecondaryFont, Variables.FontSizeXS, FontStyle.Bold),
+            new Font(Variables.SecondaryFont, Variables.FontSizeSM, FontStyle.Bold),
             Variables.ColorDarkGray
             ),
             loginBox.Width - Margin);
         TextBox usernameTextBox = Components.TextBox(new Font(
-            Variables.SecondaryFont, Variables.FontSizeXS, FontStyle.Regular),
+            Variables.SecondaryFont, Variables.FontSizeSM, FontStyle.Regular),
             loginBox.Width - Margin
             );
         Label passwordLabel = Components.Label(new ObjLabel(
             "Password",
-            new Font(Variables.SecondaryFont, Variables.FontSizeXS, FontStyle.Bold),
+            new Font(Variables.SecondaryFont, Variables.FontSizeSM, FontStyle.Bold),
             Variables.ColorDarkGray
             ), loginBox.Width - Margin);
         TextBox passwordTextBox = Components.TextBox(
-            new Font(Variables.SecondaryFont, Variables.FontSizeXS, FontStyle.Regular),
+            new Font(Variables.SecondaryFont, Variables.FontSizeSM, FontStyle.Regular),
             loginBox.Width - Margin,
             true
             );
@@ -91,8 +97,26 @@ public partial class Login : Form
         int[] Center = Functions.CenterFrame(Variables.ScreenWidth, Variables.ScreenHeight, loginBox.Width, loginBox.Height);
         loginBox.Location = new Point(Center[0], Center[1]);
 
+        // Empty Panel for Gap
+        Panel gap = new Panel();
+        gap.Width = loginBox.Width;
+        gap.Height = Variables.FontSizeSM * 2;
+        gap.Location = new Point(0, titleLabel.Height + Margin);
+
+        // Button
+        Button loginButton = Components.Button(
+            LoginButton_Click,
+            "Login",
+            new Font(Variables.SecondaryFont, Variables.FontSizeSM, FontStyle.Bold),
+            Variables.ColorAccentOrange,
+            loginBox.Width - Margin,
+            Variables.FontSizeSM * 4,
+            Variables.ColorDarkGray,
+            true
+            );
+
         // Put contents in an array of contents
-        Control[] contents = new Control[] { titleBox, usernameLabel, usernameTextBox, passwordLabel, passwordTextBox };
+        Control[] contents = new Control[] { titleBox, usernameLabel, usernameTextBox, passwordLabel, passwordTextBox, gap, loginButton };
 
         // Loop through the contents and set the location
         for (int i = 0; i < contents.Length; i++)
