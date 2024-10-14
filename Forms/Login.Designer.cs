@@ -1,6 +1,6 @@
-﻿namespace elecTorn_HUB_Teams;
-
-partial class Form1
+﻿namespace elecTorn_HUB_Teams.Forms;
+using elecTorn_HUB_Teams.Variables;
+partial class Login
 {
     /// <summary>
     ///  Required designer variable.
@@ -28,10 +28,21 @@ partial class Form1
     /// </summary>
     private void InitializeComponent()
     {
-        this.components = new System.ComponentModel.Container();
-        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        this.ClientSize = new System.Drawing.Size(800, 450);
-        this.Text = "Form1";
+        SuspendLayout();
+        // 
+        // Login
+        // 
+        const string Title = "Login";
+
+        AutoScaleDimensions = new SizeF(7F, 15F);
+        AutoScaleMode = AutoScaleMode.Font;
+        ClientSize = new Size(Variables.ScreenWidth, Variables.ScreenHeight);
+        FormBorderStyle = FormBorderStyle.FixedSingle;
+        StartPosition = FormStartPosition.CenterScreen;
+        Name = Title;
+        Text = Title;
+        Load += Login_Load;
+        ResumeLayout(false);
     }
 
     #endregion

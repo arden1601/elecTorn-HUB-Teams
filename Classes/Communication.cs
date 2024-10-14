@@ -1,4 +1,4 @@
-namespace elecTorn_HUB_Teams;
+namespace elecTorn_HUB_Teams.Classes;
 
 public class Communication
 {
