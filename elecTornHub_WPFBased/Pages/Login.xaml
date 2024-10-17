@@ -1,4 +1,4 @@
-﻿<Window x:Class="elecTornHub_WPFBased.MainWindow"
+﻿<Window x:Class="elecTornHub_WPFBased.Pages.Login"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -26,7 +26,7 @@
             HorizontalAlignment="Center" VerticalAlignment="Center" Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
             
             >
-            <localComponents:LogPopup Type="Login"/>    
+            <localComponents:LogPopup Type="Login" x:Name="LogPopupControl"/>
         </Grid>
     </Grid>
 </Window>

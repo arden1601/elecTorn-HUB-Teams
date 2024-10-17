@@ -90,6 +90,7 @@
                                 BorderBrush="{x:Static localExtras:Variables.ColorLightGray}">
                             <TextBox HorizontalAlignment="Stretch"
                                      VerticalAlignment="Center"
+                                     x:Name="LogPopup_UsernameValue"
                                      FontSize="{x:Static localExtras:Variables.FontSizeSM}"
                                      FontFamily="{x:Static localExtras:Variables.SecondaryFont}"
                                      Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
@@ -114,6 +115,7 @@
                                 BorderBrush="{x:Static localExtras:Variables.ColorLightGray}">
                             <PasswordBox HorizontalAlignment="Stretch"
                                      VerticalAlignment="Center"
+                                     x:Name="LogPopup_PasswordValue"
                                      FontSize="{x:Static localExtras:Variables.FontSizeSM}"
                                      FontFamily="{x:Static localExtras:Variables.SecondaryFont}"
                                      Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
@@ -146,24 +148,33 @@
                             BorderBrush="Transparent"
                             Margin="0,6"
                             Cursor="Hand"
-                            FocusVisualStyle="{x:Null}"
                         />
                      </Border>
                     <!-- Register Text Underlined -->
-                    <TextBlock HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               x:Name="LogPopup_Redirect"
-                               FontSize="{x:Static localExtras:Variables.FontSizeSM}"
-                               Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
-                               FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
-                               Cursor="Hand"
-                               >
-                        <TextBlock.TextDecorations>
-                            <TextDecorationCollection>
-                                <TextDecoration Location="Underline"/>
-                            </TextDecorationCollection>
-                        </TextBlock.TextDecorations>
-                    </TextBlock>
+                    <Button
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        BorderThickness="0"
+                        BorderBrush="Transparent"
+                        Background="Transparent"
+                        Cursor="Hand"
+                        Style="{StaticResource NoHoverButtonStyle}"
+                        x:Name="LogPopup_RedirectButton"
+                        >
+                        <TextBlock HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           x:Name="LogPopup_Redirect"
+                           FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+                           Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
+                           FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+                           >
+                            <TextBlock.TextDecorations>
+                                <TextDecorationCollection>
+                                    <TextDecoration Location="Underline"/>
+                                </TextDecorationCollection>
+                            </TextBlock.TextDecorations>
+                        </TextBlock>
+                    </Button>
                 </StackPanel>
             </StackPanel>
         </Grid>
