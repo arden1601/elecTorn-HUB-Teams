@@ -63,11 +63,12 @@
                          FontSize="{x:Static localExtras:Variables.FontSizeXL}"
                          Foreground="{x:Static localExtras:Variables.ColorAccentOrange}"
                          FontFamily="{x:Static localExtras:Variables.PrimaryFont}" />
-                    <Run Text="Hub"
+                    <Run Text="Hub "
                          FontSize="{x:Static localExtras:Variables.FontSizeXL}"
                          Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
                          FontFamily="{x:Static localExtras:Variables.PrimaryFont}" />
-                    <Run Text=" Login"
+                    <Run
+                         x:Name="LogPopup_LoginText"
                          FontSize="{x:Static localExtras:Variables.FontSizeXL}"
                          Foreground="{x:Static localExtras:Variables.ColorAccentOrange}"
                          FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}" />
@@ -135,7 +136,7 @@
                         >
                         <Button HorizontalAlignment="Stretch"
                             VerticalAlignment="Center"
-                            Content="Login"
+                            x:Name="LogPopup_LogButtonText"
                             Style="{StaticResource NoHoverButtonStyle}"
                             FontSize="{x:Static localExtras:Variables.FontSizeSM}"
                             FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
@@ -151,7 +152,7 @@
                     <!-- Register Text Underlined -->
                     <TextBlock HorizontalAlignment="Center"
                                VerticalAlignment="Center"
-                               Text="Register?"
+                               x:Name="LogPopup_Redirect"
                                FontSize="{x:Static localExtras:Variables.FontSizeSM}"
                                Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
                                FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
