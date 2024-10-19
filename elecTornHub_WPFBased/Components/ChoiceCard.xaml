@@ -47,41 +47,47 @@
                               Opacity="0.5"/>
         </Border.Effect>
 
-        <Grid VerticalAlignment="Center" Margin="10"
+        <StackPanel>
+            <Grid
+            x:Name="Card_ProductMode"
+            VerticalAlignment="Center"
+                Height="Auto"
+Width="Auto"
+                Margin="10"
               >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="3*" />
-            </Grid.ColumnDefinitions>
-
-            <Image Grid.Column="0"
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0"
                    Source="/elecTornHub_WPFBased;component/Resources/Images/dummy_product.png" 
                    Height="100" Width="100" Margin="0"/>
-            <Grid Grid.Column="1" Margin="10, 0" VerticalAlignment="Stretch">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="2*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <StackPanel
+
+                <Grid Grid.Column="1" Margin="10,0" VerticalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <StackPanel
                     Grid.Row="0"
                     >
-                    <TextBlock
+                        <TextBlock
                     x:Name="ProductCard_Name"
                     Text="Laptop ACER Intel Core" FontSize="{x:Static localExtras:Variables.FontSizeLG}"
                            TextWrapping="Wrap" TextAlignment="Justify"
 FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
 Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="Bold"/>
-                    <TextBlock
+                        <TextBlock
                     x:Name="ProductCard_Price"
                     Text="Rp. 694.646,-" FontSize="{x:Static localExtras:Variables.FontSizeMD}"
 FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
 Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold"
                            TextWrapping="Wrap" TextAlignment="Justify"/>
-                </StackPanel>
-                <StackPanel
+                    </StackPanel>
+                    <StackPanel
                     Grid.Row="1"
                     >
-                    <Border
+                        <Border
                 HorizontalAlignment="Left"
 VerticalAlignment="Bottom"
 CornerRadius="10"
@@ -89,7 +95,7 @@ BorderBrush="Transparent"
 Margin="0, 10"
 Background="{x:Static localExtras:Variables.ColorDarkGray}"
 >
-                        <Button
+                            <Button
                     x:Name="ProductCard_Button"
                     HorizontalAlignment="Left"
     VerticalAlignment="Center"
@@ -105,9 +111,57 @@ Background="{x:Static localExtras:Variables.ColorDarkGray}"
     Height="20"
     Cursor="Hand"
 />
-                    </Border>
-                </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Grid>
             </Grid>
-        </Grid>
+            
+            <Button
+                    x:Name="Card_PostMode_Button"
+                    HorizontalAlignment="Left"
+                Height="Auto"
+                Width="Auto"
+    Style="{StaticResource NoHoverButtonStyle}"
+    Background="Transparent"
+    BorderThickness="0"
+    BorderBrush="Transparent"
+    Cursor="Hand"
+                Margin="10"
+>
+                <Grid VerticalAlignment="Center"
+              x:Name="Card_PostMode"
+      >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image Grid.Column="0"
+       Source="/elecTornHub_WPFBased;component/Resources/Images/dummy_post.png" 
+       Height="200" Width="140" Margin="0"/>
+
+                    <StackPanel
+                    Grid.Column="1"
+                    Margin="10, 0" VerticalAlignment="Stretch"
+                    >
+                        <TextBlock
+                    x:Name="News_Name"
+                    Text="Cara Menjadi Presiden yang baik" FontSize="{x:Static localExtras:Variables.FontSizeLG}"
+                           TextWrapping="Wrap" TextAlignment="Justify"
+FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="Bold"/>
+                        <TextBlock
+                    x:Name="News_BriefDescription"
+                        Margin="0,10,0,0"
+                    Text="Lorem ipsum odor amet, consectetuer adipiscing elit. Sapien scelerisque per conubia volutpat viverra tempus! Inceptos curae mi fusce proin" FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+FontFamily="{x:Static localExtras:Variables.SecondaryFont}"
+Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="Medium"
+                           TextWrapping="Wrap" TextAlignment="Justify"/>
+                    </StackPanel>
+
+
+                </Grid>
+            </Button>
+        </StackPanel>
     </Border>
 </UserControl>

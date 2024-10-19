@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\App.xaml
-8-1855805516
+8253370174
 
-221836718473
+231081636554
 1981451641563
-Components\ChoiceCard.xaml;Components\ConfirmPopup.xaml;Components\LogPopup.xaml;Components\Navbar.xaml;Pages\BuyStuff.xaml;Pages\CheckNotification.xaml;Pages\Login.xaml;Pages\Register.xaml;
+Components\ChoiceCard.xaml;Components\ConfirmPopup.xaml;Components\LogPopup.xaml;Components\Navbar.xaml;Pages\CheckNotification.xaml;Pages\Login.xaml;Pages\Register.xaml;Pages\SearchDash.xaml;
 
 False
 

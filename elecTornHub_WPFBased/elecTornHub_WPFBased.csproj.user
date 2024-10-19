@@ -24,7 +24,7 @@
     <Page Update="Components\LogPopup.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\BuyStuff.xaml">
+    <Page Update="Pages\SearchDash.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\CheckNotification.xaml">
