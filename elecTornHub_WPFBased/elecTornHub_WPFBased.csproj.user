@@ -12,7 +12,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Components\ConfirmPopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Components\LogPopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\CheckNotification.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Register.xaml">

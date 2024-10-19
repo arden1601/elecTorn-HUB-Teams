@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\App.xaml
-31997745042
+5-1110959956
 
-17407021030
+19-1383636689
 1981451641563
-Components\LogPopup.xaml;Pages\Login.xaml;Pages\Register.xaml;
+Components\ConfirmPopup.xaml;Components\LogPopup.xaml;Pages\CheckNotification.xaml;Pages\Login.xaml;Pages\Register.xaml;
 
 False
 

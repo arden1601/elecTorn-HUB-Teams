@@ -44,4 +44,16 @@
     <Resource Include="Resources\Logo.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Components\ConfirmPopup.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Components\ConfirmPopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
 </Project>

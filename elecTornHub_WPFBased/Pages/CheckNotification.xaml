@@ -1,0 +1,110 @@
+﻿<Window x:Class="elecTornHub_WPFBased.Pages.CheckNotification"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:localExtras="clr-namespace:elecTornHub_WPFBased.Extras"
+        xmlns:localComponents="clr-namespace:elecTornHub_WPFBased.Components"
+        mc:Ignorable="d"
+        Title="Notification"
+        Height="{x:Static localExtras:Variables.ScreenHeight}"
+        Width="{x:Static localExtras:Variables.ScreenWidth}"
+        WindowStartupLocation="CenterScreen"
+        >
+
+    <Window.Resources>
+        <localExtras:GridSizeConverter x:Key="GridSizeConverter"/>
+    </Window.Resources>
+
+    <Grid
+        Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+        Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+        HorizontalAlignment="Center" VerticalAlignment="Center" Background="{x:Static localExtras:Variables.ColorOffWhite}">
+        <Grid
+            Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=2.3}"
+            Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=3}"
+            HorizontalAlignment="Center" VerticalAlignment="Center" Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
+            
+            >
+            <!--
+            <localComponents:ConfirmPopup
+                x:Name="ConfirmPopupControl"
+                Title="(notifikasi)"
+                Message_0="(informasi baris 1)"
+                Message_1="(informasi baris 2)"
+                Message_2="(informasi baris 3)"
+                Message_3="(informasi baris 4)"
+                Message_4="(informasi baris 5)"
+                Type="Default"/>
+            -->
+            
+            <localComponents:ConfirmPopup
+                x:Name="ConfirmPopupControl"
+                Title="Barang telah terbeli!"
+                Message_0="Anda telah membeli barang "
+                Message_1="Laptop ACER Intel Core Nitro 5 NVIDIA GeForce RTX "
+                Message_2="sejumlah "
+                Message_3="1 buah. "
+                Message_4="Barang akan dikirimkan ke alamat "
+                Message_5="Jl. Pogung Lor No. 174, Mlati, Sleman, D.I. Yogyakarta "
+                Message_6="maksimal "
+                Message_7="7 hari lagi."
+                Type="Terbeli"/>
+            
+            <!--
+            <localComponents:ConfirmPopup
+                x:Name="ConfirmPopupControl"
+                Title="Anda akan menghubungi pembeli"
+                Message_0="Berikut adalah nomor yang akan dihubungi: "
+                Message_1="+62 8954 3133 13375. "
+                Message_2="Tekan “Lanjutkan” untuk menghubungi pembeli melalui WhatsApp."
+                Type="Kontak"/>
+            -->
+            <!--
+            <localComponents:ConfirmPopup
+                x:Name="ConfirmPopupControl"
+                Title="Anda akan menghapus produk"
+                Message_0="Apakah anda yakin untuk menghapus produk "
+                Message_1="Laptop ACER Intel Core Nitro 5 NVIDIA GeForce RTX?"
+                Type="Hapus Jualan"/>
+            -->
+            <!--
+            <localComponents:ConfirmPopup
+                x:Name="ConfirmPopupControl"
+                Title="Anda akan menghapus post"
+                Message_0="Apakah anda yakin untuk menghapus post "
+                Message_1="Cara Menjadi Presiden yang baik?"
+                Type="Hapus Post"/>
+            -->
+            <!--
+            <localComponents:ConfirmPopup
+                x:Name="ConfirmPopupControl"
+                Title="Anda akan menghapus akun"
+                Message_0="Apakah anda yakin untuk menghapus akun "
+                Message_1="Mantan Mantu Jenderal?"
+                Type="Hapus Akun"/>
+            -->
+            <!--
+            <localComponents:ConfirmPopup
+                x:Name="ConfirmPopupControl"
+                Title="Apakah Anda yakin akan melaporkan ... ?"
+                Message_0="Sertakan alasan Anda!"
+                Type="Lapor"/>
+            -->
+            <!--
+            <localComponents:ConfirmPopup
+                x:Name="ConfirmPopupControl"
+                Title="Apakah Anda yakin akan takedown ... ?"
+                Message_0="Sertakan alasan Anda!"
+                Type="Takedown"/>
+            -->
+            <!--
+            <localComponents:ConfirmPopup
+                x:Name="ConfirmPopupControl"
+                Title="Akun tidak ditemukan!"
+                Message_0="Jika Anda yakin akun ini benar, bisa jadi akun Anda dihapus karena melanggar aturan yang berlaku."
+                Type="Akun Not Found"/>
+            -->
+        </Grid>
+    </Grid>
+</Window>

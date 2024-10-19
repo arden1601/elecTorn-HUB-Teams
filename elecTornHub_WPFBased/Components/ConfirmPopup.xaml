@@ -1,0 +1,243 @@
+﻿<UserControl x:Class="elecTornHub_WPFBased.Components.ConfirmPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:localExtras="clr-namespace:elecTornHub_WPFBased.Extras"
+             Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}"
+             Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}">
+
+    <UserControl.Resources>
+        <Style x:Key="NoHoverButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{x:Static SystemColors.ControlBrush}" />
+            <Setter Property="BorderBrush" Value="{x:Static SystemColors.ControlDarkBrush}" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Content="{TemplateBinding Content}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <localExtras:GridSizeConverter x:Key="GridSizeConverter"/>
+    </UserControl.Resources>
+
+    <Border HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+            Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+            Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
+            CornerRadius="15"
+            BorderThickness="1"
+            Margin="0">
+
+        <Border.Effect>
+            <DropShadowEffect Color="Black"
+                              Direction="270"
+                              ShadowDepth="3"
+                              BlurRadius="7"
+                              Opacity="0.5"/>
+        </Border.Effect>
+
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="25,0">
+            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                        Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}"
+                        >
+
+                <!-- Notif TextBlock -->
+                <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   x:Name="ConfirmPopup_Title"
+                   Text="{Binding Title, RelativeSource={RelativeSource AncestorType=UserControl}, FallbackValue='Default Title'}"
+                   TextAlignment="Center"
+                   FontSize="{x:Static localExtras:Variables.FontSizeLG}"
+                   Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
+                   FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
+                   FontWeight="Bold"
+                   TextWrapping="Wrap"
+                   Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}"
+                />
+
+                <StackPanel
+                    Margin="0,20"
+                    >
+                    <!-- Message TextBlock -->
+                    <TextBlock HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Margin="0,5"
+                       TextAlignment="Justify"
+                       TextWrapping="Wrap"
+                       Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}}"
+                    >
+                        <Run
+                            Text="{Binding Message_0, RelativeSource={RelativeSource AncestorType=UserControl}, FallbackValue=''}" 
+                            FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+                            Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
+                            FontFamily="{x:Static localExtras:Variables.SecondaryFont}"
+                             />
+                        <Run
+                            Text="{Binding Message_1, RelativeSource={RelativeSource AncestorType=UserControl}, FallbackValue=''}" 
+     FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+    Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
+    FontFamily="{x:Static localExtras:Variables.SecondaryFont}"
+                            FontWeight="Bold"
+     />
+                        <Run
+                            Text="{Binding Message_2, RelativeSource={RelativeSource AncestorType=UserControl}, FallbackValue=''}" 
+     FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+    Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
+    FontFamily="{x:Static localExtras:Variables.SecondaryFont}"
+     />
+                        <Run
+                            Text="{Binding Message_3, RelativeSource={RelativeSource AncestorType=UserControl}, FallbackValue=''}" 
+     FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+    Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
+    FontFamily="{x:Static localExtras:Variables.SecondaryFont}"
+                            FontWeight="Bold"
+     />
+                        <Run
+                            Text="{Binding Message_4, RelativeSource={RelativeSource AncestorType=UserControl}, FallbackValue=''}" 
+     FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+    Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
+    FontFamily="{x:Static localExtras:Variables.SecondaryFont}"
+     />
+                        <Run
+                            Text="{Binding Message_5, RelativeSource={RelativeSource AncestorType=UserControl}, FallbackValue=''}" 
+     FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+    Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
+    FontFamily="{x:Static localExtras:Variables.SecondaryFont}"
+                            FontWeight="Bold"
+     />
+                        <Run
+                            Text="{Binding Message_6, RelativeSource={RelativeSource AncestorType=UserControl}, FallbackValue=''}" 
+     FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+    Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
+    FontFamily="{x:Static localExtras:Variables.SecondaryFont}"
+     />
+                        <Run
+                            Text="{Binding Message_7, RelativeSource={RelativeSource AncestorType=UserControl}, FallbackValue=''}" 
+     FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+    Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
+    FontFamily="{x:Static localExtras:Variables.SecondaryFont}"
+                            FontWeight="Bold"
+                            
+     />
+                    </TextBlock>
+
+                    <!-- Input StackPanel -->
+                    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" x:Name="ConfirmPopup_InputContainer" >
+                        <Border HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                CornerRadius="8"
+                                BorderThickness="2"
+                                BorderBrush="{x:Static localExtras:Variables.ColorLightGray}">
+                            <TextBox HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Center"
+                                    x:Name="ConfirmPopup_Input"
+                                    FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+                                    FontFamily="{x:Static localExtras:Variables.SecondaryFont}"
+                                    Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
+                                    BorderThickness="0"
+                                    Background="Transparent"
+                                    Padding="6,5" />
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Button StackPanel -->
+                <StackPanel
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal"
+                    x:Name="ConfirmPopup_OnYesNoButtonContainer"
+                    Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}"
+                >
+                    <!-- No Button -->
+                    <Border HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        CornerRadius="10"
+                        BorderThickness="2"
+                        BorderBrush="Transparent"
+                        Margin="0,6"    
+                        Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=2}"
+                        Background="{x:Static localExtras:Variables.ColorAccentOrange}"
+                        >
+                        <Button HorizontalAlignment="Stretch"
+                            Content="Batalkan"
+                            VerticalAlignment="Center"
+                            x:Name="ConfirmPopup_OnNoButton"
+                            Style="{StaticResource NoHoverButtonStyle}"
+                            FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+                            FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
+                            Foreground="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            BorderBrush="Transparent"
+                            Margin="0,6"
+                            Cursor="Hand"
+                        />
+                    </Border>
+                    <!-- Yes Button -->
+                    <Border HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            CornerRadius="10"
+                            BorderThickness="2"
+                            BorderBrush="Transparent"
+                            Margin="0,6"
+                            Background="{x:Static localExtras:Variables.ColorGreen}"
+                            Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=2}"
+                            >
+                            <Button HorizontalAlignment="Stretch"
+                                    Content="Lanjutkan"
+                                    VerticalAlignment="Center"
+                                    x:Name="ConfirmPopup_OnYesButton"
+                                    Style="{StaticResource NoHoverButtonStyle}"
+                                    FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+                                    FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
+                                    Foreground="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    BorderBrush="Transparent"
+                                    Margin="0,6"
+                                    Cursor="Hand"
+                            />
+                    </Border>
+                </StackPanel>
+
+                <!-- Yes Only Button -->
+                <Border HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        CornerRadius="10"
+                        BorderThickness="2"
+                        BorderBrush="Transparent"
+                        Margin="0,6"
+                        Background="{x:Static localExtras:Variables.ColorGreen}"
+                        Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=2}"
+                        >
+                            <Button HorizontalAlignment="Stretch"
+                                    Content="Lanjutkan"
+                                    VerticalAlignment="Center"
+                                    x:Name="ConfirmPopup_OnYesOnlyButton"
+                                    Style="{StaticResource NoHoverButtonStyle}"
+                                    FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+                                    FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
+                                    Foreground="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    BorderBrush="Transparent"
+                                    Margin="0,6"
+                                    Cursor="Hand"
+                        />
+                </Border>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

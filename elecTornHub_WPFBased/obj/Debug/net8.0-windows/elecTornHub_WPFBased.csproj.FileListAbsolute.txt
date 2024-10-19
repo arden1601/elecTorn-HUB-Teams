@@ -24,3 +24,7 @@ D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\D
 D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\elecTornHub_WPFBased.sourcelink.json
 D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Pages\Register.g.cs
 D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Pages\Register.baml
+D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Components\ConfirmPopup.g.cs
+D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Components\ConfirmPopup.baml
+D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Pages\CheckNotification.g.cs
+D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Pages\CheckNotification.baml
