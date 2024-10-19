@@ -10,6 +10,8 @@
         Height="{x:Static localExtras:Variables.ScreenHeight}"
         Width="{x:Static localExtras:Variables.ScreenWidth}"
         WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+WindowStyle="SingleBorderWindow"
         >
 
     <Window.Resources>
