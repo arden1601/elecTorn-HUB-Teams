@@ -11,7 +11,8 @@
         Width="{x:Static localExtras:Variables.ScreenWidth}"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-WindowStyle="SingleBorderWindow"
+        WindowStyle="SingleBorderWindow"
+        Icon="../Resources/logo.ico"
         >
 
     <Window.Resources>

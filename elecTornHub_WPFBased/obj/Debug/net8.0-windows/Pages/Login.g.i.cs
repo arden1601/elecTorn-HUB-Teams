@@ -62,7 +62,7 @@ namespace elecTornHub_WPFBased.Pages {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/elecTornHub_WPFBased;V1.0.0.0;component/pages/login.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/elecTornHub_WPFBased;component/pages/login.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Pages\Login.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

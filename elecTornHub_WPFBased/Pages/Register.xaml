@@ -12,6 +12,7 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
 WindowStyle="SingleBorderWindow"
+        Icon="../Resources/logo.ico"
         >
 
     <Window.Resources>
