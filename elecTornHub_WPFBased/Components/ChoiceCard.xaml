@@ -1,0 +1,113 @@
+﻿<UserControl x:Class="elecTornHub_WPFBased.Components.ChoiceCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:localExtras="clr-namespace:elecTornHub_WPFBased.Extras"
+             Width="Auto" Height="Auto"
+             >
+
+    <UserControl.Resources>
+        <Style x:Key="NoHoverButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{x:Static SystemColors.ControlBrush}" />
+            <Setter Property="BorderBrush" Value="{x:Static SystemColors.ControlDarkBrush}" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Content="{TemplateBinding Content}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <localExtras:GridSizeConverter x:Key="GridSizeConverter"/>
+    </UserControl.Resources>
+
+    <Border HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+            Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+            Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
+            CornerRadius="15"
+            BorderThickness="1"
+            Margin="0">
+
+        <Border.Effect>
+            <DropShadowEffect Color="Black"
+                              Direction="270"
+                              ShadowDepth="3"
+                              BlurRadius="7"
+                              Opacity="0.5"/>
+        </Border.Effect>
+
+        <Grid VerticalAlignment="Center" Margin="10"
+              >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Column="0"
+                   Source="/elecTornHub_WPFBased;component/Resources/Images/dummy_product.png" 
+                   Height="100" Width="100" Margin="0"/>
+            <Grid Grid.Column="1" Margin="10, 0" VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackPanel
+                    Grid.Row="0"
+                    >
+                    <TextBlock
+                    x:Name="ProductCard_Name"
+                    Text="Laptop ACER Intel Core" FontSize="{x:Static localExtras:Variables.FontSizeLG}"
+                           TextWrapping="Wrap" TextAlignment="Justify"
+FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
+Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="Bold"/>
+                    <TextBlock
+                    x:Name="ProductCard_Price"
+                    Text="Rp. 694.646,-" FontSize="{x:Static localExtras:Variables.FontSizeMD}"
+FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold"
+                           TextWrapping="Wrap" TextAlignment="Justify"/>
+                </StackPanel>
+                <StackPanel
+                    Grid.Row="1"
+                    >
+                    <Border
+                HorizontalAlignment="Left"
+VerticalAlignment="Bottom"
+CornerRadius="10"
+BorderBrush="Transparent"
+Margin="0, 10"
+Background="{x:Static localExtras:Variables.ColorDarkGray}"
+>
+                        <Button
+                    x:Name="ProductCard_Button"
+                    HorizontalAlignment="Left"
+    VerticalAlignment="Center"
+    Content="Beli Sekarang"
+    Style="{StaticResource NoHoverButtonStyle}"
+    FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+    FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+    Foreground="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
+    Background="Transparent"
+    BorderThickness="0"
+    BorderBrush="Transparent"
+    Margin="15,2"
+    Height="20"
+    Cursor="Hand"
+/>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

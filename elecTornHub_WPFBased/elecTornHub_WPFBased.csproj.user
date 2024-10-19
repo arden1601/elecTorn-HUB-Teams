@@ -12,10 +12,19 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Components\ChoiceCard.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Components\Navbar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Components\ConfirmPopup.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Components\LogPopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\BuyStuff.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\CheckNotification.xaml">

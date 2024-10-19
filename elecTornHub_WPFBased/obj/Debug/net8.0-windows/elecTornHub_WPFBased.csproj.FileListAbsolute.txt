@@ -28,3 +28,9 @@ D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\D
 D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Components\ConfirmPopup.baml
 D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Pages\CheckNotification.g.cs
 D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Pages\CheckNotification.baml
+D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Components\Navbar.g.cs
+D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Components\Navbar.baml
+D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Pages\BuyStuff.g.cs
+D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Pages\BuyStuff.baml
+D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Components\ChoiceCard.g.cs
+D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Components\ChoiceCard.baml
