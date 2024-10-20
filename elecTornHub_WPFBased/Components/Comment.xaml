@@ -1,0 +1,106 @@
+﻿<UserControl x:Class="elecTornHub_WPFBased.Components.Comment"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:localExtras="clr-namespace:elecTornHub_WPFBased.Extras"
+             Width="Auto" Height="Auto"
+             Margin="0,10,0,0"
+             >
+
+    <Border HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+            Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.02}"
+            Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
+            CornerRadius="8"
+            BorderThickness="1"
+            Margin="0">
+
+        <Border.Effect>
+            <DropShadowEffect Color="Black"
+                              Direction="270"
+                              ShadowDepth="1"
+                              BlurRadius="3"
+                              Opacity="0.5"/>
+        </Border.Effect>
+
+        <StackPanel>
+            <Grid
+            VerticalAlignment="Center"
+                Height="Auto"
+Width="Auto"
+                Margin="10"
+              >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,0,0,5" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel
+                    Grid.Column="0"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                    >
+                        <Border
+                            x:Name="Comment_ButtonBorder"
+                HorizontalAlignment="Left"
+VerticalAlignment="Bottom"
+CornerRadius="4"
+BorderBrush="Transparent"
+Background="{x:Static localExtras:Variables.ColorAccentOrange}"
+                            Margin="0,0,10,0"
+>
+                            <Button
+                                x:Name="Comment_Button"
+                    HorizontalAlignment="Left"
+    VerticalAlignment="Center"
+    Content="Hapus"
+    Style="{StaticResource NoHoverButtonStyle}"
+    FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+    FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+    Foreground="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
+    Background="Transparent"
+    BorderThickness="0"
+    BorderBrush="Transparent"
+    Cursor="Hand"
+                                Margin="4"
+/>
+                        </Border>
+                        <TextBlock
+                            x:Name="Comment_Title"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left"
+                    Text="Mantan Mantu Jenderal" FontSize="{x:Static localExtras:Variables.FontSizeMD}"
+FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold"
+                           TextWrapping="Wrap" TextAlignment="Justify"/>
+                    </StackPanel>
+                    <TextBlock
+                        x:Name="Comment_Date"
+                        Grid.Column="1"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                    Text="30 September 1965" FontSize="{x:Static localExtras:Variables.FontSizeMD}"
+FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold"
+                           TextWrapping="Wrap" TextAlignment="Justify"/>
+                </Grid>
+
+                <TextBlock
+                    x:Name="Comment_Value"
+                    Grid.Row="1"
+                    Text="Lorem ipsum odor amet, consectetuer adipiscing elit. Sapien scelerisque per conubia volutpat viverra tempus! Inceptos curae mi fusce proin senectus, condimentum volutpat dictum? Et risus rutrum habitasse cursus curae, accumsan integer aliquet. Suspendisse velit vel luctus id iaculis nisi. Duis platea ac consequat; blandit luctus elit. Sem maecenas primis himenaeos class fusce congue mauris nisi. Inceptos dui mollis ultricies donec congue laoreet sagittis purus."
+                    FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+                           TextWrapping="Wrap" TextAlignment="Justify"
+FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
+Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="Bold"/>
+            </Grid>
+        </StackPanel>
+    </Border>
+</UserControl>

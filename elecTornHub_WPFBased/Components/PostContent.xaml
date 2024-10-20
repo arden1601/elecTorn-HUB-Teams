@@ -1,0 +1,322 @@
+﻿<UserControl x:Class="elecTornHub_WPFBased.Components.PostContent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:localExtras="clr-namespace:elecTornHub_WPFBased.Extras"
+             Width="Auto" Height="Auto"
+             Margin="0,0,0,10"
+             >
+
+    <StackPanel Background="{x:Static localExtras:Variables.ColorOffWhite}">
+        <Grid
+            VerticalAlignment="Center"
+                Height="Auto"
+Width="Auto"
+                Margin="10"
+              >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,0,0,5" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Orientation="Horizontal"
+                    >
+                    <TextBlock
+                    Text="Penulis: " FontSize="{x:Static localExtras:Variables.FontSizeMD}"
+FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
+Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="Regular"
+                           TextWrapping="Wrap" TextAlignment="Justify"/>
+                    <TextBlock
+                        x:Name="PostContent_Poster"
+                    Text="Mantan Mantu Jenderal" FontSize="{x:Static localExtras:Variables.FontSizeMD}"
+FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="Bold"
+                           TextWrapping="Wrap" TextAlignment="Justify"/>
+                </StackPanel>
+                <StackPanel
+                    Grid.Column="1"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    >
+                    <TextBlock
+                        x:Name="PostContent_Date"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left"
+                        Margin="0,0,10,0"
+                    Text="30 September 1965" FontSize="{x:Static localExtras:Variables.FontSizeMD}"
+FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold"
+                           TextWrapping="Wrap" TextAlignment="Justify"/>
+                    <Border
+VerticalAlignment="Bottom"
+CornerRadius="4"
+BorderBrush="Transparent"
+Background="{x:Static localExtras:Variables.ColorAccentOrange}"
+>
+                        <Button
+                            x:Name="PostContent_TopButton"
+                    HorizontalAlignment="Left"
+    VerticalAlignment="Center"
+    Content="Lapor"
+    Style="{StaticResource NoHoverButtonStyle}"
+    FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+    FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+    Foreground="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
+    Background="Transparent"
+    BorderThickness="0"
+    BorderBrush="Transparent"
+    Cursor="Hand"
+                                Margin="4"
+/>
+                    </Border>
+                </StackPanel>
+            </Grid>
+            
+            <!-- Report -->
+            <StackPanel 
+                x:Name="PostContent_ReportSection"
+                Width="Auto" Margin="0,10,0,40"
+                                Height="Auto"
+                                Orientation="Vertical"
+                                VerticalAlignment="Bottom"
+                        HorizontalAlignment="Stretch"
+                        Grid.Row="1"
+                                >
+
+                    <TextBlock
+                        x:Name="PostContent_ReportTitle"
+                        Width="Auto"
+                        Grid.Column="0"
+                    Text="Laporan:" FontSize="{x:Static localExtras:Variables.FontSizeMD}"
+                            HorizontalAlignment="Left"
+FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+Foreground="{x:Static localExtras:Variables.ColorAccentOrange}" FontWeight="Bold"
+                           TextWrapping="Wrap" TextAlignment="Justify"
+                                        />
+
+                <Grid Height="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Right"
+                      Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1}"
+                      >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <Border
+                        Grid.Column="0"
+                         VerticalAlignment="Center"
+CornerRadius="3"
+Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
+                                            BorderThickness="1"
+                                            BorderBrush="{x:Static localExtras:Variables.ColorDarkGray}"
+                HorizontalAlignment="Left"
+>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                              Height="40"
+              Width="Auto"
+                                          VerticalAlignment="Top"
+                                  HorizontalAlignment="Left"
+                                          Padding="6"
+                              >
+                            <TextBlock
+                                x:Name="PostContent_ReportText"
+                Text="Posting ini mengandung ujaran kebencian, sehingga perlu di-takedown. Posting ini mengandung ujaran kebencian, sehingga perlu di-takedown. Posting ini mengandung ujaran kebencian, sehingga perlu di-takedown."
+                TextAlignment="Justify"
+                FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+                FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+                Foreground="{x:Static localExtras:Variables.ColorDarkGray}"                
+                Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
+                TextWrapping="Wrap"
+                Width="Auto"
+                                MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.9}"
+                />
+                        </ScrollViewer>
+                    </Border>
+                    <StackPanel x:Name="PostContent_ReportButtons" Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top">
+                        <Border
+CornerRadius="3"
+BorderBrush="Transparent"
+Margin="0, 0, 10, 0"
+                            Height="30"
+Background="{x:Static localExtras:Variables.ColorDarkGray}"
+>
+                            <Button
+                            x:Name="PostContent_RejectReportButton"
+    Content="Tolak Laporan"
+    Style="{StaticResource NoHoverButtonStyle}"
+    FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+    FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+    Foreground="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
+    Background="Transparent"
+    BorderThickness="0"
+    BorderBrush="Transparent"
+    Margin="15,5"
+    Cursor="Hand"
+/>
+                        </Border>
+                        <Border
+CornerRadius="3"
+BorderBrush="Transparent"
+Margin="0, 0, 10, 0"
+Background="{x:Static localExtras:Variables.ColorAccentOrange}"
+                            Height="30"
+>
+                            <Button
+                            x:Name="PostContent_TakedownButton"
+    Content="Takedown"
+    Style="{StaticResource NoHoverButtonStyle}"
+    FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+    FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+    Foreground="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
+    Background="Transparent"
+    BorderThickness="0"
+    BorderBrush="Transparent"
+    Margin="15,5"
+    Cursor="Hand"
+/>
+                        </Border>
+                        <Border
+CornerRadius="3"
+BorderBrush="Transparent"
+Margin="0, 0, 0, 0"
+Background="{x:Static localExtras:Variables.ColorAccentOrange}"
+                            Height="30"
+>
+                            <Button
+                            x:Name="PostContent_BanButton"
+    Content="Ban User"
+    Style="{StaticResource NoHoverButtonStyle}"
+    FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+    FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+    Foreground="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
+    Background="Transparent"
+    BorderThickness="0"
+    BorderBrush="Transparent"
+    Margin="15,5"
+    Cursor="Hand"
+/>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+
+            <!-- Content -->
+            <StackPanel
+                Grid.Row="2">
+                <StackPanel>
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock
+                            x:Name="PostContent_Title"
+                            HorizontalAlignment="Center"
+                    Text="Cara Menjadi Presiden yang baik"
+                    FontSize="{x:Static localExtras:Variables.FontSizeMD}"
+                           TextWrapping="Wrap" TextAlignment="Justify"
+FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="Bold"/>
+                        
+                        <Border
+        VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+        CornerRadius="8"
+        BorderThickness="2"
+        BorderBrush="{x:Static localExtras:Variables.ColorDarkGray}"
+                        
+                        >
+                            <TextBox
+                                x:Name="PostContent_EditTitle"
+             VerticalAlignment="Center"
+                                     HorizontalAlignment="Center"
+                                                     Text="Cara Menjadi Presiden yang baik"
+                    FontSize="{x:Static localExtras:Variables.FontSizeMD}"
+                           TextWrapping="Wrap" TextAlignment="Justify"
+FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="Bold"
+             BorderThickness="0"
+             Background="Transparent"
+             Padding="6,5" />
+                        </Border>
+
+                        <StackPanel x:Name="PostContent_LogEdit" Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                    Text="terakhir disunting: "
+                    FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+                           TextWrapping="Wrap" TextAlignment="Justify"
+FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
+Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="Bold"/>
+                            <TextBlock
+                                x:Name="PostContent_LastEdit"
+                                HorizontalAlignment="Center"
+                    Text="1 Oktober 2024"
+                    FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+                           TextWrapping="Wrap" TextAlignment="Justify"
+FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
+Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="Bold"/>
+                        </StackPanel>
+                        <Image
+                            x:Name="PostContent_Image"
+       Source="/elecTornHub_WPFBased;component/Resources/Images/dummy_post_long.png" 
+                           MaxHeight="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=2}"
+                           MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=2}"
+                            Height="Auto"
+                            Width="Auto"
+                           Margin="0,10"/>
+                    </StackPanel>
+                <TextBlock
+                    x:Name="PostContent_Description"
+                    Margin="0,20,0,0"
+                    Text="Lorem ipsum odor amet, consectetuer adipiscing elit. Sapien scelerisque per conubia volutpat viverra tempus! Inceptos curae mi fusce proin senectus, condimentum volutpat dictum? Et risus rutrum habitasse cursus curae, accumsan integer aliquet. Suspendisse velit vel luctus id iaculis nisi. Duis platea ac consequat; blandit luctus elit. Sem maecenas primis himenaeos class fusce congue mauris nisi. Inceptos dui mollis ultricies donec congue laoreet sagittis purus.
+
+Purus habitant cras semper in est semper scelerisque. Magna aenean facilisi congue magna senectus amet? Sit tellus quisque viverra; sodales odio nulla. Venenatis magnis feugiat a ipsum tellus pulvinar. Nulla natoque sagittis quisque felis faucibus! Quisque at quam sociosqu integer libero. Vivamus morbi sapien ad et ante gravida conubia sollicitudin gravida.
+
+Lorem ipsum odor amet, consectetuer adipiscing elit. Sapien scelerisque per conubia volutpat viverra tempus! Inceptos curae mi fusce proin senectus, condimentum volutpat dictum? Et risus rutrum habitasse cursus curae, accumsan integer aliquet. Suspendisse velit vel luctus id iaculis nisi. Duis platea ac consequat; blandit luctus elit. Sem maecenas primis himenaeos class fusce congue mauris nisi. Inceptos dui mollis ultricies donec congue laoreet sagittis purus.
+
+Lorem ipsum odor amet, consectetuer adipiscing elit. Sapien scelerisque per conubia volutpat viverra tempus! Inceptos curae mi fusce proin senectus, condimentum volutpat dictum? Et risus rutrum habitasse cursus curae, accumsan integer aliquet. Suspendisse velit vel luctus id iaculis nisi. Duis platea ac consequat; blandit luctus elit. Sem maecenas primis himenaeos class fusce congue mauris nisi. Inceptos dui mollis ultricies donec congue laoreet sagittis purus."
+                    FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+                           TextWrapping="Wrap" TextAlignment="Justify"
+FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
+Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="Bold"/>
+                    <Border
+        VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+        CornerRadius="8"
+        BorderThickness="2"
+        BorderBrush="{x:Static localExtras:Variables.ColorDarkGray}"
+                        
+                        >
+                        <TextBox
+                                x:Name="PostContent_EditDescription"
+             VerticalAlignment="Center"
+                                     HorizontalAlignment="Center"
+                                                                         Text="Lorem ipsum odor amet, consectetuer adipiscing elit. Sapien scelerisque per conubia volutpat viverra tempus! Inceptos curae mi fusce proin senectus, condimentum volutpat dictum? Et risus rutrum habitasse cursus curae, accumsan integer aliquet. Suspendisse velit vel luctus id iaculis nisi. Duis platea ac consequat; blandit luctus elit. Sem maecenas primis himenaeos class fusce congue mauris nisi. Inceptos dui mollis ultricies donec congue laoreet sagittis purus.
+
+Purus habitant cras semper in est semper scelerisque. Magna aenean facilisi congue magna senectus amet? Sit tellus quisque viverra; sodales odio nulla. Venenatis magnis feugiat a ipsum tellus pulvinar. Nulla natoque sagittis quisque felis faucibus! Quisque at quam sociosqu integer libero. Vivamus morbi sapien ad et ante gravida conubia sollicitudin gravida.
+
+Lorem ipsum odor amet, consectetuer adipiscing elit. Sapien scelerisque per conubia volutpat viverra tempus! Inceptos curae mi fusce proin senectus, condimentum volutpat dictum? Et risus rutrum habitasse cursus curae, accumsan integer aliquet. Suspendisse velit vel luctus id iaculis nisi. Duis platea ac consequat; blandit luctus elit. Sem maecenas primis himenaeos class fusce congue mauris nisi. Inceptos dui mollis ultricies donec congue laoreet sagittis purus.
+
+Lorem ipsum odor amet, consectetuer adipiscing elit. Sapien scelerisque per conubia volutpat viverra tempus! Inceptos curae mi fusce proin senectus, condimentum volutpat dictum? Et risus rutrum habitasse cursus curae, accumsan integer aliquet. Suspendisse velit vel luctus id iaculis nisi. Duis platea ac consequat; blandit luctus elit. Sem maecenas primis himenaeos class fusce congue mauris nisi. Inceptos dui mollis ultricies donec congue laoreet sagittis purus."
+                    FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+                           TextWrapping="Wrap" TextAlignment="Justify"
+FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
+Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="Bold"
+             BorderThickness="0"
+             Background="Transparent"
+             Padding="6,5" />
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </StackPanel>
+</UserControl>

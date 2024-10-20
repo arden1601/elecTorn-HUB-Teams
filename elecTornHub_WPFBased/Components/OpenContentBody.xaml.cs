@@ -11,6 +11,9 @@
         {
             InitializeComponent();
             this.DataContext = this; // Set DataContext to itse
+            OpenContentBody_ModePost.Visibility = Visibility.Collapsed;
+            OpenContentBody_ModeProduct.Visibility = Visibility.Collapsed;
+
             // Hide all buttons and counter
             ClearProps(OpenContentBody_Button1);
             ClearProps(OpenContentBody_Button2);
@@ -44,6 +47,16 @@
         {
             get { return (string)GetValue(TypeProperty); }
             set { SetValue(TypeProperty, value); }
+        }
+
+        // DependencyProperty for Mode
+        public static readonly DependencyProperty ModeProperty =
+            DependencyProperty.Register("Mode", typeof(string), typeof(OpenContentBody), new PropertyMetadata(string.Empty, OnModeChanged));
+
+        public string Mode
+        {
+            get { return (string)GetValue(ModeProperty); }
+            set { SetValue(ModeProperty, value); }
         }
 
         // Callback
@@ -119,6 +132,21 @@
                 control.OpenContentBody_ReportTab_Title.Text = "Produk telah di-takedown:";
 
                 control.OpenContentBody_ReportTab.Visibility = Visibility.Visible;
+            }
+        }
+
+        private static void OnModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as OpenContentBody;
+            string newMode = e.NewValue as string;
+
+            if (newMode == "Product")
+            {
+                control.OpenContentBody_ModeProduct.Visibility = Visibility.Visible;
+            } else if (newMode == "Post")
+            {
+                control.OpenContentBody_ModePost.Visibility = Visibility.Visible;
+                control.OpenContentBody_BorderParent.Height = double.NaN;
             }
         }
     }

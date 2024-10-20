@@ -72,7 +72,7 @@
         Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Border}}}">
 
                     <localComponents:Navbar x:Name="NavbarControl" Type="User" Grid.Row="0" />
-                    <localComponents:OpenContentBody Margin="0, 40, 0, 0" Type="Reported" />
+                    <localComponents:OpenContentBody Margin="0, 40, 0, 0" Type="Reported" Mode="Post" />
                 </Grid>
             </Grid>
         </Border>

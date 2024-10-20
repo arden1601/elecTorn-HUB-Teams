@@ -8,313 +8,425 @@
              Width="Auto" Height="Auto"
              >
 
-    <Border HorizontalAlignment="Center"
+    <Border
+        x:Name="OpenContentBody_BorderParent"
+        HorizontalAlignment="Center"
 VerticalAlignment="Center"
                             
                             Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.5}"
+        MaxHeight="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.2}"
                             Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.03}"
 Background="{x:Static localExtras:Variables.ColorOffWhite}"
 CornerRadius="15"
 BorderThickness="1"
                             BorderBrush="{x:Static localExtras:Variables.ColorDarkGray}"
 >
-        <Grid
-            
+        <StackPanel
+            Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Border}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1}"
+            >
+            <Grid
+                x:Name="OpenContentBody_ModeProduct"
+                VerticalAlignment="Center"
+                    Height="Auto"
+    Width="Auto"
+                                 Margin="10"
+                  >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0"
+                                       x:Name="OpenContentBody_Picture"
+                       Source="/elecTornHub_WPFBased;component/Resources/Images/dummy_product.png" 
+                                           Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Border}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1}"
+                                           Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Border}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.5}"
+                                           Margin="0"/>
+                <StackPanel
+                                         Grid.Column="1" Grid.Row="1"
+                                    Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Border}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1}"
+                                    >
+                    <TextBlock
+                                        x:Name="OpenContentBody_Title"
+                        Text="Laptop ACER Intel Core"
+                        FontSize="{x:Static localExtras:Variables.FontSizeLG}"
+    FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+    Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
+                        FontWeight="DemiBold"
+                               TextWrapping="Wrap" TextAlignment="Justify"/>
+
+
+                    <Border HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
-                Height="Auto"
-Width="Auto"
-                             Margin="10"
-              >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="3*" />
-            </Grid.ColumnDefinitions>
-            <Image Grid.Column="0"
-                                   x:Name="OpenContentBody_Picture"
-                   Source="/elecTornHub_WPFBased;component/Resources/Images/dummy_product.png" 
-                                       Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Border}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1}"
-                                       Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Border}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.5}"
-                                       Margin="0"/>
-            <StackPanel
-                                     Grid.Column="1" Grid.Row="1"
-                                Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Border}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1}"
-                                >
-                <TextBlock
-                                    x:Name="OpenContentBody_Title"
-                    Text="Laptop ACER Intel Core"
-                    FontSize="{x:Static localExtras:Variables.FontSizeLG}"
-FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
-Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
-                    FontWeight="DemiBold"
-                           TextWrapping="Wrap" TextAlignment="Justify"/>
-
-
-                <Border HorizontalAlignment="Stretch"
-        VerticalAlignment="Center"
-        CornerRadius="8"
-        BorderThickness="2"
-        BorderBrush="{x:Static localExtras:Variables.ColorDarkGray}"
-                        x:Name="OpenContentBody_EditTitleBorder"
-                        >
-                    <TextBox HorizontalAlignment="Stretch"
-                             Text="Laptop ACER Intel Core"
-             VerticalAlignment="Center"
-             x:Name="OpenContentBody_EditTitle"
-                                 FontSize="{x:Static localExtras:Variables.FontSizeLG}"
-FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
-Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
-                    FontWeight="DemiBold"
-             BorderThickness="0"
-             Background="Transparent"
-             Padding="6,5" />
-                </Border>
-                
-                <TextBlock
-                    x:Name="OpenContentBody_Seller"
-                    Text="dijual oleh Cornelius Arden" FontSize="{x:Static localExtras:Variables.FontSizeSM}"
-FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
-Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold"
-                           TextWrapping="Wrap" TextAlignment="Justify"
-                                        />
-                <ScrollViewer
-                    x:Name="OpenContentBody_Desc"
-                    VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
-                                              Margin="0,15"
-                                              Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=2}"
-                              Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1}"
-                                              >
-                    <TextBlock
-                    Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type ScrollViewer}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.05}"
-                        HorizontalAlignment="Left"
-                    Text="Laptop ini merupakan laptop kesayangan saya, tapi laptop ini terlalu bagus untuk saya sehingga saya memutuskan untuk menjualnya. Spesifikasi masih bagus, dijual murah karena kebetulan lagi butuh uang untuk memenuhi kebutuhan anak dan istri. Bagi siapapun yang berniat membantu saya, mohon beli produk ini. Jika Anda tidak mau membeli padahal sudah membaca sampai sini, saya akan gunakan IP Address Anda untuk melacak posisi Anda dan mengejar Anda sampai ke pelaminan. Sekian terima kasih, terima lah lagu ini dari orang biasa. Mohon maaf jika ada salah kata, akhir kata saya mengucapkan minta maaf. Sampai jumpa dalam LAPTOP ACER INTEL 2025! Wassalamu’alaikum warahmatullahi wabarakatuh. Laptop ini merupakan laptop kesayangan saya, tapi laptop ini terlalu bagus untuk saya sehingga saya memutuskan untuk menjualnya. Spesifikasi masih bagus, dijual murah karena kebetulan lagi butuh uang untuk memenuhi kebutuhan anak dan istri. Bagi siapapun yang berniat membantu saya, mohon beli produk ini. Jika Anda tidak mau membeli padahal sudah membaca sampai sini, saya akan gunakan IP Address Anda untuk melacak posisi Anda dan mengejar Anda sampai ke pelaminan. Sekian terima kasih, terima lah lagu ini dari orang biasa. Mohon maaf jika ada salah kata, akhir kata saya mengucapkan minta maaf. Sampai jumpa dalam LAPTOP ACER INTEL 2025! Wassalamu’alaikum warahmatullahi wabarakatuh."
-                    FontSize="{x:Static localExtras:Variables.FontSizeMD}"
-FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
-Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold"
-                           TextWrapping="Wrap" TextAlignment="Justify"
-                        />
-                </ScrollViewer>
-
-                <Border HorizontalAlignment="Stretch"
-VerticalAlignment="Center"
-CornerRadius="8"
-BorderThickness="2"
-                        Margin="0,10"
-BorderBrush="{x:Static localExtras:Variables.ColorDarkGray}"
-                    x:Name="OpenContentBody_EditDescBorder"
-                        Padding="0,0,10,0"
-                        >
-                    <ScrollViewer
-    VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
-                              Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.9}"
-              Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1}"
-                    Padding="6,5"
-                        >
-                    
+            CornerRadius="8"
+            BorderThickness="2"
+            BorderBrush="{x:Static localExtras:Variables.ColorDarkGray}"
+                            x:Name="OpenContentBody_EditTitleBorder"
+                            >
                         <TextBox HorizontalAlignment="Stretch"
-                             Text="Laptop ini merupakan laptop kesayangan saya, tapi laptop ini terlalu bagus untuk saya sehingga saya memutuskan untuk menjualnya. Spesifikasi masih bagus, dijual murah karena kebetulan lagi butuh uang untuk memenuhi kebutuhan anak dan istri. Bagi siapapun yang berniat membantu saya, mohon beli produk ini. Jika Anda tidak mau membeli padahal sudah membaca sampai sini, saya akan gunakan IP Address Anda untuk melacak posisi Anda dan mengejar Anda sampai ke pelaminan. Sekian terima kasih, terima lah lagu ini dari orang biasa. Mohon maaf jika ada salah kata, akhir kata saya mengucapkan minta maaf. Sampai jumpa dalam LAPTOP ACER INTEL 2025! Wassalamu’alaikum warahmatullahi wabarakatuh. Laptop ini merupakan laptop kesayangan saya, tapi laptop ini terlalu bagus untuk saya sehingga saya memutuskan untuk menjualnya. Spesifikasi masih bagus, dijual murah karena kebetulan lagi butuh uang untuk memenuhi kebutuhan anak dan istri. Bagi siapapun yang berniat membantu saya, mohon beli produk ini. Jika Anda tidak mau membeli padahal sudah membaca sampai sini, saya akan gunakan IP Address Anda untuk melacak posisi Anda dan mengejar Anda sampai ke pelaminan. Sekian terima kasih, terima lah lagu ini dari orang biasa. Mohon maaf jika ada salah kata, akhir kata saya mengucapkan minta maaf. Sampai jumpa dalam LAPTOP ACER INTEL 2025! Wassalamu’alaikum warahmatullahi wabarakatuh."
-             VerticalAlignment="Center"
-             x:Name="OpenContentBody_EditDesc"
-                                FontSize="{x:Static localExtras:Variables.FontSizeMD}"
-FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
-Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold"
-                           TextWrapping="Wrap" TextAlignment="Justify"
-             BorderThickness="0"
-             Background="Transparent"
-              />
-                </ScrollViewer>
+                                 Text="Laptop ACER Intel Core"
+                 VerticalAlignment="Center"
+                 x:Name="OpenContentBody_EditTitle"
+                                     FontSize="{x:Static localExtras:Variables.FontSizeLG}"
+    FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+    Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
+                        FontWeight="DemiBold"
+                 BorderThickness="0"
+                 Background="Transparent"
+                 Padding="6,5" />
                     </Border>
-
-                <Grid
-            
-            VerticalAlignment="Bottom"
-                Height="Auto"
-Width="Auto"
-              >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel Grid.Column="0">
+                
                     <TextBlock
-                        Grid.Column="0"
-                                    x:Name="OpenContentBody_Price"
+                        x:Name="OpenContentBody_Seller"
+                        Text="dijual oleh Cornelius Arden" FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+    FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
+    Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold"
+                               TextWrapping="Wrap" TextAlignment="Justify"
+                                            />
+                    <ScrollViewer
+                        x:Name="OpenContentBody_Desc"
+                        VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                                                  Margin="0,15"
+                                                  Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=2}"
+                                  Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1}"
+                                                  >
+                        <TextBlock
+                        Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type ScrollViewer}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.05}"
+                            HorizontalAlignment="Left"
+                        Text="Laptop ini merupakan laptop kesayangan saya, tapi laptop ini terlalu bagus untuk saya sehingga saya memutuskan untuk menjualnya. Spesifikasi masih bagus, dijual murah karena kebetulan lagi butuh uang untuk memenuhi kebutuhan anak dan istri. Bagi siapapun yang berniat membantu saya, mohon beli produk ini. Jika Anda tidak mau membeli padahal sudah membaca sampai sini, saya akan gunakan IP Address Anda untuk melacak posisi Anda dan mengejar Anda sampai ke pelaminan. Sekian terima kasih, terima lah lagu ini dari orang biasa. Mohon maaf jika ada salah kata, akhir kata saya mengucapkan minta maaf. Sampai jumpa dalam LAPTOP ACER INTEL 2025! Wassalamu’alaikum warahmatullahi wabarakatuh. Laptop ini merupakan laptop kesayangan saya, tapi laptop ini terlalu bagus untuk saya sehingga saya memutuskan untuk menjualnya. Spesifikasi masih bagus, dijual murah karena kebetulan lagi butuh uang untuk memenuhi kebutuhan anak dan istri. Bagi siapapun yang berniat membantu saya, mohon beli produk ini. Jika Anda tidak mau membeli padahal sudah membaca sampai sini, saya akan gunakan IP Address Anda untuk melacak posisi Anda dan mengejar Anda sampai ke pelaminan. Sekian terima kasih, terima lah lagu ini dari orang biasa. Mohon maaf jika ada salah kata, akhir kata saya mengucapkan minta maaf. Sampai jumpa dalam LAPTOP ACER INTEL 2025! Wassalamu’alaikum warahmatullahi wabarakatuh."
+                        FontSize="{x:Static localExtras:Variables.FontSizeMD}"
+    FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
+    Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold"
+                               TextWrapping="Wrap" TextAlignment="Justify"
+                            />
+                    </ScrollViewer>
+
+                    <Border HorizontalAlignment="Stretch"
+    VerticalAlignment="Center"
+    CornerRadius="8"
+    BorderThickness="2"
+                            Margin="0,10"
+    BorderBrush="{x:Static localExtras:Variables.ColorDarkGray}"
+                        x:Name="OpenContentBody_EditDescBorder"
+                            Padding="0,0,10,0"
+                            >
+                        <ScrollViewer
+        VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                                  Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.9}"
+                  Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1}"
+                        Padding="6,5"
+                            >
                     
-                    Text="Rp. 694.646,-"
-                        FontSize="{x:Static localExtras:Variables.FontSizeLG}"
-FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
-Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold"
-                           TextWrapping="Wrap" TextAlignment="Justify"/>
+                            <TextBox HorizontalAlignment="Stretch"
+                                 Text="Laptop ini merupakan laptop kesayangan saya, tapi laptop ini terlalu bagus untuk saya sehingga saya memutuskan untuk menjualnya. Spesifikasi masih bagus, dijual murah karena kebetulan lagi butuh uang untuk memenuhi kebutuhan anak dan istri. Bagi siapapun yang berniat membantu saya, mohon beli produk ini. Jika Anda tidak mau membeli padahal sudah membaca sampai sini, saya akan gunakan IP Address Anda untuk melacak posisi Anda dan mengejar Anda sampai ke pelaminan. Sekian terima kasih, terima lah lagu ini dari orang biasa. Mohon maaf jika ada salah kata, akhir kata saya mengucapkan minta maaf. Sampai jumpa dalam LAPTOP ACER INTEL 2025! Wassalamu’alaikum warahmatullahi wabarakatuh. Laptop ini merupakan laptop kesayangan saya, tapi laptop ini terlalu bagus untuk saya sehingga saya memutuskan untuk menjualnya. Spesifikasi masih bagus, dijual murah karena kebetulan lagi butuh uang untuk memenuhi kebutuhan anak dan istri. Bagi siapapun yang berniat membantu saya, mohon beli produk ini. Jika Anda tidak mau membeli padahal sudah membaca sampai sini, saya akan gunakan IP Address Anda untuk melacak posisi Anda dan mengejar Anda sampai ke pelaminan. Sekian terima kasih, terima lah lagu ini dari orang biasa. Mohon maaf jika ada salah kata, akhir kata saya mengucapkan minta maaf. Sampai jumpa dalam LAPTOP ACER INTEL 2025! Wassalamu’alaikum warahmatullahi wabarakatuh."
+                 VerticalAlignment="Center"
+                 x:Name="OpenContentBody_EditDesc"
+                                    FontSize="{x:Static localExtras:Variables.FontSizeMD}"
+    FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
+    Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold"
+                               TextWrapping="Wrap" TextAlignment="Justify"
+                 BorderThickness="0"
+                 Background="Transparent"
+                  />
+                    </ScrollViewer>
+                        </Border>
 
-                        <StackPanel Orientation="Horizontal" x:Name="OpenContentBody_EditPriceBorder" VerticalAlignment="Center">
-                            <TextBlock
-                        Grid.Column="0"
-                    VerticalAlignment="Center"
-                    Text="Rp. "
-                        FontSize="{x:Static localExtras:Variables.FontSizeLG}"
-FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
-Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold"
-                           TextWrapping="Wrap" TextAlignment="Justify"/>
-                            <Border HorizontalAlignment="Stretch"
-        VerticalAlignment="Center"
-        CornerRadius="8"
-        BorderThickness="2"
-        BorderBrush="{x:Static localExtras:Variables.ColorDarkGray}"
+                    <Grid
+            
+                VerticalAlignment="Bottom"
+                    Height="Auto"
+    Width="Auto"
+                  >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                        <TextBlock
+                            Grid.Column="0"
+                                        x:Name="OpenContentBody_Price"
+                    
+                        Text="Rp. 694.646,-"
+                            FontSize="{x:Static localExtras:Variables.FontSizeLG}"
+    FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+    Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold"
+                               TextWrapping="Wrap" TextAlignment="Justify"/>
+
+                            <StackPanel Orientation="Horizontal" x:Name="OpenContentBody_EditPriceBorder" VerticalAlignment="Center">
+                                <TextBlock
+                            Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Text="Rp. "
+                            FontSize="{x:Static localExtras:Variables.FontSizeLG}"
+    FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+    Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold"
+                               TextWrapping="Wrap" TextAlignment="Justify"/>
+                                <Border HorizontalAlignment="Stretch"
+            VerticalAlignment="Center"
+            CornerRadius="8"
+            BorderThickness="2"
+            BorderBrush="{x:Static localExtras:Variables.ColorDarkGray}"
                         
-                        >
-                                <TextBox HorizontalAlignment="Stretch"
-                             Text="694646"
-             VerticalAlignment="Center"
-             x:Name="OpenContentBody_EditPrice"
-                     FontSize="{x:Static localExtras:Variables.FontSizeLG}"
-FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
-Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold"
-                           TextWrapping="Wrap" TextAlignment="Justify"
-             BorderThickness="0"
-             Background="Transparent"
-             Padding="2" />
-                            </Border>
-                            <TextBlock
-                        Grid.Column="0"
-                    VerticalAlignment="Center"
-                    Text=",-"
-                                Margin="5,0,0,0"
-                        FontSize="{x:Static localExtras:Variables.FontSizeLG}"
-FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
-Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold"
-                           TextWrapping="Wrap" TextAlignment="Justify"/>
+                            >
+                                    <TextBox HorizontalAlignment="Stretch"
+                                 Text="694646"
+                 VerticalAlignment="Center"
+                 x:Name="OpenContentBody_EditPrice"
+                         FontSize="{x:Static localExtras:Variables.FontSizeLG}"
+    FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+    Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold"
+                               TextWrapping="Wrap" TextAlignment="Justify"
+                 BorderThickness="0"
+                 Background="Transparent"
+                 Padding="2" />
+                                </Border>
+                                <TextBlock
+                            Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Text=",-"
+                                    Margin="5,0,0,0"
+                            FontSize="{x:Static localExtras:Variables.FontSizeLG}"
+    FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+    Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold"
+                               TextWrapping="Wrap" TextAlignment="Justify"/>
 
+                            </StackPanel>
+
+                            <TextBlock
+                                        x:Name="OpenContentBody_Stock"
+                        Text="(stok tersedia 1 buah)" FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+    FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
+    Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold"
+                               TextWrapping="Wrap" TextAlignment="Justify"
+                                            />
+
+                        <StackPanel 
+                            Orientation="Horizontal" Margin="0, 10" VerticalAlignment="Center"
+                            Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1}"
+                            >
+                            <localComponents:CounterButton x:Name="OpenContentBody_Counter" Margin="0, 0, 10, 0" />
+                            <Border
+                                            x:Name="OpenContentBody_Button1"
+    CornerRadius="3"
+    BorderBrush="Transparent"
+    Margin="0, 0, 10, 0"
+    Background="{x:Static localExtras:Variables.ColorGreen}"
+    >
+                                <Button
+                        x:Name="OpenContentBody_Button1_Button"
+        Content="Beli"
+        Style="{StaticResource NoHoverButtonStyle}"
+        FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+        FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+        Foreground="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
+        Background="Transparent"
+        BorderThickness="0"
+        BorderBrush="Transparent"
+        Margin="15,5"
+        Height="20"
+        Cursor="Hand"
+    />
+                            </Border>
+                            <Border
+                                            x:Name="OpenContentBody_Button2"
+    CornerRadius="3"
+    BorderBrush="Transparent"
+    Margin="0, 0, 10, 0"
+    Background="{x:Static localExtras:Variables.ColorDarkGray}"
+    >
+                                <Button
+                        x:Name="OpenContentBody_Button2_Button"
+        Content="Hubungi"
+        Style="{StaticResource NoHoverButtonStyle}"
+        FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+        FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+        Foreground="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
+        Background="Transparent"
+        BorderThickness="0"
+        BorderBrush="Transparent"
+        Margin="15,5"
+        Height="20"
+        Cursor="Hand"
+    />
+                            </Border>
+                            <Border
+                                            x:Name="OpenContentBody_Button3"
+    CornerRadius="3"
+    BorderBrush="Transparent"
+    Margin="0, 0, 10, 0"
+    Background="{x:Static localExtras:Variables.ColorAccentOrange}"
+    >
+                                <Button
+                                x:Name="OpenContentBody_Button3_Button"
+        Content="Lapor"
+        Style="{StaticResource NoHoverButtonStyle}"
+        FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+        FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+        Foreground="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
+        Background="Transparent"
+        BorderThickness="0"
+        BorderBrush="Transparent"
+        Margin="15,5"
+        Height="20"
+        Cursor="Hand"
+    />
+                            </Border>
+                        </StackPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Width="Auto" Margin="20,0,0,0"
+                                    Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1}"
+                                    Orientation="Vertical"
+                                    x:Name="OpenContentBody_ReportTab"
+                                    VerticalAlignment="Bottom"
+                                    >
+                            <TextBlock
+                                        x:Name="OpenContentBody_ReportTab_Title"
+                        Text="Laporan:" FontSize="{x:Static localExtras:Variables.FontSizeMD}"
+                                HorizontalAlignment="Right"
+    FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+    Foreground="{x:Static localExtras:Variables.ColorAccentOrange}" FontWeight="Bold"
+                               TextWrapping="Wrap" TextAlignment="Justify"
+                                            />
+                            <Border
+    CornerRadius="3"
+    Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
+                                                BorderThickness="1"
+                                                BorderBrush="{x:Static localExtras:Variables.ColorDarkGray}"
+                    HorizontalAlignment="Right"
+    VerticalAlignment="Bottom"
+    >
+                                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                                  Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.6}"
+                  Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1}"
+                                  x:Name="OpenContentBody_ReportDesc"
+                                              VerticalAlignment="Bottom"
+                                              Padding="2,4,4,4"
+                                  >
+                                    <TextBox
+                        x:Name="OpenContentBody_ReportMessage"
+                                    HorizontalAlignment="Center"
+    VerticalAlignment="Center"
+                    Text="Barang ini memiliki harga tidak masuk akal karena tampaknya terlalu menguntungkan penjual. Saya iri karena saya tidak bisa seperti ini."
+                    TextAlignment="Justify"
+                    FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+                    FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+                    Foreground="{x:Static localExtras:Variables.ColorDarkGray}"                
+                    Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
+                    TextWrapping="Wrap"
+                    BorderThickness="0"
+                    Width="Auto"
+                    />
+                                </ScrollViewer>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+            <StackPanel
+    x:Name="OpenContentBody_ModePost"
+    Orientation="Vertical"
+                VerticalAlignment="Center"
+HorizontalAlignment="Center"
+    Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Border}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1}">
+
+                <ScrollViewer
+                    Margin="10"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.1}">
+                    <StackPanel Orientation="Vertical">
+                        <!-- Post -->
+                        <localComponents:PostContent Type="Default" />
+                        <localComponents:PostContent Type="Poster" />
+                        <localComponents:PostContent Type="Reported" />
+                        <localComponents:PostContent Type="Takedown" />
+                        <!-- Comment Group -->
+                        <StackPanel Orientation="Vertical" x:Name="OpenContentBody_CommentGroup">
+                        <Grid 
+                Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Border}}}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                                <!-- Comment -->
+                                <TextBlock 
+                                           Text="Komentar"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Center"
+                                    FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+                                    FontFamily="{x:Static localExtras:Variables.SecondaryFont}"
+                                    Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
+                                    Background="Transparent"
+                                    Padding="6, 8"
+                                    TextWrapping="Wrap"
+                                    TextAlignment="Justify"/>
+                                <Border HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        CornerRadius="4"
+                        BorderThickness="2"
+                        Margin="10,0"
+                        BorderBrush="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
+                        Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
+                        Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.189}">
+                                    <Border.Effect>
+                                        <DropShadowEffect Color="Black" Direction="270" ShadowDepth="1" BlurRadius="3" Opacity="0.5"/>
+                                    </Border.Effect>
+
+                                    <TextBox x:Name="OpenContentBody_Comment"
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Top"
+                             FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+                             FontFamily="{x:Static localExtras:Variables.SecondaryFont}"
+                             Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
+                             BorderThickness="0"
+                             Background="Transparent"
+                             Padding="6, 8"
+                             TextWrapping="Wrap"
+                             TextAlignment="Justify"/>
+                                </Border>
+
+                                <Border HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        CornerRadius="4"
+                        Margin="0, 5"
+                        Padding="10, 8"
+                        BorderThickness="0"
+                        Background="{x:Static localExtras:Variables.ColorAccentOrange}">
+                                    <Border.Effect>
+                                        <DropShadowEffect Color="Black" Direction="270" ShadowDepth="1" BlurRadius="3" Opacity="0.5"/>
+                                    </Border.Effect>
+                                    <Button Style="{StaticResource NoHoverButtonStyle}" 
+                                Content="Kirim" 
+                                Cursor="Hand"
+                                BorderThickness="0"
+                                BorderBrush="Transparent"
+                                Background="Transparent"
+                                FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
+                                FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+                                Foreground="{x:Static localExtras:Variables.ColorAbsoluteWhite}"/>
+                                </Border>
+                            </StackPanel>
+                        </Grid>
+
+                        <!-- Comments -->
+                        <localComponents:Comment Type="Default" />
+                        <localComponents:Comment Type="Poster" />
+                        <localComponents:Comment Type="Viewer" />
+                        <localComponents:Comment Type="Viewer" />
+                        <localComponents:Comment Type="Viewer" />
+                        <localComponents:Comment Type="Viewer" />
+                        <localComponents:Comment Type="Viewer" />
+                        <localComponents:Comment Type="Viewer" />
+                        <localComponents:Comment Type="Viewer" />
                         </StackPanel>
 
-                        <TextBlock
-                                    x:Name="OpenContentBody_Stock"
-                    Text="(stok tersedia 1 buah)" FontSize="{x:Static localExtras:Variables.FontSizeSM}"
-FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
-Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold"
-                           TextWrapping="Wrap" TextAlignment="Justify"
-                                        />
-
-                    <StackPanel 
-                        Orientation="Horizontal" Margin="0, 10" VerticalAlignment="Center"
-                        Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1}"
-                        >
-                        <localComponents:CounterButton x:Name="OpenContentBody_Counter" Margin="0, 0, 10, 0" />
-                        <Border
-                                        x:Name="OpenContentBody_Button1"
-CornerRadius="3"
-BorderBrush="Transparent"
-Margin="0, 0, 10, 0"
-Background="{x:Static localExtras:Variables.ColorGreen}"
->
-                            <Button
-                    x:Name="OpenContentBody_Button1_Button"
-    Content="Beli"
-    Style="{StaticResource NoHoverButtonStyle}"
-    FontSize="{x:Static localExtras:Variables.FontSizeSM}"
-    FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
-    Foreground="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
-    Background="Transparent"
-    BorderThickness="0"
-    BorderBrush="Transparent"
-    Margin="15,5"
-    Height="20"
-    Cursor="Hand"
-/>
-                        </Border>
-                        <Border
-                                        x:Name="OpenContentBody_Button2"
-CornerRadius="3"
-BorderBrush="Transparent"
-Margin="0, 0, 10, 0"
-Background="{x:Static localExtras:Variables.ColorDarkGray}"
->
-                            <Button
-                    x:Name="OpenContentBody_Button2_Button"
-    Content="Hubungi"
-    Style="{StaticResource NoHoverButtonStyle}"
-    FontSize="{x:Static localExtras:Variables.FontSizeSM}"
-    FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
-    Foreground="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
-    Background="Transparent"
-    BorderThickness="0"
-    BorderBrush="Transparent"
-    Margin="15,5"
-    Height="20"
-    Cursor="Hand"
-/>
-                        </Border>
-                        <Border
-                                        x:Name="OpenContentBody_Button3"
-CornerRadius="3"
-BorderBrush="Transparent"
-Margin="0, 0, 10, 0"
-Background="{x:Static localExtras:Variables.ColorAccentOrange}"
->
-                            <Button
-                            x:Name="OpenContentBody_Button3_Button"
-    Content="Lapor"
-    Style="{StaticResource NoHoverButtonStyle}"
-    FontSize="{x:Static localExtras:Variables.FontSizeSM}"
-    FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
-    Foreground="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
-    Background="Transparent"
-    BorderThickness="0"
-    BorderBrush="Transparent"
-    Margin="15,5"
-    Height="20"
-    Cursor="Hand"
-/>
-                        </Border>
                     </StackPanel>
-                    </StackPanel>
-                    <StackPanel Grid.Column="1" Width="Auto" Margin="20,0,0,0"
-                                Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1}"
-                                Orientation="Vertical"
-                                x:Name="OpenContentBody_ReportTab"
-                                VerticalAlignment="Bottom"
-                                >
-                        <TextBlock
-                                    x:Name="OpenContentBody_ReportTab_Title"
-                    Text="Laporan" FontSize="{x:Static localExtras:Variables.FontSizeMD}"
-                            HorizontalAlignment="Right"
-FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
-Foreground="{x:Static localExtras:Variables.ColorAccentOrange}" FontWeight="Bold"
-                           TextWrapping="Wrap" TextAlignment="Justify"
-                                        />
-                        <Border
-CornerRadius="3"
-Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
-                                            BorderThickness="1"
-                                            BorderBrush="{x:Static localExtras:Variables.ColorDarkGray}"
-                HorizontalAlignment="Right"
-VerticalAlignment="Bottom"
->
-                            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
-                              Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.6}"
-              Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1}"
-                              x:Name="OpenContentBody_ReportDesc"
-                                          VerticalAlignment="Bottom"
-                                          Padding="2,4,4,4"
-                              >
-                                <TextBox
-                    x:Name="OpenContentBody_ReportMessage"
-                                HorizontalAlignment="Center"
-VerticalAlignment="Center"
-                Text="Barang ini memiliki harga tidak masuk akal karena tampaknya terlalu menguntungkan penjual. Saya iri karena saya tidak bisa seperti ini."
-                TextAlignment="Justify"
-                FontSize="{x:Static localExtras:Variables.FontSizeSM}"
-                FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
-                Foreground="{x:Static localExtras:Variables.ColorDarkGray}"                
-                Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
-                TextWrapping="Wrap"
-                BorderThickness="0"
-                Width="Auto"
-                />
-                            </ScrollViewer>
-                        </Border>
-                    </StackPanel>
-                </Grid>
+                </ScrollViewer>
             </StackPanel>
-        </Grid>
+
+
+        </StackPanel>
     </Border>
 </UserControl>
