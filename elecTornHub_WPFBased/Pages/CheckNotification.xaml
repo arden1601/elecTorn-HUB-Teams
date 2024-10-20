@@ -36,7 +36,7 @@
                 Message_4="(informasi baris 5)"
                 Type="Default"/>
             -->
-            
+            <!--
             <localComponents:ConfirmPopup
                 x:Name="ConfirmPopupControl"
                 Title="Barang telah terbeli!"
@@ -49,7 +49,7 @@
                 Message_6="maksimal "
                 Message_7="7 hari lagi."
                 Type="Terbeli"/>
-            
+            -->
             <!--
             <localComponents:ConfirmPopup
                 x:Name="ConfirmPopupControl"
@@ -65,7 +65,7 @@
                 Title="Anda akan menghapus produk"
                 Message_0="Apakah anda yakin untuk menghapus produk "
                 Message_1="Laptop ACER Intel Core Nitro 5 NVIDIA GeForce RTX?"
-                Type="Hapus Jualan"/>
+                Type="HapusJualan"/>
             -->
             <!--
             <localComponents:ConfirmPopup
@@ -73,7 +73,7 @@
                 Title="Anda akan menghapus post"
                 Message_0="Apakah anda yakin untuk menghapus post "
                 Message_1="Cara Menjadi Presiden yang baik?"
-                Type="Hapus Post"/>
+                Type="HapusPost"/>
             -->
             <!--
             <localComponents:ConfirmPopup
@@ -81,7 +81,7 @@
                 Title="Anda akan menghapus akun"
                 Message_0="Apakah anda yakin untuk menghapus akun "
                 Message_1="Mantan Mantu Jenderal?"
-                Type="Hapus Akun"/>
+                Type="HapusAkun"/>
             -->
             <!--
             <localComponents:ConfirmPopup
@@ -97,13 +97,13 @@
                 Message_0="Sertakan alasan Anda!"
                 Type="Takedown"/>
             -->
-            <!--
+            
             <localComponents:ConfirmPopup
                 x:Name="ConfirmPopupControl"
                 Title="Akun tidak ditemukan!"
                 Message_0="Jika Anda yakin akun ini benar, bisa jadi akun Anda dihapus karena melanggar aturan yang berlaku."
-                Type="Akun Not Found"/>
-            -->
+                Type="AkunNotFound"/>
+            
         </Grid>
     </Grid>
 </Window>

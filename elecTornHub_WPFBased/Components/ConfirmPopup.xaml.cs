@@ -144,6 +144,8 @@ namespace elecTornHub_WPFBased.Components
                     case ConfirmPopupType.Kontak:
                         break;
                     case ConfirmPopupType.HapusJualan:
+                        control.ConfirmPopup_OnYesNoButtonContainer.Visibility = Visibility.Visible;
+                        control.ConfirmPopup_OnYesOnlyButton.Visibility = Visibility.Collapsed;
                         break;
                     case ConfirmPopupType.HapusPost:
                         break;
@@ -152,6 +154,7 @@ namespace elecTornHub_WPFBased.Components
                         control.ConfirmPopup_OnYesOnlyButton.Visibility = Visibility.Collapsed;
                         break;
                     case ConfirmPopupType.Lapor:
+                        control.ConfirmPopup_InputContainer.Visibility = Visibility.Visible;
                         break;
                     case ConfirmPopupType.Takedown:
                         control.ConfirmPopup_OnYesNoButtonContainer.Visibility = Visibility.Visible;

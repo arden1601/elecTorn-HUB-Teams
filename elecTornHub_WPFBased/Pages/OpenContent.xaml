@@ -48,8 +48,8 @@
         Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Border}}}"
         Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Border}}}">
 
-                    <localComponents:Navbar x:Name="NavbarControl" Type="User" Chosen="Jual" Grid.Row="0" />
-                    <localComponents:OpenContentBody Margin="0, 40, 0, 0" Type="Seller" Mode="Product" />
+                    <localComponents:Navbar x:Name="NavbarControl" Type="Admin" Chosen="Item" Grid.Row="0" />
+                    <localComponents:OpenContentBody x:Name="OpenContentControl" Margin="0, 40, 0, 0" Type="Reported" Mode="Post" />
                 </Grid>
             </Grid>
         </Border>

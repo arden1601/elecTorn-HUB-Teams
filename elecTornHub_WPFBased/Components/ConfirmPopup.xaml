@@ -37,7 +37,7 @@
                    TextAlignment="Center"
                    FontSize="{x:Static localExtras:Variables.FontSizeLG}"
                    Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
-                   FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
+                   FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
                    FontWeight="Bold"
                    TextWrapping="Wrap"
                    Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}"

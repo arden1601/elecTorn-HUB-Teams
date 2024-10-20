@@ -15,7 +15,7 @@
             GenerateChoiceCards(100);
 
             // if mode is Jual, show the AddButton
-            if (((CustomGrid)CardGrids).Mode == CustomGrid.CustomGridMode.Jual || (((CustomGrid)CardGrids).Type == ChoiceCard.ChoiceCardType.Post))
+            if (((CustomGrid)CardGrids).Mode == CustomGrid.CustomGridMode.Jual || (((CustomGrid)CardGrids).Type == ChoiceCard.ChoiceCardType.Post && ((CustomGrid)CardGrids).Mode == CustomGrid.CustomGridMode.Jual))
                 this.SearchDash_AddButton.Visibility = Visibility.Visible;
             else this.SearchDash_AddButton.Visibility = Visibility.Collapsed;
         }

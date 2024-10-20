@@ -72,11 +72,11 @@
         Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Border}}}"
         Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Border}}}">
 
-                    <localComponents:Navbar x:Name="NavbarControl" Type="User" Chosen="Post" Grid.Row="0" />
+                    <localComponents:Navbar x:Name="NavbarControl" Type="Admin" Chosen="Item" Grid.Row="0" />
 
                     <ScrollViewer Margin="20, 60, 20, 20" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
                       Grid.Row="1">
-                        <localComponents:CustomGrid x:Name="CardGrids" Mode="" Type="Post">
+                        <localComponents:CustomGrid x:Name="CardGrids" Mode="Admin" Type="Product">
                             <localComponents:CustomGrid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
