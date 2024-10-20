@@ -58,13 +58,13 @@
             {
                 if (child is ChoiceCard choiceCard)
                 {
-                    /*choiceCard.ProductCard_Button.Content = mode switch
+                    choiceCard.ProductCard_Button.Content = mode switch
                     {
                         "Beli" => "Beli Sekarang",
                         "Jual" => "Edit",
                         "Admin" => "Periksa",
                         _ => choiceCard.ProductCard_Button.Content // Default or keep existing
-                    };*/
+                    };
                 }
             }
         }

@@ -12,6 +12,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Components\CounterButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Components\AddButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Components\ChoiceCard.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -22,6 +28,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Components\LogPopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\OpenContent.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\SearchDash.xaml">

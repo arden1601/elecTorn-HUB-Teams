@@ -15,10 +15,6 @@
         Icon="../Resources/logo.ico"
         >
 
-    <Window.Resources>
-        <localExtras:GridSizeConverter x:Key="GridSizeConverter"/>
-    </Window.Resources>
-
     <Grid
         Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
         Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"

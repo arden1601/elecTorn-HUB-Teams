@@ -49,6 +49,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Components\CounterButton.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Components\AddButton.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Components\ChoiceCard.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
