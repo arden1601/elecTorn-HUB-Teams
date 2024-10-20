@@ -40,22 +40,38 @@
         }
 
         // DependencyProperty for Type
-        public static readonly DependencyProperty TypeProperty =
-            DependencyProperty.Register("Type", typeof(string), typeof(OpenContentBody), new PropertyMetadata(string.Empty, OnTypeChanged));
-
-        public string Type
+        public enum OpenContentBodyType
         {
-            get { return (string)GetValue(TypeProperty); }
+            Default,
+            Buyer,
+            Seller,
+            Reported,
+            Banned
+        }
+
+        public static readonly DependencyProperty TypeProperty =
+            DependencyProperty.Register("Type", typeof(OpenContentBodyType), typeof(OpenContentBody), new PropertyMetadata(OpenContentBodyType.Default, OnTypeChanged));
+
+        public OpenContentBodyType Type
+        {
+            get { return (OpenContentBodyType)GetValue(TypeProperty); }
             set { SetValue(TypeProperty, value); }
         }
 
         // DependencyProperty for Mode
-        public static readonly DependencyProperty ModeProperty =
-            DependencyProperty.Register("Mode", typeof(string), typeof(OpenContentBody), new PropertyMetadata(string.Empty, OnModeChanged));
-
-        public string Mode
+        public enum OpenContentBodyMode
         {
-            get { return (string)GetValue(ModeProperty); }
+            Default,
+            Product,
+            Post
+        }
+
+        public static readonly DependencyProperty ModeProperty =
+            DependencyProperty.Register("Mode", typeof(OpenContentBodyMode), typeof(OpenContentBody), new PropertyMetadata(OpenContentBodyMode.Default, OnModeChanged));
+
+        public OpenContentBodyMode Mode
+        {
+            get { return (OpenContentBodyMode)GetValue(ModeProperty); }
             set { SetValue(ModeProperty, value); }
         }
 
@@ -63,9 +79,13 @@
         private static void OnTypeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as OpenContentBody;
-            string newType = e.NewValue as string;
 
-            if (newType == "Buyer")
+            if (control == null)
+                return;
+
+            OpenContentBodyType newType = (OpenContentBodyType) e.NewValue;
+
+            if (newType == OpenContentBodyType.Buyer)
             {
                 // Show all button and counter
                 control.OpenContentBody_Button1.Visibility = Visibility.Visible;
@@ -83,7 +103,7 @@
                 control.OpenContentBody_Counter.Width = double.NaN;
                 control.OpenContentBody_Counter.Margin = new Thickness(0, 0, 10, 0);
             }
-            else if (newType == "Seller")
+            else if (newType == OpenContentBodyType.Seller)
             {
                 control.OpenContentBody_Seller.Visibility = Visibility.Collapsed;
                 control.OpenContentBody_Stock.Visibility = Visibility.Collapsed;
@@ -104,7 +124,7 @@
                 control.OpenContentBody_EditPriceBorder.Visibility = Visibility.Visible;
                 control.OpenContentBody_Price.Visibility = Visibility.Collapsed;
             }
-            else if (newType == "Reported")
+            else if (newType == OpenContentBodyType.Reported)
             {
                 control.OpenContentBody_Button1.Visibility = Visibility.Visible;
                 control.OpenContentBody_Button1.Width = double.NaN;
@@ -124,7 +144,7 @@
 
                 control.OpenContentBody_ReportTab.Visibility = Visibility.Visible;
             }
-            else if (newType == "Banned")
+            else if (newType == OpenContentBodyType.Banned)
             {
                 control.OpenContentBody_Button3.Visibility = Visibility.Visible;
                 control.OpenContentBody_Button3.Width = double.NaN;
@@ -138,12 +158,16 @@
         private static void OnModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as OpenContentBody;
-            string newMode = e.NewValue as string;
 
-            if (newMode == "Product")
+            if (control == null)
+                return;
+
+            OpenContentBodyMode newMode = (OpenContentBodyMode)e.NewValue;
+
+            if (newMode == OpenContentBodyMode.Product)
             {
                 control.OpenContentBody_ModeProduct.Visibility = Visibility.Visible;
-            } else if (newMode == "Post")
+            } else if (newMode == OpenContentBodyMode.Post)
             {
                 control.OpenContentBody_ModePost.Visibility = Visibility.Visible;
                 control.OpenContentBody_BorderParent.Height = double.NaN;

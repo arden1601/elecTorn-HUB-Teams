@@ -7,6 +7,13 @@ namespace elecTornHub_WPFBased.Components
 {
     public partial class ChoiceCard : UserControl
     {
+        public enum ChoiceCardType
+        {
+            Default,
+            Post,
+            Product
+        }
+
         public ChoiceCard()
         {
             InitializeComponent();
@@ -17,10 +24,10 @@ namespace elecTornHub_WPFBased.Components
 
         // DependencyProperty for Type
         public static readonly DependencyProperty TypeProperty =
-            DependencyProperty.Register("Type", typeof(string), typeof(ChoiceCard), new PropertyMetadata(string.Empty, OnTypeChange));
-        public string Type
+            DependencyProperty.Register("Type", typeof(ChoiceCardType), typeof(ChoiceCard), new PropertyMetadata(ChoiceCardType.Default, OnTypeChange));
+        public ChoiceCardType Type
             {
-            get { return (string)GetValue(TypeProperty); }
+            get { return (ChoiceCardType)GetValue(TypeProperty); }
             set { SetValue(TypeProperty, value); }
         }
 
@@ -28,14 +35,17 @@ namespace elecTornHub_WPFBased.Components
         public static void OnTypeChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as ChoiceCard;
-            string newType = e.NewValue as string;
+            ChoiceCardType newType = (ChoiceCardType)e.NewValue;
 
-            if (newType == "Post")
+            if (control == null)
+                return;
+
+            if (newType == ChoiceCardType.Post)
             {
                 control.Card_PostMode_Button.Visibility = Visibility.Visible;
 
             }
-            else if (newType == "Product")
+            else if (newType == ChoiceCardType.Product)
             {
                 control.Card_ProductMode.Visibility = Visibility.Visible;
             }

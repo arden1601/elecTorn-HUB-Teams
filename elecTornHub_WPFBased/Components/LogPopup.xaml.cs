@@ -6,6 +6,13 @@ namespace elecTornHub_WPFBased.Components
     using elecTornHub_WPFBased.Pages;
     public partial class LogPopup : UserControl
     {
+        public enum LogPopupType
+        {
+            Default,
+            Login,
+            Register
+        }
+
         public LogPopup()
         {
             InitializeComponent();
@@ -13,11 +20,11 @@ namespace elecTornHub_WPFBased.Components
 
         // DependencyProperty for Type
         public static readonly DependencyProperty TypeProperty =
-            DependencyProperty.Register("Type", typeof(string), typeof(LogPopup), new PropertyMetadata(string.Empty, OnTypeChanged));
+            DependencyProperty.Register("Type", typeof(LogPopupType), typeof(LogPopup), new PropertyMetadata(LogPopupType.Default, OnTypeChanged));
 
-        public string Type
+        public LogPopupType Type
         {
-            get { return (string)GetValue(TypeProperty); }
+            get { return (LogPopupType)GetValue(TypeProperty); }
             set { SetValue(TypeProperty, value); }
         }
 
@@ -69,16 +76,20 @@ namespace elecTornHub_WPFBased.Components
         private static void OnTypeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as LogPopup;
-            string newType = e.NewValue as string;
 
-            if (newType == "Login")
+            if (control == null)
+                return;
+
+            LogPopupType newType = (LogPopupType) e.NewValue;
+
+            if (newType == LogPopupType.Login)
             {
                 control.LogPopup_LoginText.Text = "Login";
                 control.LogPopup_LogButtonText.Content = "Login";
                 control.LogPopup_Redirect.Text = "Register?";
                 control.LogPopup_RedirectButton.Click += (sender, args) => control.ShowRegisterWindow();
             }
-            else if (newType == "Register")
+            else if (newType == LogPopupType.Register)
             {
                 control.LogPopup_LoginText.Text = "Register";
                 control.LogPopup_LogButtonText.Content = "Register";

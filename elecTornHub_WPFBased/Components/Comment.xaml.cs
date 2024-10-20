@@ -7,6 +7,13 @@ namespace elecTornHub_WPFBased.Components
 {
     public partial class Comment : UserControl
     {
+        public enum CommentType
+        {
+            Default,
+            Poster,
+            Viewer
+        }
+
         public Comment()
         {
             InitializeComponent();
@@ -15,10 +22,10 @@ namespace elecTornHub_WPFBased.Components
 
         // DependencyProperty for Type
         public static readonly DependencyProperty TypeProperty =
-            DependencyProperty.Register("Type", typeof(string), typeof(Comment), new PropertyMetadata(string.Empty, OnTypeChange));
-        public string Type
+            DependencyProperty.Register("Type", typeof(CommentType), typeof(Comment), new PropertyMetadata(CommentType.Default, OnTypeChange));
+        public CommentType Type
             {
-            get { return (string)GetValue(TypeProperty); }
+            get { return (CommentType)GetValue(TypeProperty); }
             set { SetValue(TypeProperty, value); }
         }
 
@@ -26,17 +33,20 @@ namespace elecTornHub_WPFBased.Components
         public static void OnTypeChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as Comment;
-            string newType = e.NewValue as string;
+            CommentType newType = (CommentType)e.NewValue;
 
-            if (newType == "Default")
+            if (control == null)
+                return;
+
+            if (newType == CommentType.Default)
             {
                 control.Comment_ButtonBorder.Visibility = Visibility.Collapsed;
             }
-            else if (newType == "Poster")
+            else if (newType == CommentType.Poster)
             {
                 control.Comment_Title.Text = "Komentar Anda";
             }
-            else if (newType == "Viewer")
+            else if (newType == CommentType.Viewer)
             {
                 control.Comment_Button.Content = "Lapor";
             }

@@ -5,21 +5,29 @@ namespace elecTornHub_WPFBased.Components
 {
     public partial class CustomGrid : Grid
     {
-        public static readonly DependencyProperty ModeProperty =
-            DependencyProperty.Register("Mode", typeof(string), typeof(CustomGrid), new PropertyMetadata(string.Empty));
-
-        public string Mode
+        public enum CustomGridMode
         {
-            get { return (string)GetValue(ModeProperty); }
+            Default,
+            Beli,
+            Jual,
+            Admin
+        }
+
+        public static readonly DependencyProperty ModeProperty =
+            DependencyProperty.Register("Mode", typeof(CustomGridMode), typeof(CustomGrid), new PropertyMetadata(CustomGridMode.Default));
+
+        public CustomGridMode Mode
+        {
+            get { return (CustomGridMode)GetValue(ModeProperty); }
             set { SetValue(ModeProperty, value); }
         }
 
         public static readonly DependencyProperty TypeProperty =
-            DependencyProperty.Register("Type", typeof(string), typeof(CustomGrid), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("Type", typeof(ChoiceCard.ChoiceCardType), typeof(CustomGrid), new PropertyMetadata(ChoiceCard.ChoiceCardType.Default));
 
-        public string Type
+        public ChoiceCard.ChoiceCardType Type
         {
-            get { return (string)GetValue(TypeProperty); }
+            get { return (ChoiceCard.ChoiceCardType)GetValue(TypeProperty); }
             set { SetValue(TypeProperty, value); }
         }
     }

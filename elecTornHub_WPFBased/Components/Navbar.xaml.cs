@@ -10,6 +10,23 @@ namespace elecTornHub_WPFBased.Components
     using elecTornHub_WPFBased.Extras;
     public partial class Navbar : UserControl
     {
+
+        public enum NavbarType
+        {
+            Default,
+            User,
+            Admin
+        }
+
+        public enum NavbarChosen
+        {
+            Default,
+            Beli,
+            Jual,
+            Post,
+            Item
+        }
+
         public Navbar()
         {
             InitializeComponent();
@@ -18,11 +35,11 @@ namespace elecTornHub_WPFBased.Components
 
         // DependencyProperty for Type
         public static readonly DependencyProperty TypeProperty =
-            DependencyProperty.Register("Type", typeof(string), typeof(Navbar), new PropertyMetadata(string.Empty, OnTypeChanged));
+            DependencyProperty.Register("Type", typeof(NavbarType), typeof(Navbar), new PropertyMetadata(NavbarType.Default, OnTypeChanged));
 
-        public string Type
+        public NavbarType Type
         {
-            get { return (string)GetValue(TypeProperty); }
+            get { return (NavbarType)GetValue(TypeProperty); }
             set { SetValue(TypeProperty, value); }
         }
 
@@ -30,16 +47,20 @@ namespace elecTornHub_WPFBased.Components
         private static void OnTypeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as Navbar;
-            string newType = e.NewValue as string;
+
+            if (control == null)
+                return;
+
+            NavbarType newType = (NavbarType)e.NewValue;
 
             control.Navbar_UserNav.Visibility = Visibility.Collapsed;
             control.Navbar_AdminNav.Visibility = Visibility.Collapsed;
 
-            if (newType == "User")
+            if (newType == NavbarType.User)
             {
                 control.Navbar_UserNav.Visibility = Visibility.Visible;
             }
-            else if (newType == "Admin")
+            else if (newType == NavbarType.Admin)
             {
                 control.Navbar_AdminNav.Visibility = Visibility.Visible;
                 control.Navbar_Search.Width = 564;
@@ -48,11 +69,11 @@ namespace elecTornHub_WPFBased.Components
 
         // DependencyProperty for Chosen
         public static readonly DependencyProperty ChosenProperty =
-            DependencyProperty.Register("Chosen", typeof(string), typeof(Navbar), new PropertyMetadata(string.Empty, OnChosenChanged));
+            DependencyProperty.Register("Chosen", typeof(NavbarChosen), typeof(Navbar), new PropertyMetadata(NavbarChosen.Default, OnChosenChanged));
 
-        public string Chosen
+        public NavbarChosen Chosen
         {
-            get { return (string)GetValue(ChosenProperty); }
+            get { return (NavbarChosen)GetValue(ChosenProperty); }
             set { SetValue(TypeProperty, value); }
         }
 
@@ -60,24 +81,28 @@ namespace elecTornHub_WPFBased.Components
         private static void OnChosenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as Navbar;
-            string newChosen = e.NewValue as string;
 
-            if (newChosen == "Beli")
+            if (control == null)
+                return;
+
+            NavbarChosen newChosen = (NavbarChosen)e.NewValue;
+
+            if (newChosen == NavbarChosen.Beli)
             {
                 control.Navbar_UserNavBeliBorder.Background = Variables.ColorLightGray;
-            } else if (newChosen == "Jual")
+            } else if (newChosen == NavbarChosen.Jual)
             {
                 control.Navbar_UserNavJualBorder.Background = Variables.ColorLightGray;
-            } else if (newChosen == "Post")
+            } else if (newChosen == NavbarChosen.Post)
             {
-                if (control.Type == "User")
+                if (control.Type == NavbarType.User)
                 {
                     control.Navbar_UserNavPostBorder.Background = Variables.ColorLightGray;
-                } else if (control.Type == "Admin")
+                } else if (control.Type == NavbarType.Admin)
                 {
                     control.Navbar_AdminNavPostBorder.Background = Variables.ColorLightGray;
                 }
-            } else if (newChosen == "Item")
+            } else if (newChosen == NavbarChosen.Item)
             {
                 control.Navbar_AdminNavItemBorder.Background = Variables.ColorLightGray;
             }

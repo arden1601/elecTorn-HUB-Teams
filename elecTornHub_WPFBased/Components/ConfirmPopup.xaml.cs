@@ -101,13 +101,26 @@ namespace elecTornHub_WPFBased.Components
             set { SetValue(Message_7Property, value); }
         }
 
+        public enum ConfirmPopupType
+        {
+            Default,
+            Terbeli,
+            Kontak,
+            HapusJualan,
+            HapusPost,
+            HapusAkun,
+            Lapor,
+            Takedown,
+            AkunNotFound
+        }
+
         // DependencyProperty for Type
         public static readonly DependencyProperty TypeProperty =
-            DependencyProperty.Register("Type", typeof(string), typeof(ConfirmPopup), new PropertyMetadata(string.Empty, OnTypeChanged));
+            DependencyProperty.Register("Type", typeof(ConfirmPopupType), typeof(ConfirmPopup), new PropertyMetadata(ConfirmPopupType.Default, OnTypeChanged));
 
-        public string Type
+        public ConfirmPopupType Type
         {
-            get { return (string)GetValue(TypeProperty); }
+            get { return (ConfirmPopupType)GetValue(TypeProperty); }
             set { SetValue(TypeProperty, value); }
         }
 
@@ -116,7 +129,7 @@ namespace elecTornHub_WPFBased.Components
         {
             if (d is ConfirmPopup control)
             {
-                string newType = e.NewValue as string;
+                ConfirmPopupType newType = (ConfirmPopupType)e.NewValue;
 
                 // Setup Default Values
                 control.ConfirmPopup_Title.Text = control.Title;
@@ -125,23 +138,27 @@ namespace elecTornHub_WPFBased.Components
 
                 switch (newType)
                 {
-                    case "Terbeli":
+                    case ConfirmPopupType.Terbeli:
                         // Additional logic for "Terbeli" can go here
                         break;
-                    case "Kontak":
-                    case "Hapus Jualan":
-                    case "Hapus Post":
-                    case "Hapus Akun":
+                    case ConfirmPopupType.Kontak:
+                        break;
+                    case ConfirmPopupType.HapusJualan:
+                        break;
+                    case ConfirmPopupType.HapusPost:
+                        break;
+                    case ConfirmPopupType.HapusAkun:
                         control.ConfirmPopup_OnYesNoButtonContainer.Visibility = Visibility.Visible;
                         control.ConfirmPopup_OnYesOnlyButton.Visibility = Visibility.Collapsed;
                         break;
-                    case "Lapor":
-                    case "Takedown":
+                    case ConfirmPopupType.Lapor:
+                        break;
+                    case ConfirmPopupType.Takedown:
                         control.ConfirmPopup_OnYesNoButtonContainer.Visibility = Visibility.Visible;
                         control.ConfirmPopup_OnYesOnlyButton.Visibility = Visibility.Collapsed;
                         control.ConfirmPopup_InputContainer.Visibility = Visibility.Visible;
                         break;
-                    case "Akun Not Found":
+                    case ConfirmPopupType.AkunNotFound:
                         // Additional logic for "Akun Not Found" can go here
                         break;
                     default:

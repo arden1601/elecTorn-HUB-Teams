@@ -15,29 +15,6 @@
         Icon="../Resources/logo.ico"
         >
 
-    <Window.Resources>
-        <Style x:Key="NoHoverButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="{x:Static SystemColors.ControlBrush}" />
-            <Setter Property="BorderBrush" Value="{x:Static SystemColors.ControlDarkBrush}" />
-            <Setter Property="Foreground" Value="Black" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}"
-                    BorderBrush="{TemplateBinding BorderBrush}"
-                    BorderThickness="1">
-                            <ContentPresenter HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"
-                                  Content="{TemplateBinding Content}"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <localExtras:GridSizeConverter x:Key="GridSizeConverter"/>
-    </Window.Resources>
-
     <Grid
         Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
         Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
@@ -71,8 +48,8 @@
         Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Border}}}"
         Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Border}}}">
 
-                    <localComponents:Navbar x:Name="NavbarControl" Type="User" Grid.Row="0" />
-                    <localComponents:OpenContentBody Margin="0, 40, 0, 0" Type="Reported" Mode="Post" />
+                    <localComponents:Navbar x:Name="NavbarControl" Type="User" Chosen="Jual" Grid.Row="0" />
+                    <localComponents:OpenContentBody Margin="0, 40, 0, 0" Type="Seller" Mode="Product" />
                 </Grid>
             </Grid>
         </Border>

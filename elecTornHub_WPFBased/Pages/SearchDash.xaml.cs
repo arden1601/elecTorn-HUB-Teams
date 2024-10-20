@@ -15,7 +15,7 @@
             GenerateChoiceCards(100);
 
             // if mode is Jual, show the AddButton
-            if (((CustomGrid)CardGrids).Mode == "Jual")
+            if (((CustomGrid)CardGrids).Mode == CustomGrid.CustomGridMode.Jual || (((CustomGrid)CardGrids).Type == ChoiceCard.ChoiceCardType.Post))
                 this.SearchDash_AddButton.Visibility = Visibility.Visible;
             else this.SearchDash_AddButton.Visibility = Visibility.Collapsed;
         }
@@ -45,14 +45,14 @@
                     CardGrids.Children.Add(choiceCard);
                     // make gaps margin, 0, 0, 10, 10 for odd cols, 10, 0, 0, 10 for even cols
                     choiceCard.Margin = new Thickness(j % 2 == 0 ? 0 : 10, 0, j % 2 == 0 ? 10 : 0, 10);
-                    choiceCard.Type = ((CustomGrid)CardGrids).Type;
+                    choiceCard.Type = (ChoiceCard.ChoiceCardType)((CustomGrid)CardGrids).Type;
 
                     UpdateCardButtonContent(((CustomGrid)CardGrids).Mode);
                 }
             }
         }
 
-        private void UpdateCardButtonContent(string mode)
+        private void UpdateCardButtonContent(CustomGrid.CustomGridMode mode)
         {
             foreach (var child in CardGrids.Children)
             {
@@ -60,9 +60,9 @@
                 {
                     choiceCard.ProductCard_Button.Content = mode switch
                     {
-                        "Beli" => "Beli Sekarang",
-                        "Jual" => "Edit",
-                        "Admin" => "Periksa",
+                        CustomGrid.CustomGridMode.Beli => "Beli Sekarang",
+                        CustomGrid.CustomGridMode.Jual => "Edit",
+                        CustomGrid.CustomGridMode.Admin => "Periksa",
                         _ => choiceCard.ProductCard_Button.Content // Default or keep existing
                     };
                 }
