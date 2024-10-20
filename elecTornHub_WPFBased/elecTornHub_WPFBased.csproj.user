@@ -12,6 +12,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Components\OpenContentBody.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Components\CounterButton.xaml">
       <SubType>Designer</SubType>
     </Page>

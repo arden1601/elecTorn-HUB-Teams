@@ -33,8 +33,8 @@ Background="{x:Static localExtras:Variables.ColorLightGray}"
 />
         </Border>
         <Border
-CornerRadius="4.2"
-Background="{x:Static localExtras:Variables.ColorLightGray}"
+CornerRadius="3"
+Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
                                             BorderThickness="2.5"
                                             BorderBrush="{x:Static localExtras:Variables.ColorDarkGray}"
                 HorizontalAlignment="Center"
@@ -51,7 +51,6 @@ VerticalAlignment="Center"
                 Foreground="{x:Static localExtras:Variables.ColorDarkGray}"                
                 Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
                 BorderThickness="0"
-                BorderBrush="Transparent"
                 Margin="2"
                 Width="20"
                 Height="20"
