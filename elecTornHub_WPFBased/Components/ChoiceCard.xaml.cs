@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Runtime.CompilerServices;
+using static elecTornHub_WPFBased.Components.Navbar;
 
 namespace elecTornHub_WPFBased.Components
 {

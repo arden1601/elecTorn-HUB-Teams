@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using static elecTornHub_WPFBased.Extras.Variables;
 using elecTornHub_WPFBased.Components;
+using System.Windows.Data;
 
 namespace elecTornHub_WPFBased.Pages
 {
@@ -163,17 +164,14 @@ namespace elecTornHub_WPFBased.Pages
 
         private void GenerateNavbar()
         {
-            // Use StackPanel for simpler vertical layout in a scrollable container
             NavbarControl.Children.Clear();
-            var parentGrid = new Grid();
-            var navbar = new Navbar
-            {
-                Type = NavbarType,
-                Chosen = NavbarChosen
-            };
+            var navbar = new Navbar();
+            navbar.SetBinding(Navbar.TypeProperty, new Binding(nameof(NavbarType)) { Source = this });
+            navbar.SetBinding(Navbar.ChosenProperty, new Binding(nameof(NavbarChosen)) { Source = this });
 
             NavbarControl.Children.Add(navbar);
         }
+
 
         private void UpdateNavbar()
         {

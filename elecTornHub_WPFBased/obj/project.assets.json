@@ -191,19 +191,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\yitzh\\.nuget\\packages\\": {}
+    "C:\\Users\\Yitzhak\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Files\\UGM\\MatKul\\Sem_V\\JunPro\\elecTornHub_WPFBased\\elecTornHub_WPFBased\\elecTornHub_WPFBased.csproj",
+      "projectUniqueName": "C:\\Users\\Yitzhak\\Documents\\JunPro\\elecTorn-HUB-Teams\\elecTornHub_WPFBased\\elecTornHub_WPFBased.csproj",
       "projectName": "elecTornHub_WPFBased",
-      "projectPath": "D:\\Files\\UGM\\MatKul\\Sem_V\\JunPro\\elecTornHub_WPFBased\\elecTornHub_WPFBased\\elecTornHub_WPFBased.csproj",
-      "packagesPath": "C:\\Users\\yitzh\\.nuget\\packages\\",
-      "outputPath": "D:\\Files\\UGM\\MatKul\\Sem_V\\JunPro\\elecTornHub_WPFBased\\elecTornHub_WPFBased\\obj\\",
+      "projectPath": "C:\\Users\\Yitzhak\\Documents\\JunPro\\elecTorn-HUB-Teams\\elecTornHub_WPFBased\\elecTornHub_WPFBased.csproj",
+      "packagesPath": "C:\\Users\\Yitzhak\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Yitzhak\\Documents\\JunPro\\elecTorn-HUB-Teams\\elecTornHub_WPFBased\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\yitzh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Yitzhak\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -258,7 +258,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300-preview.24203.14/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
