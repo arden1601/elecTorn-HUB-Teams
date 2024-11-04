@@ -72,7 +72,7 @@ namespace elecTornHub_WPFBased.Pages
                 SearchDash newDash = new SearchDash
                 {
                     PreviousWindow = this,
-                    GridMode = CustomGrid.CustomGridMode.Jual,
+                    GridMode = CustomGrid.CustomGridMode.Beli,
                     GridType = ChoiceCard.ChoiceCardType.Product,
                     NavbarType = Navbar.NavbarType.User,
                     NavbarChosen = Navbar.NavbarChosen.Beli

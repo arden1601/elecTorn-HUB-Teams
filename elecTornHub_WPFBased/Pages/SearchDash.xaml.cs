@@ -62,7 +62,8 @@ namespace elecTornHub_WPFBased.Pages
             Loaded += (s, e) =>
             {
                 GenerateNavbar();
-                GenerateChoiceCards(100);
+                GenerateChoiceCards(100,
+                    GridType); // Generate choice cards based on the GridType dependency property
                 UpdateAddButtonVisibility();
             };
         }
@@ -77,7 +78,11 @@ namespace elecTornHub_WPFBased.Pages
         private static void OnGridTypeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var searchDash = (SearchDash)d;
+            // get new value of GridType
+            searchDash.GridType = (ChoiceCard.ChoiceCardType)e.NewValue;
+            searchDash.GenerateChoiceCards(100, searchDash.GridType);
             searchDash.UpdateAddButtonVisibility();
+            searchDash.UpdateCardButtonContent(searchDash.GridMode); // Update the button content based on the GridMode
         }
 
         private static void OnNavbarTypeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -109,7 +114,7 @@ namespace elecTornHub_WPFBased.Pages
         }
 
         // Generate choice cards and set their properties based on dependency properties
-        private void GenerateChoiceCards(int count)
+        private void GenerateChoiceCards(int count, ChoiceCard.ChoiceCardType usingType)
         {
             // Use StackPanel for simpler vertical layout in a scrollable container
             CardGrids.Children.Clear();
@@ -128,7 +133,7 @@ namespace elecTornHub_WPFBased.Pages
                     var choiceCard = new ChoiceCard
                     {
                         Margin = new Thickness(j % 2 == 0 ? 0 : 10, 0, j % 2 == 0 ? 10 : 0, 10),
-                        Type = GridType // Set based on the dependency property
+                        Type = usingType // Set based on the dependency property
                     };
 
                     Grid.SetColumn(choiceCard, j);
@@ -168,6 +173,7 @@ namespace elecTornHub_WPFBased.Pages
             var navbar = new Navbar();
             navbar.SetBinding(Navbar.TypeProperty, new Binding(nameof(NavbarType)) { Source = this });
             navbar.SetBinding(Navbar.ChosenProperty, new Binding(nameof(NavbarChosen)) { Source = this });
+            navbar.ParentDash = this;
 
             NavbarControl.Children.Add(navbar);
         }

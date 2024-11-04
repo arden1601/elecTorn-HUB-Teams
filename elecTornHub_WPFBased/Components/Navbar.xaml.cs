@@ -26,6 +26,46 @@ namespace elecTornHub_WPFBased.Components
             Item
         }
 
+        private SearchDash parentDash;
+
+        public SearchDash ParentDash
+        {
+            get { return parentDash; }
+            set { parentDash = value; }
+        }
+
+        private void onClickUserNavBeli(object sender, RoutedEventArgs e)
+        {
+            Chosen = NavbarChosen.Beli;
+            parentDash.GridType = ChoiceCard.ChoiceCardType.Product;
+            parentDash.GridMode = CustomGrid.CustomGridMode.Beli;
+        }
+
+        private void onClickUserNavJual(object sender, RoutedEventArgs e)
+        {
+            Chosen = NavbarChosen.Jual;
+            parentDash.GridType = ChoiceCard.ChoiceCardType.Product;
+            parentDash.GridMode = CustomGrid.CustomGridMode.Jual;
+        }
+
+        private void onClickUserNavPost(object sender, RoutedEventArgs e)
+        {
+            Chosen = NavbarChosen.Post;
+            parentDash.GridType = ChoiceCard.ChoiceCardType.Post;
+        }
+
+        private void onClickAdminNavPost(object sender, RoutedEventArgs e)
+        {
+            Chosen = NavbarChosen.Post;
+            parentDash.GridType = ChoiceCard.ChoiceCardType.Post;
+        }
+
+        private void onClickAdminNavItem(object sender, RoutedEventArgs e)
+        {
+            Chosen = NavbarChosen.Item;
+            parentDash.GridType = ChoiceCard.ChoiceCardType.Product;
+        }
+
         public Navbar()
         {
             InitializeComponent();
@@ -35,6 +75,14 @@ namespace elecTornHub_WPFBased.Components
             // launch ontypechanged and onchosenchanged
             OnTypeChanged(this, new DependencyPropertyChangedEventArgs(TypeProperty, NavbarType.Default, NavbarType.User));
             OnChosenChanged(this, new DependencyPropertyChangedEventArgs(ChosenProperty, NavbarChosen.Default, NavbarChosen.Beli));
+
+            // Nav onClicks
+            Navbar_UserNavBeli.Click += onClickUserNavBeli;
+            Navbar_UserNavJual.Click += onClickUserNavJual;
+            Navbar_UserNavPost.Click += onClickUserNavPost;
+            Navbar_AdminNavPost.Click += onClickAdminNavPost;
+            Navbar_AdminNavItem.Click += onClickAdminNavItem;
+
         }
 
         // DependencyProperty for Type
