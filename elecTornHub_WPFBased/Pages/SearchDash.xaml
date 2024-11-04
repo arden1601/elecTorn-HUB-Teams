@@ -12,8 +12,7 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         WindowStyle="SingleBorderWindow"
-        Icon="../Resources/logo.ico"
-        >
+        Icon="../Resources/logo.ico">
 
     <Window.Resources>
         <Style x:Key="NoHoverButtonStyle" TargetType="Button">
@@ -24,11 +23,11 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}"
-                    BorderBrush="{TemplateBinding BorderBrush}"
-                    BorderThickness="1">
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="1">
                             <ContentPresenter HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"
-                                  Content="{TemplateBinding Content}"/>
+                                              VerticalAlignment="Center"
+                                              Content="{TemplateBinding Content}"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -38,15 +37,12 @@
         <localExtras:GridSizeConverter x:Key="GridSizeConverter"/>
     </Window.Resources>
 
-    <Grid
-        Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
-        Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
-        HorizontalAlignment="Center" VerticalAlignment="Center" Background="{x:Static localExtras:Variables.ColorOffWhite}">
+    <Grid Background="{x:Static localExtras:Variables.ColorOffWhite}">
 
         <Border HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.12}"
-                Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.05}"
+                Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.12}"
+                Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.05}"
                 Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
                 CornerRadius="15"
                 BorderThickness="1"
@@ -62,42 +58,57 @@
 
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <!-- This will take all available space for the main content -->
-                    <RowDefinition Height="Auto" />
-                    <!-- This row will be for the button at the bottom -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- Row for Navbar -->
+                    <RowDefinition Height="*"/>
+                    <!-- Row for main content (ScrollViewer) -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- Row for + button -->
                 </Grid.RowDefinitions>
 
-                <Grid
-        Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Border}}}"
-        Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Border}}}">
+                <!-- Navbar Control in the first row -->
+                <Grid x:Name="NavbarControl"
+                                             Grid.Row="0" 
+                                             Height="50" 
+                                             />
 
-                    <localComponents:Navbar x:Name="NavbarControl" Type="{Binding NavbarType, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" Chosen="{Binding NavbarChosen, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" Grid.Row="0" />
+                <!-- ScrollViewer with CustomGrid in the second row -->
+                <ScrollViewer Margin="20,10,20,20"
+                              VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled"
+                              Grid.Row="1">
+                    <localComponents:CustomGrid x:Name="CardGrids"
+                                                Mode="{Binding GridMode, Mode=TwoWay}" 
+                                                Type="{Binding GridType, Mode=TwoWay}">
+                        <!-- StackPanel for card layout added dynamically in code-behind -->
+                    </localComponents:CustomGrid>
+                </ScrollViewer>
 
-                    <ScrollViewer Margin="20, 60, 20, 20" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Grid.Row="1">
-                        <localComponents:CustomGrid x:Name="CardGrids"
-        Mode="{Binding GridMode, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay}" 
-        Type="{Binding GridType, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay}">
-                            <!-- StackPanel for card layout added dynamically in code-behind -->
-                        </localComponents:CustomGrid>
-                    </ScrollViewer>
-
-                </Grid>
-
-                <!-- Absolute positioning of the + button -->
-                <Border x:Name="SearchDash_AddButton" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0, 0, 20, 20" Width="40" Height="40" CornerRadius="25" Background="{x:Static localExtras:Variables.ColorDarkGray}">
-                    <Button
-                        Style="{StaticResource NoHoverButtonStyle}"
-                        BorderThickness="0"
-                        BorderBrush="Transparent"
-                        Background="Transparent"
-                        Cursor="Hand"
-                        >
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{x:Static localExtras:Variables.FontSizeXL}" Foreground="{x:Static localExtras:Variables.ColorAbsoluteWhite}" FontWeight="Bold" Padding="0,0,0,6">+</TextBlock>
+                <!-- Absolute positioning of the + button in the third row -->
+                <Border x:Name="SearchDash_AddButton"
+                        Grid.Row="2"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Margin="0,0,20,20"
+                        Width="40"
+                        Height="40"
+                        CornerRadius="25"
+                        Background="{x:Static localExtras:Variables.ColorDarkGray}">
+                    <Button Style="{StaticResource NoHoverButtonStyle}"
+                            BorderThickness="0"
+                            BorderBrush="Transparent"
+                            Background="Transparent"
+                            Cursor="Hand">
+                        <TextBlock HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="{x:Static localExtras:Variables.FontSizeXL}"
+                                   Foreground="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
+                                   FontWeight="Bold"
+                                   Padding="0,0,0,6">+</TextBlock>
                     </Button>
                 </Border>
-            </Grid>
 
+            </Grid>
         </Border>
     </Grid>
 </Window>

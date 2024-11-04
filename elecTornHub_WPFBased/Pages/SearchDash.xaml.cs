@@ -60,6 +60,7 @@ namespace elecTornHub_WPFBased.Pages
             DataContext = this;
             Loaded += (s, e) =>
             {
+                GenerateNavbar();
                 GenerateChoiceCards(100);
                 UpdateAddButtonVisibility();
             };
@@ -82,12 +83,14 @@ namespace elecTornHub_WPFBased.Pages
         {
             var searchDash = (SearchDash)d;
             searchDash.NavbarType = (Navbar.NavbarType)e.NewValue;
+            searchDash.UpdateNavbar(); // Update the Navbar when the type changes
         }
 
         private static void OnNavbarChosenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var searchDash = (SearchDash)d;
             searchDash.NavbarChosen = (Navbar.NavbarChosen)e.NewValue;
+            searchDash.UpdateNavbar(); // Update the Navbar when the chosen option changes
         }
 
         // Update AddButton Visibility based on CustomGrid Mode and Type
@@ -141,7 +144,6 @@ namespace elecTornHub_WPFBased.Pages
             UpdateCardButtonContent(GridMode);
         }
 
-
         private void UpdateCardButtonContent(CustomGrid.CustomGridMode mode)
         {
             foreach (var child in CardGrids.Children)
@@ -156,6 +158,29 @@ namespace elecTornHub_WPFBased.Pages
                         _ => choiceCard.ProductCard_Button.Content
                     };
                 }
+            }
+        }
+
+        private void GenerateNavbar()
+        {
+            // Use StackPanel for simpler vertical layout in a scrollable container
+            NavbarControl.Children.Clear();
+            var parentGrid = new Grid();
+            var navbar = new Navbar
+            {
+                Type = NavbarType,
+                Chosen = NavbarChosen
+            };
+
+            NavbarControl.Children.Add(navbar);
+        }
+
+        private void UpdateNavbar()
+        {
+            if (NavbarControl.Children.Count > 0 && NavbarControl.Children[0] is Navbar navbar)
+            {
+                navbar.Type = NavbarType;
+                navbar.Chosen = NavbarChosen;
             }
         }
     }

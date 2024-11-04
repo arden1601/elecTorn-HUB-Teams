@@ -10,7 +10,6 @@ namespace elecTornHub_WPFBased.Components
     using elecTornHub_WPFBased.Extras;
     public partial class Navbar : UserControl
     {
-
         public enum NavbarType
         {
             Default,
@@ -30,8 +29,11 @@ namespace elecTornHub_WPFBased.Components
         public Navbar()
         {
             InitializeComponent();
+            UpdateLayout();
+            this.DataContext = this; // Set DataContext to itse
+            /*this.Navbar_AdminNav.Visibility = Visibility.Collapsed;
+            this.Navbar_UserNav.Visibility = Visibility.Collapsed;*/
         }
-
 
         // DependencyProperty for Type
         public static readonly DependencyProperty TypeProperty =
@@ -41,16 +43,6 @@ namespace elecTornHub_WPFBased.Components
         {
             get { return (NavbarType)GetValue(TypeProperty); }
             set { SetValue(TypeProperty, value); }
-        }
-
-        // DependencyProperty for Chosen
-        public static readonly DependencyProperty ChosenProperty =
-            DependencyProperty.Register("Chosen", typeof(NavbarChosen), typeof(Navbar), new PropertyMetadata(NavbarChosen.Beli, OnChosenChanged));
-
-        public NavbarChosen Chosen
-        {
-            get { return (NavbarChosen)GetValue(ChosenProperty); }
-            set { SetValue(ChosenProperty, value); }
         }
 
         // Callback method for TypeProperty
@@ -63,9 +55,6 @@ namespace elecTornHub_WPFBased.Components
 
             NavbarType newType = (NavbarType)e.NewValue;
 
-            control.Navbar_UserNav.Visibility = Visibility.Collapsed;
-            control.Navbar_AdminNav.Visibility = Visibility.Collapsed;
-
             if (newType == NavbarType.User)
             {
                 control.Navbar_UserNav.Visibility = Visibility.Visible;
@@ -75,6 +64,16 @@ namespace elecTornHub_WPFBased.Components
                 control.Navbar_AdminNav.Visibility = Visibility.Visible;
                 control.Navbar_Search.Width = 564;
             }
+        }
+
+        // DependencyProperty for Chosen
+        public static readonly DependencyProperty ChosenProperty =
+            DependencyProperty.Register("Chosen", typeof(NavbarChosen), typeof(Navbar), new PropertyMetadata(NavbarChosen.Beli, OnChosenChanged));
+
+        public NavbarChosen Chosen
+        {
+            get { return (NavbarChosen)GetValue(ChosenProperty); }
+            set { SetValue(ChosenProperty, value); }
         }
 
         // Callback method for ChosenProperty
@@ -90,19 +89,23 @@ namespace elecTornHub_WPFBased.Components
             if (newChosen == NavbarChosen.Beli)
             {
                 control.Navbar_UserNavBeliBorder.Background = Variables.ColorLightGray;
-            } else if (newChosen == NavbarChosen.Jual)
+            }
+            else if (newChosen == NavbarChosen.Jual)
             {
                 control.Navbar_UserNavJualBorder.Background = Variables.ColorLightGray;
-            } else if (newChosen == NavbarChosen.Post)
+            }
+            else if (newChosen == NavbarChosen.Post)
             {
                 if (control.Type == NavbarType.User)
                 {
                     control.Navbar_UserNavPostBorder.Background = Variables.ColorLightGray;
-                } else if (control.Type == NavbarType.Admin)
+                }
+                else if (control.Type == NavbarType.Admin)
                 {
                     control.Navbar_AdminNavPostBorder.Background = Variables.ColorLightGray;
                 }
-            } else if (newChosen == NavbarChosen.Item)
+            }
+            else if (newChosen == NavbarChosen.Item)
             {
                 control.Navbar_AdminNavItemBorder.Background = Variables.ColorLightGray;
             }

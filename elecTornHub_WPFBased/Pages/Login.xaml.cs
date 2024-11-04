@@ -78,6 +78,8 @@ namespace elecTornHub_WPFBased.Pages
                     NavbarChosen = Navbar.NavbarChosen.Beli
                 };
 
+                // Set DataContext for binding if needed
+                newDash.DataContext = newDash;
                 newDash.Show();
 
                 this.Close();
