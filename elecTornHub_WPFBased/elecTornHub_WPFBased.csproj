@@ -30,6 +30,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Npgsql" Version="8.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Resources\Fonts\Montserrat.ttf" />
     <Resource Include="Resources\Fonts\Roboto-Black.ttf" />
     <Resource Include="Resources\Fonts\Roboto-BlackItalic.ttf" />

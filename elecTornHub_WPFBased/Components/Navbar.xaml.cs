@@ -30,17 +30,27 @@ namespace elecTornHub_WPFBased.Components
         public Navbar()
         {
             InitializeComponent();
-            this.DataContext = this; // Set DataContext to itse
         }
+
 
         // DependencyProperty for Type
         public static readonly DependencyProperty TypeProperty =
-            DependencyProperty.Register("Type", typeof(NavbarType), typeof(Navbar), new PropertyMetadata(NavbarType.Default, OnTypeChanged));
+            DependencyProperty.Register("Type", typeof(NavbarType), typeof(Navbar), new PropertyMetadata(NavbarType.User, OnTypeChanged));
 
         public NavbarType Type
         {
             get { return (NavbarType)GetValue(TypeProperty); }
             set { SetValue(TypeProperty, value); }
+        }
+
+        // DependencyProperty for Chosen
+        public static readonly DependencyProperty ChosenProperty =
+            DependencyProperty.Register("Chosen", typeof(NavbarChosen), typeof(Navbar), new PropertyMetadata(NavbarChosen.Beli, OnChosenChanged));
+
+        public NavbarChosen Chosen
+        {
+            get { return (NavbarChosen)GetValue(ChosenProperty); }
+            set { SetValue(ChosenProperty, value); }
         }
 
         // Callback method for TypeProperty
@@ -65,16 +75,6 @@ namespace elecTornHub_WPFBased.Components
                 control.Navbar_AdminNav.Visibility = Visibility.Visible;
                 control.Navbar_Search.Width = 564;
             }
-        }
-
-        // DependencyProperty for Chosen
-        public static readonly DependencyProperty ChosenProperty =
-            DependencyProperty.Register("Chosen", typeof(NavbarChosen), typeof(Navbar), new PropertyMetadata(NavbarChosen.Default, OnChosenChanged));
-
-        public NavbarChosen Chosen
-        {
-            get { return (NavbarChosen)GetValue(ChosenProperty); }
-            set { SetValue(TypeProperty, value); }
         }
 
         // Callback method for ChosenProperty

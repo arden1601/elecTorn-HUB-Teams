@@ -10,6 +10,7 @@ namespace elecTornHub_WPFBased.Components
         public AddButton()
         {
             InitializeComponent();
+            UpdateLayout();
             this.DataContext = this; // Set DataContext to itse
         }
     }

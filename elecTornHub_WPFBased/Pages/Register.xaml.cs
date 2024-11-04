@@ -21,7 +21,10 @@ namespace elecTornHub_WPFBased.Pages
         public Register()
         {
             InitializeComponent();
+            UpdateLayout();
             LogPopupControl.PreviousWindow = this;
         }
+
+        public Window PreviousWindow { get; set; }
     }
 }

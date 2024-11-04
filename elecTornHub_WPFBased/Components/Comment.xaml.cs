@@ -17,6 +17,7 @@ namespace elecTornHub_WPFBased.Components
         public Comment()
         {
             InitializeComponent();
+            UpdateLayout();
             this.DataContext = this; // Set DataContext to itse
         }
 

@@ -16,7 +16,10 @@ namespace elecTornHub_WPFBased.Components
         public LogPopup()
         {
             InitializeComponent();
+            UpdateLayout();
         }
+
+        public Window PreviousWindow { get; set; }
 
         // DependencyProperty for Type
         public static readonly DependencyProperty TypeProperty =
@@ -26,16 +29,6 @@ namespace elecTornHub_WPFBased.Components
         {
             get { return (LogPopupType)GetValue(TypeProperty); }
             set { SetValue(TypeProperty, value); }
-        }
-
-        // DependencyProperty for PreviousWindow
-        public static readonly DependencyProperty PreviousWindowProperty =
-            DependencyProperty.Register("PreviousWindow", typeof(Window), typeof(LogPopup), new PropertyMetadata(null));
-
-        public Window PreviousWindow
-        {
-            get { return (Window)GetValue(PreviousWindowProperty); }
-            set { SetValue(PreviousWindowProperty, value); }
         }
 
         // Callback Button Login

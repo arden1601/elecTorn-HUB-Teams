@@ -17,6 +17,7 @@ namespace elecTornHub_WPFBased.Components
         public ChoiceCard()
         {
             InitializeComponent();
+            UpdateLayout();
             this.DataContext = this; // Set DataContext to itse
             this.Card_PostMode_Button.Visibility = Visibility.Collapsed;
             this.Card_ProductMode.Visibility = Visibility.Collapsed;

@@ -10,6 +10,7 @@
         public OpenContentBody()
         {
             InitializeComponent();
+            UpdateLayout();
             this.DataContext = this; // Set DataContext to itse
             OpenContentBody_ModePost.Visibility = Visibility.Collapsed;
             OpenContentBody_ModeProduct.Visibility = Visibility.Collapsed;

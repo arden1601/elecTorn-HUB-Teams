@@ -10,6 +10,7 @@ namespace elecTornHub_WPFBased.Components
         public PostContent()
         {
             InitializeComponent();
+            UpdateLayout();
             this.DataContext = this; // Set DataContext to itse
             PostContent_EditDescription.Visibility = Visibility.Collapsed;
             PostContent_EditTitle.Visibility = Visibility.Collapsed;

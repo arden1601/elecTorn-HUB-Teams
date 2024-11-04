@@ -10,6 +10,9 @@
         public OpenContent()
         {
             InitializeComponent();
+            UpdateLayout();
         }
+
+        public Window PreviousWindow { get; set; }
     }
 }

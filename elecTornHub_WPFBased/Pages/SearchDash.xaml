@@ -72,20 +72,16 @@
         Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Border}}}"
         Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Border}}}">
 
-                    <localComponents:Navbar x:Name="NavbarControl" Type="Admin" Chosen="Item" Grid.Row="0" />
+                    <localComponents:Navbar x:Name="NavbarControl" Type="{Binding NavbarType, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" Chosen="{Binding NavbarChosen, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" Grid.Row="0" />
 
-                    <ScrollViewer Margin="20, 60, 20, 20" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
-                      Grid.Row="1">
-                        <localComponents:CustomGrid x:Name="CardGrids" Mode="Admin" Type="Product">
-                            <localComponents:CustomGrid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </localComponents:CustomGrid.ColumnDefinitions>
-                            <localComponents:CustomGrid.RowDefinitions>
-                                <!-- RowDefinitions will be added dynamically in code-behind -->
-                            </localComponents:CustomGrid.RowDefinitions>
+                    <ScrollViewer Margin="20, 60, 20, 20" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Grid.Row="1">
+                        <localComponents:CustomGrid x:Name="CardGrids"
+        Mode="{Binding GridMode, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay}" 
+        Type="{Binding GridType, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=TwoWay}">
+                            <!-- StackPanel for card layout added dynamically in code-behind -->
                         </localComponents:CustomGrid>
                     </ScrollViewer>
+
                 </Grid>
 
                 <!-- Absolute positioning of the + button -->

@@ -22,6 +22,7 @@ namespace elecTornHub_WPFBased.Pages
         public CheckNotification()
         {
             InitializeComponent();
+            UpdateLayout();
             /*CheckNotification.PreviousWindow = this;
             CheckNotification.LogPopup_LogButtonText.Click += (s, e) => CheckLogin();*/
         }
