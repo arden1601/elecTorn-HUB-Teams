@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Yitzhak\Documents\JunPro\elecTorn-HUB-Teams\elecTornHub_WPFBased\obj\Debug\net8.0-windows\
+D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\
 elecTornHub_WPFBased
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-C:\Users\Yitzhak\Documents\JunPro\elecTorn-HUB-Teams\elecTornHub_WPFBased\App.xaml
+D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\App.xaml
 14-371617296
 
 31-1601237705
-201161586633
+201797717283
 Components\AddButton.xaml;Components\ChoiceCard.xaml;Components\Comment.xaml;Components\ConfirmPopup.xaml;Components\CounterButton.xaml;Components\LogPopup.xaml;Components\Navbar.xaml;Components\OpenContentBody.xaml;Components\PostContent.xaml;Pages\CheckNotification.xaml;Pages\Login.xaml;Pages\OpenContent.xaml;Pages\Register.xaml;Pages\SearchDash.xaml;
 
-True
+False
 

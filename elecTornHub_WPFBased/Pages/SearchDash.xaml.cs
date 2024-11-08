@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using static elecTornHub_WPFBased.Extras.Variables;
 using elecTornHub_WPFBased.Components;
 using System.Windows.Data;
+using System.Runtime.CompilerServices;
 
 namespace elecTornHub_WPFBased.Pages
 {
@@ -62,8 +63,7 @@ namespace elecTornHub_WPFBased.Pages
             Loaded += (s, e) =>
             {
                 GenerateNavbar();
-                GenerateChoiceCards(100,
-                    GridType); // Generate choice cards based on the GridType dependency property
+                GenerateChoiceCards(10); // Generate choice cards based on the GridType dependency property
                 UpdateAddButtonVisibility();
             };
         }
@@ -71,18 +71,15 @@ namespace elecTornHub_WPFBased.Pages
         private static void OnGridModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var searchDash = (SearchDash)d;
-            searchDash.UpdateAddButtonVisibility();
-            searchDash.UpdateCardButtonContent((CustomGrid.CustomGridMode)e.NewValue);
+            searchDash.GridMode = (CustomGrid.CustomGridMode)e.NewValue;
         }
 
+
+        // Updated to regenerate ChoiceCards when GridType changes
         private static void OnGridTypeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var searchDash = (SearchDash)d;
-            // get new value of GridType
             searchDash.GridType = (ChoiceCard.ChoiceCardType)e.NewValue;
-            searchDash.GenerateChoiceCards(100, searchDash.GridType);
-            searchDash.UpdateAddButtonVisibility();
-            searchDash.UpdateCardButtonContent(searchDash.GridMode); // Update the button content based on the GridMode
         }
 
         private static void OnNavbarTypeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -95,6 +92,8 @@ namespace elecTornHub_WPFBased.Pages
         private static void OnNavbarChosenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var searchDash = (SearchDash)d;
+
+            // Set the new values
             searchDash.NavbarChosen = (Navbar.NavbarChosen)e.NewValue;
             searchDash.UpdateNavbar(); // Update the Navbar when the chosen option changes
         }
@@ -114,14 +113,14 @@ namespace elecTornHub_WPFBased.Pages
         }
 
         // Generate choice cards and set their properties based on dependency properties
-        private void GenerateChoiceCards(int count, ChoiceCard.ChoiceCardType usingType)
+        private void GenerateChoiceCards(int count)
         {
             // Use StackPanel for simpler vertical layout in a scrollable container
             CardGrids.Children.Clear();
             var stackPanel = new StackPanel { Orientation = Orientation.Vertical };
 
             int columnCount = 2;
-            for (int i = 0; i < count / columnCount; i++)
+            for (int i = 0; i < Math.Ceiling((double)count / columnCount); i++) // Adjust for incomplete rows
             {
                 var rowGrid = new Grid();
 
@@ -133,7 +132,8 @@ namespace elecTornHub_WPFBased.Pages
                     var choiceCard = new ChoiceCard
                     {
                         Margin = new Thickness(j % 2 == 0 ? 0 : 10, 0, j % 2 == 0 ? 10 : 0, 10),
-                        Type = usingType // Set based on the dependency property
+                        Type = GridType, // Set based on the dependency property
+                        GridMode = GridMode // Bind GridMode directly from SearchDash
                     };
 
                     Grid.SetColumn(choiceCard, j);
@@ -146,25 +146,8 @@ namespace elecTornHub_WPFBased.Pages
             // Add the StackPanel to the CustomGrid
             CardGrids.Children.Add(stackPanel);
 
-            // Update button content based on the GridMode
-            UpdateCardButtonContent(GridMode);
-        }
-
-        private void UpdateCardButtonContent(CustomGrid.CustomGridMode mode)
-        {
-            foreach (var child in CardGrids.Children)
-            {
-                if (child is ChoiceCard choiceCard)
-                {
-                    choiceCard.ProductCard_Button.Content = mode switch
-                    {
-                        CustomGrid.CustomGridMode.Beli => "Beli Sekarang",
-                        CustomGrid.CustomGridMode.Jual => "Edit",
-                        CustomGrid.CustomGridMode.Admin => "Periksa",
-                        _ => choiceCard.ProductCard_Button.Content
-                    };
-                }
-            }
+            // Update layout after adding new elements
+            CardGrids.UpdateLayout();
         }
 
         private void GenerateNavbar()
@@ -178,6 +161,11 @@ namespace elecTornHub_WPFBased.Pages
             NavbarControl.Children.Add(navbar);
         }
 
+        public void RegenerateContents()
+        {
+            GenerateChoiceCards(10);
+            UpdateAddButtonVisibility();
+        }
 
         private void UpdateNavbar()
         {

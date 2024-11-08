@@ -39,6 +39,7 @@ namespace elecTornHub_WPFBased.Components
             Chosen = NavbarChosen.Beli;
             parentDash.GridType = ChoiceCard.ChoiceCardType.Product;
             parentDash.GridMode = CustomGrid.CustomGridMode.Beli;
+            parentDash.RegenerateContents();
         }
 
         private void onClickUserNavJual(object sender, RoutedEventArgs e)
@@ -46,24 +47,28 @@ namespace elecTornHub_WPFBased.Components
             Chosen = NavbarChosen.Jual;
             parentDash.GridType = ChoiceCard.ChoiceCardType.Product;
             parentDash.GridMode = CustomGrid.CustomGridMode.Jual;
+            parentDash.RegenerateContents();
         }
 
         private void onClickUserNavPost(object sender, RoutedEventArgs e)
         {
             Chosen = NavbarChosen.Post;
             parentDash.GridType = ChoiceCard.ChoiceCardType.Post;
+            parentDash.RegenerateContents();
         }
 
         private void onClickAdminNavPost(object sender, RoutedEventArgs e)
         {
             Chosen = NavbarChosen.Post;
             parentDash.GridType = ChoiceCard.ChoiceCardType.Post;
+            parentDash.RegenerateContents();
         }
 
         private void onClickAdminNavItem(object sender, RoutedEventArgs e)
         {
             Chosen = NavbarChosen.Item;
             parentDash.GridType = ChoiceCard.ChoiceCardType.Product;
+            parentDash.RegenerateContents();
         }
 
         public Navbar()
