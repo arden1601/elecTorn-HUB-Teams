@@ -56,30 +56,10 @@ namespace elecTornHub_WPFBased.Pages
             set => SetValue(NavbarChosenProperty, value);
         }
 
-        private void GenerateNavbar()
-        {
-            NavbarControl.Children.Clear();
-            var navbar = new Navbar();
-            navbar.SetBinding(Navbar.TypeProperty, new Binding(nameof(NavbarType)) { Source = this });
-            navbar.SetBinding(Navbar.ChosenProperty, new Binding(nameof(NavbarChosen)) { Source = this });
-            navbar.ParentDash = this;
-
-            NavbarControl.Children.Add(navbar);
-        }
-
         public void RegenerateContents()
         {
-            GenerateChoiceCards(10);
-            UpdateAddButtonVisibility();
-        }
-
-        private void UpdateNavbar()
-        {
-            if (NavbarControl.Children.Count > 0 && NavbarControl.Children[0] is Navbar navbar)
-            {
-                navbar.Type = NavbarType;
-                navbar.Chosen = NavbarChosen;
-            }
+            DashInit.GenerateChoiceCards(CardGrids, GridType, GridMode, this, 10);
+            DashInit.UpdateAddButtonVisibility(SearchDash_AddButton, GridMode, GridType);
         }
 
         public SearchDash()
@@ -88,9 +68,9 @@ namespace elecTornHub_WPFBased.Pages
             DataContext = this;
             Loaded += (s, e) =>
             {
-                GenerateNavbar();
-                GenerateChoiceCards(10); // Generate choice cards based on the GridType dependency property
-                UpdateAddButtonVisibility();
+                DashInit.GenerateNavbar(NavbarControl, this);
+                DashInit.GenerateChoiceCards(CardGrids, GridType, GridMode, this, 10);
+                DashInit.UpdateAddButtonVisibility(SearchDash_AddButton, GridMode, GridType);
             };
         }
 
@@ -112,7 +92,7 @@ namespace elecTornHub_WPFBased.Pages
         {
             var searchDash = (SearchDash)d;
             searchDash.NavbarType = (Navbar.NavbarType)e.NewValue;
-            searchDash.UpdateNavbar(); // Update the Navbar when the type changes
+            DashInit.UpdateNavbar(searchDash.NavbarControl, searchDash.NavbarType, searchDash.NavbarChosen);
         }
 
         private static void OnNavbarChosenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -121,92 +101,7 @@ namespace elecTornHub_WPFBased.Pages
 
             // Set the new values
             searchDash.NavbarChosen = (Navbar.NavbarChosen)e.NewValue;
-            searchDash.UpdateNavbar(); // Update the Navbar when the chosen option changes
-        }
-
-        // Update AddButton Visibility based on CustomGrid Mode and Type
-        private void UpdateAddButtonVisibility()
-        {
-            if (GridMode == CustomGrid.CustomGridMode.Jual ||
-                (GridType == ChoiceCard.ChoiceCardType.Post && GridMode == CustomGrid.CustomGridMode.Jual))
-            {
-                SearchDash_AddButton.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                SearchDash_AddButton.Visibility = Visibility.Collapsed;
-            }
-        }
-
-        // Generate choice cards and set their properties based on dependency properties
-        private void GenerateChoiceCards(int count)
-        {
-            // Use StackPanel for a simpler vertical layout in a scrollable container
-            CardGrids.Children.Clear();
-            var stackPanel = new StackPanel { Orientation = Orientation.Vertical };
-
-            int columnCount = 2;
-            for (int i = 0; i < Math.Ceiling((double)count / columnCount); i++) // Adjust for incomplete rows
-            {
-                var rowGrid = new Grid();
-
-                // Define column structure for each row
-                for (int j = 0; j < columnCount; j++)
-                {
-                    rowGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-
-                    int currentIndex = i * columnCount + j;
-                    if (currentIndex >= count) break; // Prevents adding extra cards if the count isn't a perfect multiple of columnCount
-
-                    var choiceCard = new ChoiceCard
-                    {
-                        Margin = new Thickness(j % 2 == 0 ? 0 : 10, 0, j % 2 == 0 ? 10 : 0, 10),
-                        Type = GridType, // Set based on the dependency property
-                        GridMode = GridMode // Bind GridMode directly from SearchDash
-                    };
-
-                    // onClick action based on card type
-                    if (GridType == ChoiceCard.ChoiceCardType.Product)
-                    {
-                        choiceCard.Card_PostMode_Button.Click += (s, e) =>
-                        {
-                            var newContent = new OpenContent
-                            {
-                                PreviousWindow = this,
-                                // Mode = OpenContent.OpenContentMode.Product
-                            };
-
-                            newContent.Show();
-                            Close();
-                        };
-                    }
-                    else if (GridType == ChoiceCard.ChoiceCardType.Post)
-                    {
-                        choiceCard.MouseLeftButtonUp += (s, e) =>
-                        {
-                            var newContent = new OpenContent
-                            {
-                                PreviousWindow = this,
-                                // Mode = OpenContent.OpenContentMode.Post
-                            };
-
-                            newContent.Show();
-                            Close();
-                        };
-                    }
-
-                    Grid.SetColumn(choiceCard, j);
-                    rowGrid.Children.Add(choiceCard);
-                }
-
-                stackPanel.Children.Add(rowGrid);
-            }
-
-            // Add the StackPanel to the CustomGrid
-            CardGrids.Children.Add(stackPanel);
-
-            // Update layout after adding new elements
-            CardGrids.UpdateLayout();
+            DashInit.UpdateNavbar(searchDash.NavbarControl, searchDash.NavbarType, searchDash.NavbarChosen);
         }
     }
 }
