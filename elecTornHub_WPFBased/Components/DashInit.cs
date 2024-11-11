@@ -66,7 +66,7 @@ namespace elecTornHub_WPFBased.Components
                             var newContent = new OpenContent
                             {
                                 PreviousWindow = parent,
-                                // Mode = OpenContent.OpenContentMode.Product
+                                /*Mode = OpenContent.OpenContentMode.Product*/
                             };
 
                             newContent.Show();
@@ -80,13 +80,13 @@ namespace elecTornHub_WPFBased.Components
                             var newContent = new OpenContent
                             {
                                 PreviousWindow = parent,
-                                // Mode = OpenContent.OpenContentMode.Post
                             };
 
                             newContent.Show();
                             parent.Close();
                         };
                     }
+
 
                     Grid.SetColumn(choiceCard, j);
                     rowGrid.Children.Add(choiceCard);
