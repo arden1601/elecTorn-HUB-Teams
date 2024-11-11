@@ -56,6 +56,32 @@ namespace elecTornHub_WPFBased.Pages
             set => SetValue(NavbarChosenProperty, value);
         }
 
+        private void GenerateNavbar()
+        {
+            NavbarControl.Children.Clear();
+            var navbar = new Navbar();
+            navbar.SetBinding(Navbar.TypeProperty, new Binding(nameof(NavbarType)) { Source = this });
+            navbar.SetBinding(Navbar.ChosenProperty, new Binding(nameof(NavbarChosen)) { Source = this });
+            navbar.ParentDash = this;
+
+            NavbarControl.Children.Add(navbar);
+        }
+
+        public void RegenerateContents()
+        {
+            GenerateChoiceCards(10);
+            UpdateAddButtonVisibility();
+        }
+
+        private void UpdateNavbar()
+        {
+            if (NavbarControl.Children.Count > 0 && NavbarControl.Children[0] is Navbar navbar)
+            {
+                navbar.Type = NavbarType;
+                navbar.Chosen = NavbarChosen;
+            }
+        }
+
         public SearchDash()
         {
             InitializeComponent();
@@ -115,7 +141,7 @@ namespace elecTornHub_WPFBased.Pages
         // Generate choice cards and set their properties based on dependency properties
         private void GenerateChoiceCards(int count)
         {
-            // Use StackPanel for simpler vertical layout in a scrollable container
+            // Use StackPanel for a simpler vertical layout in a scrollable container
             CardGrids.Children.Clear();
             var stackPanel = new StackPanel { Orientation = Orientation.Vertical };
 
@@ -129,12 +155,45 @@ namespace elecTornHub_WPFBased.Pages
                 {
                     rowGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
 
+                    int currentIndex = i * columnCount + j;
+                    if (currentIndex >= count) break; // Prevents adding extra cards if the count isn't a perfect multiple of columnCount
+
                     var choiceCard = new ChoiceCard
                     {
                         Margin = new Thickness(j % 2 == 0 ? 0 : 10, 0, j % 2 == 0 ? 10 : 0, 10),
                         Type = GridType, // Set based on the dependency property
                         GridMode = GridMode // Bind GridMode directly from SearchDash
                     };
+
+                    // onClick action based on card type
+                    if (GridType == ChoiceCard.ChoiceCardType.Product)
+                    {
+                        choiceCard.Card_PostMode_Button.Click += (s, e) =>
+                        {
+                            var newContent = new OpenContent
+                            {
+                                PreviousWindow = this,
+                                // Mode = OpenContent.OpenContentMode.Product
+                            };
+
+                            newContent.Show();
+                            Close();
+                        };
+                    }
+                    else if (GridType == ChoiceCard.ChoiceCardType.Post)
+                    {
+                        choiceCard.MouseLeftButtonUp += (s, e) =>
+                        {
+                            var newContent = new OpenContent
+                            {
+                                PreviousWindow = this,
+                                // Mode = OpenContent.OpenContentMode.Post
+                            };
+
+                            newContent.Show();
+                            Close();
+                        };
+                    }
 
                     Grid.SetColumn(choiceCard, j);
                     rowGrid.Children.Add(choiceCard);
@@ -148,32 +207,6 @@ namespace elecTornHub_WPFBased.Pages
 
             // Update layout after adding new elements
             CardGrids.UpdateLayout();
-        }
-
-        private void GenerateNavbar()
-        {
-            NavbarControl.Children.Clear();
-            var navbar = new Navbar();
-            navbar.SetBinding(Navbar.TypeProperty, new Binding(nameof(NavbarType)) { Source = this });
-            navbar.SetBinding(Navbar.ChosenProperty, new Binding(nameof(NavbarChosen)) { Source = this });
-            navbar.ParentDash = this;
-
-            NavbarControl.Children.Add(navbar);
-        }
-
-        public void RegenerateContents()
-        {
-            GenerateChoiceCards(10);
-            UpdateAddButtonVisibility();
-        }
-
-        private void UpdateNavbar()
-        {
-            if (NavbarControl.Children.Count > 0 && NavbarControl.Children[0] is Navbar navbar)
-            {
-                navbar.Type = NavbarType;
-                navbar.Chosen = NavbarChosen;
-            }
         }
     }
 }

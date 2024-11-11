@@ -15,10 +15,13 @@ namespace elecTornHub_WPFBased.Components
         public ChoiceCard()
         {
             InitializeComponent();
-            this.DataContext = this; // Set DataContext to itself
-            this.Card_PostMode_Button.Visibility = Visibility.Collapsed;
-            this.Card_ProductMode.Visibility = Visibility.Collapsed;
+            this.DataContext = this;
+
+            // Ensure default visibility is set up
+            OnTypeChange(this, new DependencyPropertyChangedEventArgs(TypeProperty, null, Type));
+            OnGridModeChanged(this, new DependencyPropertyChangedEventArgs(GridModeProperty, null, GridMode));
         }
+
 
         // DependencyProperty for Type
         public static readonly DependencyProperty TypeProperty =

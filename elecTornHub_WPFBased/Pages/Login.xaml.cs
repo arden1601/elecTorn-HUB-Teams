@@ -67,8 +67,6 @@ namespace elecTornHub_WPFBased.Pages
         {
             if (LogPopupControl.LogPopup_UsernameValue.Text == "Lorem" && LogPopupControl.LogPopup_PasswordValue.Password == "Ipsum")
             {
-                LogPopupControl.ClearFields();
-
                 SearchDash newDash = new SearchDash
                 {
                     PreviousWindow = this,
@@ -86,12 +84,32 @@ namespace elecTornHub_WPFBased.Pages
 
                 // print success
                 MessageBox.Show("Login successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            } 
+            else if (LogPopupControl.LogPopup_UsernameValue.Text == "Admin" && LogPopupControl.LogPopup_PasswordValue.Password == "admin")
+            {
+                SearchDash newDash = new SearchDash
+                {
+                    PreviousWindow = this,
+                    GridMode = CustomGrid.CustomGridMode.Admin,
+                    GridType = ChoiceCard.ChoiceCardType.Product,
+                    NavbarType = Navbar.NavbarType.Admin,
+                    NavbarChosen = Navbar.NavbarChosen.Item
+                };
+
+                // Set DataContext for binding if needed
+                newDash.DataContext = newDash;
+                newDash.Show();
+
+                this.Close();
+
+                // print success
+                MessageBox.Show("Login successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             } else
             {
-                LogPopupControl.ClearFields();
                 // print fail
                 MessageBox.Show("Login failed!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            LogPopupControl.ClearFields();
         }
     }
 }
