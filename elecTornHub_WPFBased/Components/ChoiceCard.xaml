@@ -71,7 +71,7 @@ CornerRadius="10"
 BorderBrush="Transparent"
 Margin="0, 10"
 Background="{x:Static localExtras:Variables.ColorDarkGray}"
->   
+>
                             <Button
                     x:Name="ProductCard_Button"
                     HorizontalAlignment="Left"
@@ -91,53 +91,50 @@ Background="{x:Static localExtras:Variables.ColorDarkGray}"
                     </StackPanel>
                 </Grid>
             </Grid>
-            
-            <Button
-                    x:Name="Card_PostMode_Button"
-                    HorizontalAlignment="Left"
-                Height="Auto"
-                Width="Auto"
-    Style="{StaticResource NoHoverButtonStyle}"
-    Background="Transparent"
-    BorderThickness="0"
-    BorderBrush="Transparent"
-    Cursor="Hand"
-                Margin="10"
->
-                <Grid VerticalAlignment="Center"
+
+            <Grid VerticalAlignment="Center"
+                      HorizontalAlignment="Left"
               x:Name="Card_PostMode"
+                      Height="Auto"
+Width="Auto"
+                      
+Cursor="Hand"
+                      Margin="10"
       >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*" />
-                        <ColumnDefinition Width="3*" />
-                    </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="9*"/>
+                    <RowDefinition Height="191*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
 
-                    <Image Grid.Column="0"
+                <Image Grid.Column="0"
        Source="/elecTornHub_WPFBased;component/Resources/Images/dummy_post.png" 
-       Height="200" Width="140" Margin="0"/>
+       Height="200" Width="140" Grid.RowSpan="2"/>
 
-                    <StackPanel
+                <StackPanel
                     Grid.Column="1"
-                    Margin="10, 0" VerticalAlignment="Stretch"
+                    Margin="10,0,10,0" Grid.RowSpan="2"
                     >
-                        <TextBlock
+                    <TextBlock
                     x:Name="News_Name"
                     Text="Cara Menjadi Presiden yang baik" FontSize="{x:Static localExtras:Variables.FontSizeLG}"
                            TextWrapping="Wrap" TextAlignment="Justify"
 FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
 Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="Bold"/>
-                        <TextBlock
+                    <TextBlock
                     x:Name="News_BriefDescription"
                         Margin="0,10,0,0"
                     Text="Lorem ipsum odor amet, consectetuer adipiscing elit. Sapien scelerisque per conubia volutpat viverra tempus! Inceptos curae mi fusce proin" FontSize="{x:Static localExtras:Variables.FontSizeSM}"
 FontFamily="{x:Static localExtras:Variables.SecondaryFont}"
 Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="Medium"
                            TextWrapping="Wrap" TextAlignment="Justify"/>
-                    </StackPanel>
+                </StackPanel>
 
 
-                </Grid>
-            </Button>
+            </Grid>
         </StackPanel>
     </Border>
 </UserControl>

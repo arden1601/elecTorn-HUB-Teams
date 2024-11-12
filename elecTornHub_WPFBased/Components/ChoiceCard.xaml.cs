@@ -54,17 +54,17 @@ namespace elecTornHub_WPFBased.Components
             // Handle visibility based on Type
             if (newType == ChoiceCardType.Post)
             {
-                control.Card_PostMode_Button.Visibility = Visibility.Visible;
+                control.Card_PostMode.Visibility = Visibility.Visible;
                 control.Card_ProductMode.Visibility = Visibility.Collapsed;
             }
             else if (newType == ChoiceCardType.Product)
             {
-                control.Card_PostMode_Button.Visibility = Visibility.Collapsed;
+                control.Card_PostMode.Visibility = Visibility.Collapsed;
                 control.Card_ProductMode.Visibility = Visibility.Visible;
             }
             else
             {
-                control.Card_PostMode_Button.Visibility = Visibility.Collapsed;
+                control.Card_PostMode.Visibility = Visibility.Collapsed;
                 control.Card_ProductMode.Visibility = Visibility.Collapsed;
             }
         }

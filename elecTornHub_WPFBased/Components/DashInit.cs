@@ -58,19 +58,22 @@ namespace elecTornHub_WPFBased.Components
                         GridMode = GridMode // Bind GridMode directly from SearchDash
                     };
 
+                    // Set the DataContext to the current instance of SearchDash
+                    choiceCard.DataContext = parent;
+
                     // onClick action based on card type
                     if (GridType == ChoiceCard.ChoiceCardType.Product)
                     {
-                        choiceCard.Card_PostMode_Button.Click += (s, e) =>
+                        choiceCard.ProductCard_Button.Click += (s, e) =>
                         {
                             var newContent = new OpenContent
                             {
                                 PreviousWindow = parent,
-                                /*Mode = OpenContent.OpenContentMode.Product*/
                             };
 
                             newContent.Show();
                             parent.Close();
+
                         };
                     }
                     else if (GridType == ChoiceCard.ChoiceCardType.Post)
