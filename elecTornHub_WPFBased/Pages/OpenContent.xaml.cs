@@ -8,7 +8,7 @@ namespace elecTornHub_WPFBased.Pages
     {
         public void RegenerateContents()
         {
-            DashInit.GenerateContent(OpenContentControl, ContentType, ContentMode);
+            DashInit.GenerateContent(OpenContentControl, ContentType, ContentMode, PostType);
         }
 
         public OpenContent()
@@ -18,11 +18,21 @@ namespace elecTornHub_WPFBased.Pages
             Loaded += (s, e) =>
             {
                 DashInit.GenerateNavbar(NavbarControl, this);
-                DashInit.GenerateContent(OpenContentControl, ContentType, ContentMode);
+                DashInit.GenerateContent(OpenContentControl, ContentType, ContentMode, PostType);
             };
         }
 
         public Window PreviousWindow { get; set; }
+        
+        // DependancyProperty for PostType
+        public static readonly DependencyProperty PostTypeProperty =
+            DependencyProperty.Register("PostType", typeof(PostContent.PostContentType), typeof(OpenContent), new PropertyMetadata(PostContent.PostContentType.Default, OnPostTypeChanged));
+
+        public PostContent.PostContentType PostType
+        {
+            get { return (PostContent.PostContentType)GetValue(PostTypeProperty); }
+            set { SetValue(PostTypeProperty, value); }
+        }
 
         // Define NavbarType as a DependencyProperty
         public static readonly DependencyProperty NavbarTypeProperty =
@@ -98,6 +108,12 @@ namespace elecTornHub_WPFBased.Pages
             var openContent = (OpenContent)d; // Corrected to OpenContent
             openContent.NavbarChosen = (Navbar.NavbarChosen)e.NewValue;
             DashInit.UpdateNavbar(openContent.NavbarControl, openContent.NavbarType, openContent.NavbarChosen);
+        }
+
+        private static void OnPostTypeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = (OpenContent)d;
+            control.PostType = (PostContent.PostContentType)e.NewValue;
         }
     }
 }

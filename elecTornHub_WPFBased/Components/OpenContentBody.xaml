@@ -390,17 +390,17 @@
                 >
                     <StackPanel Orientation="Vertical">
                         <!-- Post -->
-                        <localComponents:PostContent Type="Default" />
-                        <localComponents:PostContent Type="Poster" />
-                        <localComponents:PostContent Type="Reported" />
-                        <localComponents:PostContent Type="Takedown" />
+                        <Grid x:Name="OpenContentBody_PostBody">
+                            <!-- Here -->
+                        </Grid>
+                        
                         <!-- Comment Group -->
                         <StackPanel
                             Orientation="Vertical"
                             x:Name="OpenContentBody_CommentGroup"
                         >
                             <Grid
-                                Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Border}}}"
+                                Width="Auto"
                             >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -416,6 +416,7 @@
                                     <TextBlock
                                         Text="Komentar"
                                         HorizontalAlignment="Stretch"
+                                        Width="Auto"
                                         VerticalAlignment="Center"
                                         FontSize="{x:Static localExtras:Variables.FontSizeSM}"
                                         FontFamily="{x:Static localExtras:Variables.SecondaryFont}"
@@ -430,10 +431,10 @@
                                         VerticalAlignment="Center"
                                         CornerRadius="4"
                                         BorderThickness="2"
-                                        Margin="10,0"
+                                        Margin="10, 0"
                                         BorderBrush="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
                                         Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
-                                        Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.189}"
+                                        Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.194}"
                                     >
                                         <Border.Effect>
                                             <DropShadowEffect
@@ -494,15 +495,14 @@
                             </Grid>
 
                             <!-- Comments -->
-                            <localComponents:Comment Type="Default" />
-                            <localComponents:Comment Type="Poster" />
-                            <localComponents:Comment Type="Viewer" />
-                            <localComponents:Comment Type="Viewer" />
-                            <localComponents:Comment Type="Viewer" />
-                            <localComponents:Comment Type="Viewer" />
-                            <localComponents:Comment Type="Viewer" />
-                            <localComponents:Comment Type="Viewer" />
-                            <localComponents:Comment Type="Viewer" />
+                            <StackPanel
+                                Orientation="Vertical"
+                                x:Name="OpenContentBody_CommentGrid"
+                            >
+                                <localComponents:Comment Type="Default" />
+                                <localComponents:Comment Type="Poster" />
+                                <localComponents:Comment Type="Viewer" />
+                            </StackPanel>
                         </StackPanel>
                     </StackPanel>
                 </ScrollViewer>

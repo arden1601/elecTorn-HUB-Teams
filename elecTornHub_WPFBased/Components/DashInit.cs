@@ -128,7 +128,7 @@ namespace elecTornHub_WPFBased.Components
             CardGrids.UpdateLayout();
         }
 
-        public static void GenerateContent(Grid parentGrid, OpenContentBody.OpenContentBodyType ContentType, OpenContentBody.OpenContentBodyMode ContentMode)
+        public static void GenerateContent(Grid parentGrid, OpenContentBody.OpenContentBodyType ContentType, OpenContentBody.OpenContentBodyMode ContentMode, PostContent.PostContentType PostType)
         {
             parentGrid.Children.Clear();
             var content = new OpenContentBody
@@ -136,6 +136,17 @@ namespace elecTornHub_WPFBased.Components
                 Type = ContentType,
                 Mode = ContentMode
             };
+
+            content.OpenContentBody_PostBody.Children.Clear();
+
+            var postContent = new PostContent
+            {
+                Type = PostType
+            };
+
+            content.OpenContentBody_PostBody.Children.Add(postContent);
+
+            content.OpenContentBody_PostBody.UpdateLayout();
 
             parentGrid.Children.Add(content);
             parentGrid.UpdateLayout();

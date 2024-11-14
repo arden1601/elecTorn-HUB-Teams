@@ -10,8 +10,12 @@
         public OpenContentBody()
         {
             InitializeComponent();
-            UpdateLayout();
-            this.DataContext = this; // Set DataContext to itse
+            DataContext = this;
+            Initialize();
+        }
+
+        private void Initialize()
+        {
             OpenContentBody_ModePost.Visibility = Visibility.Collapsed;
             OpenContentBody_ModeProduct.Visibility = Visibility.Collapsed;
 
@@ -50,6 +54,14 @@
             Banned
         }
 
+        // DependencyProperty for Mode
+        public enum OpenContentBodyMode
+        {
+            Default,
+            Product,
+            Post
+        }
+
         public static readonly DependencyProperty TypeProperty =
             DependencyProperty.Register("Type", typeof(OpenContentBodyType), typeof(OpenContentBody), new PropertyMetadata(OpenContentBodyType.Default, OnTypeChanged));
 
@@ -57,14 +69,6 @@
         {
             get { return (OpenContentBodyType)GetValue(TypeProperty); }
             set { SetValue(TypeProperty, value); }
-        }
-
-        // DependencyProperty for Mode
-        public enum OpenContentBodyMode
-        {
-            Default,
-            Product,
-            Post
         }
 
         public static readonly DependencyProperty ModeProperty =

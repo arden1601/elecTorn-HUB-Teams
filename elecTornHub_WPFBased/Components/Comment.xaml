@@ -10,7 +10,7 @@
 
     <Border HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+            Height="Auto"
             Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.02}"
             Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
             CornerRadius="8"
