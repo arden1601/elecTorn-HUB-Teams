@@ -120,7 +120,7 @@
                 control.OpenContentBody_Title.Visibility = Visibility.Collapsed;
 
                 control.OpenContentBody_EditDescBorder.Visibility = Visibility.Visible;
-                control.OpenContentBody_Desc.Visibility = Visibility.Collapsed;
+                control.OpenContentBody_DescBorder.Visibility = Visibility.Collapsed;
 
                 control.OpenContentBody_EditPriceBorder.Visibility = Visibility.Visible;
                 control.OpenContentBody_Price.Visibility = Visibility.Collapsed;

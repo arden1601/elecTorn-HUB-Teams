@@ -26,7 +26,7 @@
                 VerticalAlignment="Center"
                 Width="Auto"
                 Height="Auto"
-                Margin="10"
+                Margin="0,10,20,10"
             >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*" />
@@ -38,9 +38,9 @@
                         Source="/elecTornHub_WPFBased;component/Resources/Images/dummy_product.png"
                     />
                 </StackPanel>
-                <StackPanel Background="Maroon" Grid.Column="1" Grid.Row="1" Height="320">
+                <StackPanel
+                    Grid.Column="1" Grid.Row="1" Height="320">
                     <TextBlock
-                        Background="Blue"
                         HorizontalAlignment="Stretch"
                         x:Name="OpenContentBody_Title"
                         Text="Laptop ACER Intel Core"
@@ -54,7 +54,6 @@
 
                     <Border
                         HorizontalAlignment="Stretch"
-                        Background="Blue"
                         VerticalAlignment="Center"
                         CornerRadius="8"
                         BorderThickness="2"
@@ -74,10 +73,10 @@
                             Background="Transparent"
                             Padding="6,5"
                         />
+                        
                     </Border>
 
                     <TextBlock
-                        Background="Green"
                         x:Name="OpenContentBody_Seller"
                         Text="dijual oleh Cornelius Arden"
                         FontSize="{x:Static localExtras:Variables.FontSizeSM}"
@@ -87,45 +86,55 @@
                         TextWrapping="Wrap"
                         TextAlignment="Justify"
                     />
-                    <ScrollViewer
-                        Background="Pink"
-                        x:Name="OpenContentBody_Desc"
-                        VerticalScrollBarVisibility="Auto"
-                        HorizontalScrollBarVisibility="Disabled"
-                        Margin="0,15"
-                        Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=2}"
-                        Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1}"
-                    >
-                        <TextBlock
-                            Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type ScrollViewer}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.05}"
-                            HorizontalAlignment="Left"
-                            Text="Laptop ini merupakan laptop kesayangan saya, tapi laptop ini terlalu bagus untuk saya sehingga saya memutuskan untuk menjualnya. Spesifikasi masih bagus, dijual murah karena kebetulan lagi butuh uang untuk memenuhi kebutuhan anak dan istri. Bagi siapapun yang berniat membantu saya, mohon beli produk ini. Jika Anda tidak mau membeli padahal sudah membaca sampai sini, saya akan gunakan IP Address Anda untuk melacak posisi Anda dan mengejar Anda sampai ke pelaminan. Sekian terima kasih, terima lah lagu ini dari orang biasa. Mohon maaf jika ada salah kata, akhir kata saya mengucapkan minta maaf. Sampai jumpa dalam LAPTOP ACER INTEL 2025! Wassalamu’alaikum warahmatullahi wabarakatuh. Laptop ini merupakan laptop kesayangan saya, tapi laptop ini terlalu bagus untuk saya sehingga saya memutuskan untuk menjualnya. Spesifikasi masih bagus, dijual murah karena kebetulan lagi butuh uang untuk memenuhi kebutuhan anak dan istri. Bagi siapapun yang berniat membantu saya, mohon beli produk ini. Jika Anda tidak mau membeli padahal sudah membaca sampai sini, saya akan gunakan IP Address Anda untuk melacak posisi Anda dan mengejar Anda sampai ke pelaminan. Sekian terima kasih, terima lah lagu ini dari orang biasa. Mohon maaf jika ada salah kata, akhir kata saya mengucapkan minta maaf. Sampai jumpa dalam LAPTOP ACER INTEL 2025! Wassalamu’alaikum warahmatullahi wabarakatuh."
-                            FontSize="{x:Static localExtras:Variables.FontSizeMD}"
-                            FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
-                            Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
-                            FontWeight="DemiBold"
-                            TextWrapping="Wrap"
-                            TextAlignment="Justify"
-                        />
-                    </ScrollViewer>
-
                     <Border
-                        Background="Yellow"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
+                        Margin="0,10"
+                        Padding="0,0,1,0"
+                        BorderThickness="0"
+                        BorderBrush="{x:Static localExtras:Variables.ColorDarkGray}"
+                        x:Name="OpenContentBody_DescBorder"
+                    >
+                        <ScrollViewer
+                            VerticalScrollBarVisibility="Auto"
+                            HorizontalScrollBarVisibility="Disabled"
+                            Padding="0,0,5,0"
+                            Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.9}"
+                            Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1}"
+                        >
+                            <TextBlock
+                                HorizontalAlignment="Stretch"
+                                Text="Laptop ini merupakan laptop kesayangan saya, tapi laptop ini terlalu bagus untuk saya sehingga saya memutuskan untuk menjualnya. Spesifikasi masih bagus, dijual murah karena kebetulan lagi butuh uang untuk memenuhi kebutuhan anak dan istri. Bagi siapapun yang berniat membantu saya, mohon beli produk ini. Jika Anda tidak mau membeli padahal sudah membaca sampai sini, saya akan gunakan IP Address Anda untuk melacak posisi Anda dan mengejar Anda sampai ke pelaminan. Sekian terima kasih, terima lah lagu ini dari orang biasa. Mohon maaf jika ada salah kata, akhir kata saya mengucapkan minta maaf. Sampai jumpa dalam LAPTOP ACER INTEL 2025! Wassalamu’alaikum warahmatullahi wabarakatuh. Laptop ini merupakan laptop kesayangan saya, tapi laptop ini terlalu bagus untuk saya sehingga saya memutuskan untuk menjualnya. Spesifikasi masih bagus, dijual murah karena kebetulan lagi butuh uang untuk memenuhi kebutuhan anak dan istri. Bagi siapapun yang berniat membantu saya, mohon beli produk ini. Jika Anda tidak mau membeli padahal sudah membaca sampai sini, saya akan gunakan IP Address Anda untuk melacak posisi Anda dan mengejar Anda sampai ke pelaminan. Sekian terima kasih, terima lah lagu ini dari orang biasa. Mohon maaf jika ada salah kata, akhir kata saya mengucapkan minta maaf. Sampai jumpa dalam LAPTOP ACER INTEL 2025! Wassalamu’alaikum warahmatullahi wabarakatuh."
+                                VerticalAlignment="Center"
+                                x:Name="OpenContentBody_Desc"
+                                FontSize="{x:Static localExtras:Variables.FontSizeMD}"
+                                FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
+                                Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
+                                FontWeight="DemiBold"
+                                TextWrapping="Wrap"
+                                TextAlignment="Justify"
+                                Background="Transparent"
+                            />
+                        </ScrollViewer>
+                    </Border>
+
+                    <Border
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        Margin="0,10"
+                        Padding="0,0,1,0"
                         CornerRadius="8"
                         BorderThickness="2"
-                        Margin="0,10"
                         BorderBrush="{x:Static localExtras:Variables.ColorDarkGray}"
                         x:Name="OpenContentBody_EditDescBorder"
-                        Padding="0,0,10,0"
                     >
                         <ScrollViewer
                             VerticalScrollBarVisibility="Auto"
                             HorizontalScrollBarVisibility="Disabled"
                             Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.9}"
                             Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1}"
-                            Padding="6,5"
+                            Padding="6,5,6,5"
+                            Margin="0,0,5,0"
                         >
                             <TextBox
                                 HorizontalAlignment="Stretch"
@@ -145,7 +154,6 @@
                     </Border>
 
                     <Grid
-                        Background="DarkOrange"
                         VerticalAlignment="Bottom"
                         Height="Auto"
                         Width="Auto"
