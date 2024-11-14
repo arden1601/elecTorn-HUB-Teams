@@ -34,41 +34,107 @@ namespace elecTornHub_WPFBased.Components
             set { parentDash = value; }
         }
 
+        private OpenContent parentContent;
+
+        public OpenContent ParentContent
+        {
+            get { return parentContent; }
+            set { parentContent = value; }
+        }
+
         private void onClickUserNavBeli(object sender, RoutedEventArgs e)
         {
             Chosen = NavbarChosen.Beli;
-            parentDash.GridType = ChoiceCard.ChoiceCardType.Product;
-            parentDash.GridMode = CustomGrid.CustomGridMode.Beli;
-            parentDash.RegenerateContents();
+
+            // If parentDash not null
+            if (parentDash != null)
+            {
+                parentDash.GridType = ChoiceCard.ChoiceCardType.Product;
+                parentDash.GridMode = CustomGrid.CustomGridMode.Beli;
+                parentDash.RegenerateContents();
+            }
+            // If parentContent not null
+            else if (parentContent != null)
+            {
+                parentContent.ContentType = OpenContentBody.OpenContentBodyType.Buyer;
+                parentContent.ContentMode = OpenContentBody.OpenContentBodyMode.Product;
+                parentContent.RegenerateContents();
+            }
         }
 
         private void onClickUserNavJual(object sender, RoutedEventArgs e)
         {
             Chosen = NavbarChosen.Jual;
-            parentDash.GridType = ChoiceCard.ChoiceCardType.Product;
-            parentDash.GridMode = CustomGrid.CustomGridMode.Jual;
-            parentDash.RegenerateContents();
+
+            // If parentDash not null
+            if (parentDash != null)
+            {
+                parentDash.GridType = ChoiceCard.ChoiceCardType.Product;
+                parentDash.GridMode = CustomGrid.CustomGridMode.Jual;
+                parentDash.RegenerateContents();
+            }
+            // If parentContent not null
+            else if (parentContent != null)
+            {
+                parentContent.ContentType = OpenContentBody.OpenContentBodyType.Seller;
+                parentContent.ContentMode = OpenContentBody.OpenContentBodyMode.Product;
+                parentContent.RegenerateContents();
+            }
         }
 
         private void onClickUserNavPost(object sender, RoutedEventArgs e)
         {
             Chosen = NavbarChosen.Post;
-            parentDash.GridType = ChoiceCard.ChoiceCardType.Post;
-            parentDash.RegenerateContents();
+
+            // If parentDash not null
+            if (parentDash != null)
+            {
+                parentDash.GridType = ChoiceCard.ChoiceCardType.Post;
+                parentDash.RegenerateContents();
+            }
+            // If parentContent not null
+            else if (parentContent != null)
+            {
+                parentContent.ContentType = OpenContentBody.OpenContentBodyType.Buyer;
+                parentContent.ContentMode = OpenContentBody.OpenContentBodyMode.Post;
+                parentContent.RegenerateContents();
+            }
         }
 
         private void onClickAdminNavPost(object sender, RoutedEventArgs e)
         {
             Chosen = NavbarChosen.Post;
-            parentDash.GridType = ChoiceCard.ChoiceCardType.Post;
-            parentDash.RegenerateContents();
+            
+            // If parentDash not null
+            if (parentDash != null)
+            {
+                parentDash.GridType = ChoiceCard.ChoiceCardType.Post;
+                parentDash.RegenerateContents();
+            }
+            // If parentContent not null
+            else if (parentContent != null)
+            {
+                parentContent.ContentMode = OpenContentBody.OpenContentBodyMode.Post;
+                parentContent.RegenerateContents();
+            }
         }
 
         private void onClickAdminNavItem(object sender, RoutedEventArgs e)
         {
             Chosen = NavbarChosen.Item;
-            parentDash.GridType = ChoiceCard.ChoiceCardType.Product;
-            parentDash.RegenerateContents();
+
+            // If parentDash not null
+            if (parentDash != null)
+            {
+                parentDash.GridType = ChoiceCard.ChoiceCardType.Product;
+                parentDash.RegenerateContents();
+            }
+            // If parentContent not null
+            else if (parentContent != null)
+            {
+                parentContent.ContentMode = OpenContentBody.OpenContentBodyMode.Product;
+                parentContent.RegenerateContents();
+            }
         }
 
         public Navbar()

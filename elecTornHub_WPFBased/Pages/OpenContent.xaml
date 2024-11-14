@@ -48,8 +48,25 @@
         Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Border}}}"
         Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Border}}}">
 
-                    <localComponents:Navbar x:Name="NavbarControl" Type="Admin" Chosen="Item" Grid.Row="0" />
-                    <localComponents:OpenContentBody x:Name="OpenContentControl" Margin="0, 40, 0, 0" Type="Reported" Mode="Post" />
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <!-- Row for Navbar -->
+                        <RowDefinition Height="*"/>
+                        <!-- Row for main content -->
+                    </Grid.RowDefinitions>
+                    
+                    <!-- Navbar Control in the first row -->
+                    <Grid x:Name="NavbarControl"
+                             Grid.Row="0" 
+                             Height="50" 
+                             />
+
+                    <Grid
+                        x:Name="OpenContentControl"
+                        Grid.Row="1"
+                    >
+                        <!-- Content Here -->
+                    </Grid>
                 </Grid>
             </Grid>
         </Border>

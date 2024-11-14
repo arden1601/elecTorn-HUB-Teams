@@ -23,6 +23,21 @@ namespace elecTornHub_WPFBased.Components
             NavbarControl.Children.Add(navbar);
         }
 
+        public static void GenerateNavbar(Grid NavbarControl, OpenContent parentSearch = null)
+        {
+            NavbarControl.Children.Clear();
+            var navbar = new Navbar();
+
+            if (parentSearch != null)
+            {
+                navbar.SetBinding(TypeProperty, new Binding(nameof(NavbarType)) { Source = parentSearch });
+                navbar.SetBinding(ChosenProperty, new Binding(nameof(NavbarChosen)) { Source = parentSearch });
+                navbar.ParentContent = parentSearch;
+            }
+
+            NavbarControl.Children.Add(navbar);
+        }
+
         public static void UpdateNavbar(Grid NavbarControl, NavbarType NavbarType, NavbarChosen NavbarChosen)
         {
             if (NavbarControl.Children.Count > 0 && NavbarControl.Children[0] is Navbar navbar)
@@ -69,6 +84,10 @@ namespace elecTornHub_WPFBased.Components
                             var newContent = new OpenContent
                             {
                                 PreviousWindow = parent,
+                                ContentType = OpenContentBody.OpenContentBodyType.Buyer,
+                                ContentMode = OpenContentBody.OpenContentBodyMode.Product,
+                                NavbarChosen = NavbarChosen.Beli,
+                                NavbarType = NavbarType.User
                             };
 
                             newContent.Show();
@@ -83,6 +102,10 @@ namespace elecTornHub_WPFBased.Components
                             var newContent = new OpenContent
                             {
                                 PreviousWindow = parent,
+                                ContentType = OpenContentBody.OpenContentBodyType.Buyer,
+                                ContentMode = OpenContentBody.OpenContentBodyMode.Post,
+                                NavbarChosen = NavbarChosen.Post,
+                                NavbarType = NavbarType.User
                             };
 
                             newContent.Show();
@@ -103,6 +126,19 @@ namespace elecTornHub_WPFBased.Components
 
             // Update layout after adding new elements
             CardGrids.UpdateLayout();
+        }
+
+        public static void GenerateContent(Grid parentGrid, OpenContentBody.OpenContentBodyType ContentType, OpenContentBody.OpenContentBodyMode ContentMode)
+        {
+            parentGrid.Children.Clear();
+            var content = new OpenContentBody
+            {
+                Type = ContentType,
+                Mode = ContentMode
+            };
+
+            parentGrid.Children.Add(content);
+            parentGrid.UpdateLayout();
         }
 
         public static void UpdateAddButtonVisibility(Border SearchDash_AddButton, CustomGrid.CustomGridMode GridMode, ChoiceCard.ChoiceCardType GridType)
