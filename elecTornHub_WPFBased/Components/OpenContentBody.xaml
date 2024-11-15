@@ -499,9 +499,7 @@
                                 Orientation="Vertical"
                                 x:Name="OpenContentBody_CommentGrid"
                             >
-                                <localComponents:Comment Type="Default" />
-                                <localComponents:Comment Type="Poster" />
-                                <localComponents:Comment Type="Viewer" />
+                                <!-- Comments Here -->
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>

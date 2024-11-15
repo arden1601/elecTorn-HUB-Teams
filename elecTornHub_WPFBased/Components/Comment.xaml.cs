@@ -42,6 +42,7 @@ namespace elecTornHub_WPFBased.Components
             if (newType == CommentType.Default)
             {
                 control.Comment_ButtonBorder.Visibility = Visibility.Collapsed;
+                control.Comment_Button.Visibility = Visibility.Collapsed;
             }
             else if (newType == CommentType.Poster)
             {

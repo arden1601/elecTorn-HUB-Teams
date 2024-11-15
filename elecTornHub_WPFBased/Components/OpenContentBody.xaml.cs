@@ -28,6 +28,24 @@
             OpenContentBody_EditTitleBorder.Visibility = Visibility.Collapsed;
             OpenContentBody_EditDescBorder.Visibility = Visibility.Collapsed;
             OpenContentBody_EditPriceBorder.Visibility = Visibility.Collapsed;
+
+            GenerateComments(3);
+        }
+
+        private void GenerateComments(int count)
+        {
+            OpenContentBody_CommentGrid.Children.Clear();
+
+            for (int i = 0; i < count; i++)
+            {
+                // Rand numb from 1 to 2 using random from C, don't use Variables.Random, i dont have it
+                int rand = new System.Random().Next(1, 3);
+
+                OpenContentBody_CommentGrid.Children.Add(new Comment
+                {
+                    Type = rand == 1 ? Comment.CommentType.Poster : Comment.CommentType.Viewer
+                });
+            }
         }
 
         private void ClearProps(Border border)
