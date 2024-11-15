@@ -18,7 +18,7 @@ public class Accounts
 
     }
 
-    public Accounts(string? username, string? password, string? email, string? phoneNumber, string? fullName, string? address, string? city, string? state, string? zipCode, string? country, string? dateOfBirth)
+    public Accounts(string username, string password, string email, string phoneNumber, string fullName, string address, string city, string state, string zipCode, string country, string dateOfBirth)
     {
         Username = username;
         Password = password;

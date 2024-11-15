@@ -1,11 +1,11 @@
 namespace elecTornHub_WPFBased.Classes;
 
 // inherit Tutorial from Post
-class Tutorial : Post
+public class Tutorial : Post
 {
     private string _videoUrl;
 
-    public Tutorial(string postId, User authorId, string content, string title, string videoUrl) : base(postId, authorId, content, title)
+    public Tutorial(string postId, User authorId, string content, string title, string videoUrl, string postDate) : base(postId, authorId, content, title, postDate)
     {
         _videoUrl = videoUrl;
     }

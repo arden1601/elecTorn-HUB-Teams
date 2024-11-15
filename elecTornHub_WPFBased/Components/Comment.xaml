@@ -76,26 +76,24 @@ Background="{x:Static localExtras:Variables.ColorAccentOrange}"
                             x:Name="Comment_Title"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Left"
-                    Text="Mantan Mantu Jenderal" FontSize="{x:Static localExtras:Variables.FontSizeMD}"
+                    Text="{Binding Poster}" FontSize="{x:Static localExtras:Variables.FontSizeMD}"
 FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
 Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold"
                            TextWrapping="Wrap" TextAlignment="Justify"/>
                     </StackPanel>
                     <TextBlock
-                        x:Name="Comment_Date"
                         Grid.Column="1"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Right"
-                    Text="30 September 1965" FontSize="{x:Static localExtras:Variables.FontSizeMD}"
+                        Text="{Binding PostDate}" FontSize="{x:Static localExtras:Variables.FontSizeMD}"
 FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
 Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold"
                            TextWrapping="Wrap" TextAlignment="Justify"/>
                 </Grid>
 
                 <TextBlock
-                    x:Name="Comment_Value"
                     Grid.Row="1"
-                    Text="Lorem ipsum odor amet, consectetuer adipiscing elit. Sapien scelerisque per conubia volutpat viverra tempus! Inceptos curae mi fusce proin senectus, condimentum volutpat dictum? Et risus rutrum habitasse cursus curae, accumsan integer aliquet. Suspendisse velit vel luctus id iaculis nisi. Duis platea ac consequat; blandit luctus elit. Sem maecenas primis himenaeos class fusce congue mauris nisi. Inceptos dui mollis ultricies donec congue laoreet sagittis purus."
+                    Text="{Binding Content}"
                     FontSize="{x:Static localExtras:Variables.FontSizeSM}"
                            TextWrapping="Wrap" TextAlignment="Justify"
 FontFamily="{x:Static localExtras:Variables.PrimaryFont}"

@@ -1,6 +1,6 @@
 namespace elecTornHub_WPFBased.Classes;
 
-class Transaction {
+public class Transaction {
     private string _transactionId;
     private Products _productId;
     private User _buyerId;

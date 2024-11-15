@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Runtime.CompilerServices;
+using elecTornHub_WPFBased.ViewModels;
 
 namespace elecTornHub_WPFBased.Components
 {
@@ -18,7 +19,11 @@ namespace elecTornHub_WPFBased.Components
         {
             InitializeComponent();
             UpdateLayout();
-            this.DataContext = this; // Set DataContext to itse
+            DataContext = new CommentViewModel(
+                poster: "Mantan Mantumu",
+                content: "Lorem ipsum odor amet, consectetuer adipiscing elit. Sapien scelerisque per conubia...",
+                postDate: "30 September 1965"
+                );
         }
 
         // DependencyProperty for Type

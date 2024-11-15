@@ -1,18 +1,20 @@
-namespace elecTornHub_WPFBased.Classes;
-
-// Inherit comment from Post
-class Comment : Post
+namespace elecTornHub_WPFBased.Classes
 {
-    private string _destinationPostId;
-
-    public Comment(string postId, User authorId, string content, string title, string destinationPostId) : base(postId, authorId, content, title)
+    // Make Comment class public
+    public class Comment : Post
     {
-        _destinationPostId = destinationPostId;
-    }
+        private string _destinationPostId;
 
-    public string DestinationPostId
-    {
-        get { return _destinationPostId; }
-        set { _destinationPostId = value; }
+        public Comment(string postId, User authorId, string content, string title, string destinationPostId, string postDate) 
+            : base(postId, authorId, content, title, postDate)
+        {
+            _destinationPostId = destinationPostId;
+        }
+
+        public string DestinationPostId
+        {
+            get { return _destinationPostId; }
+            set { _destinationPostId = value; }
+        }
     }
 }
