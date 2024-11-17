@@ -1,6 +1,7 @@
 ﻿namespace elecTornHub_WPFBased.Components
 {
     using elecTornHub_WPFBased.Extras;
+    using elecTornHub_WPFBased.ViewModels;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Media;
@@ -114,7 +115,6 @@
         public OpenContentBody()
         {
             InitializeComponent();
-            DataContext = this;
             Initialize();
         }
 
@@ -133,13 +133,18 @@
             OpenContentBody_EditDescBorder.Visibility = Visibility.Collapsed;
             OpenContentBody_EditPriceBorder.Visibility = Visibility.Collapsed;
 
-            GenerateComments(3);
+            /*if (DataContext is ContentViewModel)
+            {
+                Classes.Comment[] comments = DataContext.Post_Comments;
+                GenerateComments(comments);
+            }*/
         }
 
-        private void GenerateComments(int count)
+        private void GenerateComments(Classes.Comment[] comments)
         {
             OpenContentBody_CommentGrid.Children.Clear();
 
+            int count = comments.Length;
             for (int i = 0; i < count; i++)
             {
                 // Rand numb from 1 to 2 using random from C, don't use Variables.Random, i dont have it
@@ -148,9 +153,9 @@
                 OpenContentBody_CommentGrid.Children.Add(new CommentSingle
                 {
                     CommentType = rand == 1 ? Enumerations.Comment.CommentType.Poster : Enumerations.Comment.CommentType.Viewer,
-                    Comment_Poster = "CorArden",
-                    Comment_Content = "Ketika mimpimu yang begitu indah, tak pernah terwujud ya sudahlah. Ketika bermimpi lagi, semangat mengejar dan tak pernah sampai, ya sudahlah. Baru yang ketiga, mulai tercapai, marilah berjuang tanpa sudah.",
-                    Comment_PostDate = "6 September 969"
+                    Comment_Poster = comments[i].AuthorId.Username,
+                    Comment_Content = comments[i].Content,
+                    Comment_PostDate = comments[i].PostDate
                 });
             }
         }

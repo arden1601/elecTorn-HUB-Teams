@@ -9,8 +9,9 @@ public class Post
     private string _postDate;
     private string _lastEdit;
     private string _imgSrc;
+    private Comment[] _comments;
 
-    public Post(string postId, User authorId, string content, string title, string postDate, string imgSrc, string lastEdit)
+    public Post(string postId, User authorId, string content, string title, string postDate, string imgSrc, string lastEdit, Comment[] comments)
     {
         _postId = postId;
         _authorId = authorId;
@@ -19,6 +20,7 @@ public class Post
         _postDate = postDate;
         _imgSrc = imgSrc ?? "";
         _lastEdit = lastEdit;
+        _comments = comments;
     }
 
     public string PostId
@@ -61,6 +63,12 @@ public class Post
     {
         get { return _imgSrc; }
         set { _imgSrc = value; }
+    }
+
+    public Comment[] Comments
+    {
+        get { return _comments; }
+        set { _comments = value; }
     }
 
     public void Takedown()

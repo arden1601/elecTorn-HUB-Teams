@@ -35,8 +35,10 @@ namespace elecTornHub_WPFBased.Extras
             }
         }
 
-        public static void GenerateChoiceCards(CustomGrid CardGrids, Enumerations.ChoiceCard.ChoiceCardType GridType, Enumerations.CustomGrid.CustomGridMode GridMode, SearchDash parent, int count)
+        public static void GenerateChoiceCards(CustomGrid CardGrids, Enumerations.ChoiceCard.ChoiceCardType GridType, Enumerations.CustomGrid.CustomGridMode GridMode, SearchDash parent, ContentViewModel[] ContentData)
         {
+            int count = ContentData.Length;
+
             // Use StackPanel for a simpler vertical layout in a scrollable container
             CardGrids.Children.Clear();
             var stackPanel = new StackPanel { Orientation = Orientation.Vertical };
@@ -47,47 +49,23 @@ namespace elecTornHub_WPFBased.Extras
                 var rowGrid = new Grid();
 
                 // Define column structure for each row
-                for (int j = 0; j < columnCount && i * columnCount + j <= count; j++)
+                for (int j = 0; j < columnCount; j++)
                 {
                     rowGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
 
                     int currentIndex = i * columnCount + j;
                     if (currentIndex >= count) break; // Prevents adding extra cards if the count isn't a perfect multiple of columnCount
 
+                    // DataContext Import from DB
+                    ContentViewModel selectedContext = ContentData[currentIndex];
+
                     var choiceCard = new ChoiceCard
                     {
                         Margin = new Thickness(j % 2 == 0 ? 0 : 10, 0, j % 2 == 0 ? 10 : 0, 10),
                         ContentType = GridType, // Set based on the dependency property
-                        ContentMode = GridMode // Bind GridMode directly from SearchDash
+                        ContentMode = GridMode, // Bind GridMode directly from SearchDash
+                        DataContext = selectedContext
                     };
-
-                    // DataContext Import from DB
-                    ContentViewModel selectedContext = null;
-
-                    if (GridType == Enumerations.ChoiceCard.ChoiceCardType.Post)
-                    {
-                        string imgSrc = "https://lh3.googleusercontent.com/ogw/AF2bZyiQSDYdpGWlSrg8eJ1yYHSRxQ73eJvhC8K4A-htZ1bAfYA=s32-c-mo";
-                        selectedContext = new ContentViewModel(
-                            title: "Adakah kamu di situ?",
-                            content: "Lorem ipsum odor amet, consectetuer adipiscing elit. Sapien scelerisque per conubia volutpat viverra tempus! Inceptos curae mi fusce proin senectus, condimentum volutpat dictum? Et risus rutrum habitasse cursus curae, accumsan integer aliquet. Suspendisse velit vel luctus id iaculis nisi. Duis platea ac consequat; blandit luctus elit. Sem maecenas primis himenaeos class fusce congue mauris nisi. Inceptos dui mollis ultricies donec congue laoreet sagittis purus.\r\n\r\nPurus habitant cras semper in est semper scelerisque. Magna aenean facilisi congue magna senectus amet? Sit tellus quisque viverra; sodales odio nulla. Venenatis magnis feugiat a ipsum tellus pulvinar. Nulla natoque sagittis quisque felis faucibus! Quisque at quam sociosqu integer libero. Vivamus morbi sapien ad et ante gravida conubia sollicitudin gravida.\r\n\r\nLorem ipsum odor amet, consectetuer adipiscing elit. Sapien scelerisque per conubia volutpat viverra tempus! Inceptos curae mi fusce proin senectus, condimentum volutpat dictum? Et risus rutrum habitasse cursus curae, accumsan integer aliquet. Suspendisse velit vel luctus id iaculis nisi. Duis platea ac consequat; blandit luctus elit. Sem maecenas primis himenaeos class fusce congue mauris nisi. Inceptos dui mollis ultricies donec congue laoreet sagittis purus.\r\n\r\nLorem ipsum odor amet, consectetuer adipiscing elit. Sapien scelerisque per conubia volutpat viverra tempus! Inceptos curae mi fusce proin senectus, condimentum volutpat dictum? Et risus rutrum habitasse cursus curae, accumsan integer aliquet. Suspendisse velit vel luctus id iaculis nisi. Duis platea ac consequat; blandit luctus elit. Sem maecenas primis himenaeos class fusce congue mauris nisi. Inceptos dui mollis ultricies donec congue laoreet sagittis purus.",
-                            postDate: "16 September 2024",
-                            lastEdit: "13 September 2024",
-                            imgSrc: imgSrc
-                        );
-                        choiceCard.DataContext = selectedContext;
-                    }
-                    else if (GridType == Enumerations.ChoiceCard.ChoiceCardType.Product)
-                    {
-                        string imgSrc = "https://drive.google.com/uc?export=download&id=1rTyCsI0Byp9Mf0y_lLo120Oo57y5AWhn";
-                        selectedContext = new ContentViewModel(
-                            title: "Laptop ACER Intel Core",
-                            description: "Laptop ini merupakan laptop kesayangan saya, tapi laptop ini terlalu bagus untuk saya sehingga saya memutuskan untuk menjualnya. Spesifikasi masih bagus, dijual murah karena kebetulan lagi butuh uang untuk memenuhi kebutuhan anak dan istri. Bagi siapapun yang berniat membantu saya, mohon beli produk ini. Jika Anda tidak mau membeli padahal sudah membaca sampai sini, saya akan gunakan IP Address Anda untuk melacak posisi Anda dan mengejar Anda sampai ke pelaminan. Sekian terima kasih, terima lah lagu ini dari orang biasa. Mohon maaf jika ada salah kata, akhir kata saya mengucapkan minta maaf. Sampai jumpa dalam LAPTOP ACER INTEL 2025! Wassalamu’alaikum warahmatullahi wabarakatuh. Laptop ini merupakan laptop kesayangan saya, tapi laptop ini terlalu bagus untuk saya sehingga saya memutuskan untuk menjualnya. Spesifikasi masih bagus, dijual murah karena kebetulan lagi butuh uang untuk memenuhi kebutuhan anak dan istri. Bagi siapapun yang berniat membantu saya, mohon beli produk ini. Jika Anda tidak mau membeli padahal sudah membaca sampai sini, saya akan gunakan IP Address Anda untuk melacak posisi Anda dan mengejar Anda sampai ke pelaminan. Sekian terima kasih, terima lah lagu ini dari orang biasa. Mohon maaf jika ada salah kata, akhir kata saya mengucapkan minta maaf. Sampai jumpa dalam LAPTOP ACER INTEL 2025! Wassalamu’alaikum warahmatullahi wabarakatuh.",
-                            quantity: 1,
-                            price: 696969,
-                            imgSrc: imgSrc
-                        );
-                        choiceCard.DataContext = selectedContext;
-                    }
 
                     // onClick action based on card type
                     if (GridType == Enumerations.ChoiceCard.ChoiceCardType.Product)

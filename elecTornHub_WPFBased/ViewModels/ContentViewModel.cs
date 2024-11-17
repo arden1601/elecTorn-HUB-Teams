@@ -21,7 +21,7 @@ namespace elecTornHub_WPFBased.ViewModels
         }
 
         // Temporary constructor to accept value directly
-        public ContentViewModel(string title, string content, string postDate, string imgSrc, string lastEdit)
+        public ContentViewModel(string title, string content, string postDate, string imgSrc, string lastEdit, Comment[] comments)
         {
             // fill the values
             _post = new Post(
@@ -35,7 +35,8 @@ namespace elecTornHub_WPFBased.ViewModels
                 title: title,
                 postDate: postDate,
                 lastEdit: lastEdit,
-                imgSrc: imgSrc
+                imgSrc: imgSrc,
+                comments: comments
                 );
         }
 
@@ -216,6 +217,19 @@ namespace elecTornHub_WPFBased.ViewModels
                     _post.ImgSrc = value;
                     OnPropertyChanged(nameof(Post_ImgSrc));
                 };
+            }
+        }
+
+        public Comment[] Post_Comments
+        {
+            get => _post.Comments;
+            set
+            {
+                if (_post.Comments != value)
+                {
+                    _post.Comments = value;
+                    OnPropertyChanged(nameof(Post_Comments));
+                }
             }
         }
 

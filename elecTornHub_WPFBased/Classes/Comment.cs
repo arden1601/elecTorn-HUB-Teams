@@ -5,8 +5,8 @@ namespace elecTornHub_WPFBased.Classes
     {
         private string _destinationPostId;
 
-        public Comment(string postId, User authorId, string content, string title, string destinationPostId, string postDate, string lastEdit="", string imgSrc = "") 
-            : base(postId, authorId, content, title, postDate, lastEdit, imgSrc)
+        public Comment(string postId, User authorId, string content, string title, string destinationPostId, string postDate, string lastEdit="", string imgSrc = "", Comment[] comments = null) 
+            : base(postId, authorId, content, title, postDate, lastEdit, imgSrc, comments)
         {
             _destinationPostId = destinationPostId;
         }
