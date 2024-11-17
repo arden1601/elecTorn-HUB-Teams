@@ -111,6 +111,8 @@ namespace elecTornHub_WPFBased.Components
                 parentContent.ContentMode = Enumerations.OpenContent.OpenContentBodyMode.Product;
                 parentContent.RegenerateContents();
             }
+
+            OnChosenChanged(Chosen);
         }
 
         private void onClickUserNavJual(object sender, RoutedEventArgs e)
@@ -131,6 +133,8 @@ namespace elecTornHub_WPFBased.Components
                 parentContent.ContentMode = Enumerations.OpenContent.OpenContentBodyMode.Product;
                 parentContent.RegenerateContents();
             }
+
+            OnChosenChanged(Chosen);
         }
 
         private void onClickUserNavPost(object sender, RoutedEventArgs e)
@@ -150,6 +154,8 @@ namespace elecTornHub_WPFBased.Components
                 parentContent.ContentMode = Enumerations.OpenContent.OpenContentBodyMode.Post;
                 parentContent.RegenerateContents();
             }
+
+            OnChosenChanged(Chosen);
         }
 
         private void onClickAdminNavPost(object sender, RoutedEventArgs e)
@@ -168,6 +174,8 @@ namespace elecTornHub_WPFBased.Components
                 parentContent.ContentMode = Enumerations.OpenContent.OpenContentBodyMode.Post;
                 parentContent.RegenerateContents();
             }
+
+            OnChosenChanged(Chosen);
         }
 
         private void onClickAdminNavItem(object sender, RoutedEventArgs e)
@@ -186,6 +194,8 @@ namespace elecTornHub_WPFBased.Components
                 parentContent.ContentMode = Enumerations.OpenContent.OpenContentBodyMode.Product;
                 parentContent.RegenerateContents();
             }
+
+            OnChosenChanged(Chosen);
         }
 
         public Navbar()
