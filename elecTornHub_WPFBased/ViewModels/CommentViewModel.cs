@@ -13,20 +13,14 @@ namespace elecTornHub_WPFBased.ViewModels
         }
 
         // Temporary constructor to accept value directly
-        public CommentViewModel(string poster, string content, string postDate)
+        public CommentViewModel(User author, string content, string postDate, string postId)
         {
             // fill the values
             _comment = new Comment(
-                postId: "lol",
-                authorId: new User(
-                    username: "lol",
-                    password: "lol",
-                    uuid: "lalala"
-                ),
+                authorId: author,
                 content: content,
-                title: "",
-                destinationPostId: "lol",
-                postDate: postDate
+                postDate: postDate,
+                postId: postId
                 );
         }
 

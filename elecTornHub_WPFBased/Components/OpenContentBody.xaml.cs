@@ -116,6 +116,19 @@
         {
             InitializeComponent();
             Initialize();
+            DataContextChanged += OnDataContextChanged;
+        }
+
+        private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.NewValue is ContentViewModel viewModel)
+            {
+                // Generate comments when DataContext changes
+                if (viewModel.Post_Comments != null)
+                {
+                    GenerateComments(viewModel.Post_Comments);
+                }
+            }
         }
 
         private void Initialize()
@@ -132,15 +145,9 @@
             OpenContentBody_EditTitleBorder.Visibility = Visibility.Collapsed;
             OpenContentBody_EditDescBorder.Visibility = Visibility.Collapsed;
             OpenContentBody_EditPriceBorder.Visibility = Visibility.Collapsed;
-
-            /*if (DataContext is ContentViewModel)
-            {
-                Classes.Comment[] comments = DataContext.Post_Comments;
-                GenerateComments(comments);
-            }*/
         }
 
-        private void GenerateComments(Classes.Comment[] comments)
+        private void GenerateComments(CommentViewModel[] comments)
         {
             OpenContentBody_CommentGrid.Children.Clear();
 
@@ -153,10 +160,11 @@
                 OpenContentBody_CommentGrid.Children.Add(new CommentSingle
                 {
                     CommentType = rand == 1 ? Enumerations.Comment.CommentType.Poster : Enumerations.Comment.CommentType.Viewer,
-                    Comment_Poster = comments[i].AuthorId.Username,
-                    Comment_Content = comments[i].Content,
-                    Comment_PostDate = comments[i].PostDate
+                    DataContext = comments[i]
                 });
+
+                OpenContentBody_CommentGrid.UpdateLayout();
+                UpdateLayout();
             }
         }
 

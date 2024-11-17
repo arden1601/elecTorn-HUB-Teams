@@ -21,16 +21,12 @@ namespace elecTornHub_WPFBased.ViewModels
         }
 
         // Temporary constructor to accept value directly
-        public ContentViewModel(string title, string content, string postDate, string imgSrc, string lastEdit, Comment[] comments)
+        public ContentViewModel(string postId, User author, string title, string content, string postDate, string imgSrc, string lastEdit, CommentViewModel[] comments)
         {
             // fill the values
             _post = new Post(
-                postId: "lol",
-                authorId: new User(
-                    username: "lol",
-                    password: "lol",
-                    uuid: "lalala"
-                ),
+                postId: postId,
+                authorId: author,
                 content: content,
                 title: title,
                 postDate: postDate,
@@ -40,20 +36,17 @@ namespace elecTornHub_WPFBased.ViewModels
                 );
         }
 
-        public ContentViewModel(string title, int quantity, int price, string imgSrc, string description)
+        public ContentViewModel(User seller, string name, int quantity, int price, string imgSrc, string description, string productId)
         {
             // fill the values
             _product = new Products(
-                name: title,
+                productId: productId,
+                name: name,
                 quantity: quantity,
                 price: price,
                 imgSrc: imgSrc,
                 description: description,
-                seller: new User(
-                    username: "Cornelius Joko",
-                    password: "lol",
-                    uuid: "lalala"
-                )
+                seller: seller
                 );
         }
 
@@ -220,7 +213,7 @@ namespace elecTornHub_WPFBased.ViewModels
             }
         }
 
-        public Comment[] Post_Comments
+        public CommentViewModel[] Post_Comments
         {
             get => _post.Comments;
             set

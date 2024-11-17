@@ -1,14 +1,44 @@
 namespace elecTornHub_WPFBased.Classes
 {
     // Make Comment class public
-    public class Comment : Post
+    public class Comment
     {
+        private string postId;
+        private User authorId;
+        private string content;
         private string _destinationPostId;
+        private string postDate;
 
-        public Comment(string postId, User authorId, string content, string title, string destinationPostId, string postDate, string lastEdit="", string imgSrc = "", Comment[] comments = null) 
-            : base(postId, authorId, content, title, postDate, lastEdit, imgSrc, comments)
+        public string PostId
         {
-            _destinationPostId = destinationPostId;
+            get { return postId; }
+            set { postId = value; }
+        }
+
+        public User AuthorId
+        {
+            get { return authorId; }
+            set { authorId = value; }
+        }
+
+        public string Content
+        {
+            get { return content; }
+            set { content = value; }
+        }
+
+        public string PostDate
+        {
+            get { return postDate; }
+            set { postDate = value; }
+        }
+
+        public Comment(string postId, User authorId, string content, string postDate) 
+        {
+            this.postId = postId;
+            this.authorId = authorId;
+            this.content = content;
+            this.postDate = postDate;
         }
 
         public string DestinationPostId

@@ -24,36 +24,35 @@ namespace elecTornHub_WPFBased.Components
         public string Comment_Poster
         {
             get { return _commentPoster; }
-            set { _commentPoster = value; UpdateDataContext(); }
+            set { _commentPoster = value; }
         }
 
         public string Comment_Content
         {
             get { return _commentContent; }
-            set { _commentContent = value; UpdateDataContext(); }
+            set { _commentContent = value; }
         }
 
         public string Comment_PostDate
         {
             get { return _commentPostDate; }
-            set { _commentPostDate = value; UpdateDataContext(); }
+            set { _commentPostDate = value; }
         }
 
         public CommentSingle()
         {
             InitializeComponent();
             UpdateLayout();
-            UpdateDataContext();
         }
 
-        private void UpdateDataContext()
+        /*private void UpdateDataContext()
         {
             DataContext = new CommentViewModel(
                 poster: Comment_Poster,
                 content: Comment_Content,
                 postDate: Comment_PostDate
                 );
-        }
+        }*/
 
         // Callback method for TypeProperty
         private void OnTypeChange(Enumerations.Comment.CommentType newType)

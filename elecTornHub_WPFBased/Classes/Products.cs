@@ -3,6 +3,7 @@ namespace elecTornHub_WPFBased.Classes;
 
 public class Products
 {
+    public string ProductId { get; set; }
     public string Name { get; set; }
     public int Quantity { get; set; }
     public int Price { get; set; }
@@ -10,8 +11,9 @@ public class Products
     public string Description { get; set; }
     public User Seller { get; set; }
 
-    public Products(string name, int quantity, int price, string imgSrc, string description, User seller)
+    public Products(string productId, string name, int quantity, int price, string imgSrc, string description, User seller)
     {
+        ProductId = productId;
         Name = name;
         Quantity = quantity;
         Price = price;

@@ -1,3 +1,4 @@
+using elecTornHub_WPFBased.ViewModels;
 namespace elecTornHub_WPFBased.Classes;
 
 public class Post
@@ -9,9 +10,9 @@ public class Post
     private string _postDate;
     private string _lastEdit;
     private string _imgSrc;
-    private Comment[] _comments;
+    private CommentViewModel[] _comments;
 
-    public Post(string postId, User authorId, string content, string title, string postDate, string imgSrc, string lastEdit, Comment[] comments)
+    public Post(string postId, User authorId, string content, string title, string postDate, string imgSrc, string lastEdit, CommentViewModel[] comments)
     {
         _postId = postId;
         _authorId = authorId;
@@ -65,7 +66,7 @@ public class Post
         set { _imgSrc = value; }
     }
 
-    public Comment[] Comments
+    public CommentViewModel[] Comments
     {
         get { return _comments; }
         set { _comments = value; }
