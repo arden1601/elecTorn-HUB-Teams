@@ -36,9 +36,9 @@ Width="Auto"
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
-                <Image Grid.Column="0"
-                   Source="/elecTornHub_WPFBased;component/Resources/Images/dummy_product.png" 
-                   Height="100" Width="100" Margin="0"/>
+                <Grid x:Name="ProductCard_Image" Grid.Column="0">
+                    <!-- Image generated here -->
+                </Grid>
 
                 <Grid Grid.Column="1" Margin="10,0" VerticalAlignment="Stretch">
                     <Grid.RowDefinitions>

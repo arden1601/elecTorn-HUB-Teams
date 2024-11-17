@@ -26,10 +26,6 @@ namespace elecTornHub_WPFBased.Components
         {
             InitializeComponent();
             this.DataContext = this;
-
-            /*// Ensure default visibility is set up
-            OnTypeChange(this, new DependencyPropertyChangedEventArgs(TypeProperty, null, Type));
-            OnGridModeChanged(this, new DependencyPropertyChangedEventArgs(GridModeProperty, null, GridMode));*/
         }
 
         public void OnTypeChange(Enumerations.ChoiceCard.ChoiceCardType newValue)

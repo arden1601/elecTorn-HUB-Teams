@@ -5,6 +5,8 @@ using System.Windows.Controls;
 using elecTornHub_WPFBased.Pages;
 using elecTornHub_WPFBased.Components;
 using elecTornHub_WPFBased.Extras;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
 
 namespace elecTornHub_WPFBased.Extras
 {
@@ -45,7 +47,7 @@ namespace elecTornHub_WPFBased.Extras
                 var rowGrid = new Grid();
 
                 // Define column structure for each row
-                for (int j = 0; j < columnCount; j++)
+                for (int j = 0; j < columnCount && i * columnCount + j <= count; j++)
                 {
                     rowGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
 
@@ -58,6 +60,21 @@ namespace elecTornHub_WPFBased.Extras
                         ContentType = GridType, // Set based on the dependency property
                         ContentMode = GridMode // Bind GridMode directly from SearchDash
                     };
+
+                    choiceCard.ProductCard_Name.Text = "Asek";
+                    choiceCard.ProductCard_Price.Text = "Rp. 100.000";
+                    // string imgSrc = "https://lh3.googleusercontent.com/ogw/AF2bZyiQSDYdpGWlSrg8eJ1yYHSRxQ73eJvhC8K4A-htZ1bAfYA=s32-c-mo";
+                    string imgSrc = "https://drive.google.com/uc?export=download&id=1rTyCsI0Byp9Mf0y_lLo120Oo57y5AWhn";
+
+                    // In ProductCard_Image, add an Image object
+                    choiceCard.ProductCard_Image.Children.Clear();
+                    choiceCard.ProductCard_Image.Children.Add(new Image
+                    {
+                        Source = new BitmapImage(new Uri(imgSrc)),
+                        Stretch = Stretch.Fill,
+                        Width = 100,
+                        Height = 100
+                    });
 
                     // Set the DataContext to the current instance of SearchDash
                     choiceCard.DataContext = parent;
