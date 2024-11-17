@@ -13,40 +13,6 @@ namespace elecTornHub_WPFBased.Pages
 {
     public partial class SearchDash : Window, Interfaces.INavbarParent, Interfaces.IContentCard
     {
-        public Classes.User[] dummyAccounts = new Classes.User[]
-        {
-            new Classes.User(
-                username: "John Doe",
-                password: "johndoe123",
-                uuid: "1"
-            ),
-            new Classes.User(
-                username: "Jane Doe",
-                password: "janedoe123",
-                uuid: "2"
-            ),
-            new Classes.User(
-                username: "John Smith",
-                password: "johnsmith123",
-                uuid: "3"
-            ),
-            new Classes.User(
-                username: "Jane Smith",
-                password: "janesmith123",
-                uuid: "4"
-            ),
-            new Classes.User(
-                username: "Cornelius Joko",
-                password: "johnjohnson123",
-                uuid: "5"
-            ),
-            new Classes.User(
-                username: "Joko Cornelius",
-                password: "jokojoko123",
-                uuid: "6"
-            )
-        };
-
         private readonly ContentViewModel[] TemporaryPosts = new ContentViewModel[]
         {
             new ContentViewModel(
