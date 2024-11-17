@@ -1,16 +1,19 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using elecTornHub_WPFBased.Extras;
 
 namespace elecTornHub_WPFBased.Components
 {
     using elecTornHub_WPFBased.Pages;
-    public partial class LogPopup : UserControl
+    public partial class LogPopup : UserControl, Interfaces.ILogPopup
     {
-        public enum LogPopupType
+        // Implementing ILogPopup interface
+        private Enumerations.Popup.LogPopupType _logPopupType;
+
+        public Enumerations.Popup.LogPopupType LogPopupType
         {
-            Default,
-            Login,
-            Register
+            get { return _logPopupType; }
+            set { _logPopupType = value; OnTypeChanged(value); }
         }
 
         public LogPopup()
@@ -20,16 +23,6 @@ namespace elecTornHub_WPFBased.Components
         }
 
         public Window PreviousWindow { get; set; }
-
-        // DependencyProperty for Type
-        public static readonly DependencyProperty TypeProperty =
-            DependencyProperty.Register("Type", typeof(LogPopupType), typeof(LogPopup), new PropertyMetadata(LogPopupType.Default, OnTypeChanged));
-
-        public LogPopupType Type
-        {
-            get { return (LogPopupType)GetValue(TypeProperty); }
-            set { SetValue(TypeProperty, value); }
-        }
 
         // Callback Button Login
         public void ShowRegisterWindow()
@@ -66,28 +59,24 @@ namespace elecTornHub_WPFBased.Components
         }
 
         // Callback method for TypeProperty
-        private static void OnTypeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private void OnTypeChanged(Enumerations.Popup.LogPopupType newValue)
         {
-            var control = d as LogPopup;
-
-            if (control == null)
-                return;
-
-            LogPopupType newType = (LogPopupType) e.NewValue;
-
-            if (newType == LogPopupType.Login)
+            switch (newValue)
             {
-                control.LogPopup_LoginText.Text = "Login";
-                control.LogPopup_LogButtonText.Content = "Login";
-                control.LogPopup_Redirect.Text = "Register?";
-                control.LogPopup_RedirectButton.Click += (sender, args) => control.ShowRegisterWindow();
-            }
-            else if (newType == LogPopupType.Register)
-            {
-                control.LogPopup_LoginText.Text = "Register";
-                control.LogPopup_LogButtonText.Content = "Register";
-                control.LogPopup_Redirect.Text = "Login?";
-                control.LogPopup_RedirectButton.Click += (sender, args) => control.ShowLoginWindow();
+                case Enumerations.Popup.LogPopupType.Login:
+                    LogPopup_LoginText.Text = "Login";
+                    LogPopup_LogButtonText.Content = "Login";
+                    LogPopup_Redirect.Text = "Register?";
+                    LogPopup_RedirectButton.Click += (sender, args) => ShowRegisterWindow();
+                    break;
+                case Enumerations.Popup.LogPopupType.Register:
+                    LogPopup_LoginText.Text = "Register";
+                    LogPopup_LogButtonText.Content = "Register";
+                    LogPopup_Redirect.Text = "Login?";
+                    LogPopup_RedirectButton.Click += (sender, args) => ShowLoginWindow();
+                    break;
+                default:
+                    break;
             }
         }
 

@@ -15,7 +15,7 @@
     <Page Update="Components\PostContent.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Components\Comment.xaml">
+    <Page Update="Components\CommentSingle.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Components\OpenContentBody.xaml">

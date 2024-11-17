@@ -58,7 +58,7 @@
     <Compile Update="Components\PostContent.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Components\Comment.xaml.cs">
+    <Compile Update="Components\CommentSingle.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Components\OpenContentBody.xaml.cs">

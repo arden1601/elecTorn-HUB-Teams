@@ -25,7 +25,7 @@ WindowStyle="SingleBorderWindow"
             HorizontalAlignment="Center" VerticalAlignment="Center" Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
             
             >
-            <localComponents:LogPopup Type="Login" x:Name="LogPopupControl"/>
+            <localComponents:LogPopup LogPopupType="Login" x:Name="LogPopupControl"/>
         </Grid>
     </Grid>
 </Window>

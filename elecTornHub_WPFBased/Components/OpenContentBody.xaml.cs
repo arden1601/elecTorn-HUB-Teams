@@ -5,8 +5,112 @@
     using System.Windows.Controls;
     using System.Windows.Media;
 
-    public partial class OpenContentBody : UserControl
+    public partial class OpenContentBody : UserControl, Interfaces.IOpenContent
     {
+        // Implement IOpenContent interface
+        private Enumerations.OpenContent.OpenContentBodyType _openContentType;
+        private Enumerations.OpenContent.OpenContentBodyMode _openContentMode;
+
+        public Enumerations.OpenContent.OpenContentBodyType ContentType
+        {
+            get { return _openContentType; }
+            set { _openContentType = value; OnTypeChanged(value); }
+        }
+
+        public Enumerations.OpenContent.OpenContentBodyMode ContentMode
+        {
+            get { return _openContentMode; }
+            set { _openContentMode = value; OnModeChanged(value); }
+        }
+
+        private void OnTypeChanged(Enumerations.OpenContent.OpenContentBodyType newValue)
+        {
+            switch (newValue)
+            {
+                case Enumerations.OpenContent.OpenContentBodyType.Buyer:
+                    OpenContentBody_Button1.Visibility = Visibility.Visible;
+                    OpenContentBody_Button1.Width = double.NaN;
+                    OpenContentBody_Button1.Margin = new Thickness(0, 0, 10, 0);
+
+                    OpenContentBody_Button2.Visibility = Visibility.Visible;
+                    OpenContentBody_Button2.Width = double.NaN;
+                    OpenContentBody_Button2.Margin = new Thickness(0, 0, 10, 0);
+
+                    OpenContentBody_Button3.Visibility = Visibility.Visible;
+                    OpenContentBody_Button3.Width = double.NaN;
+
+                    OpenContentBody_Counter.Visibility = Visibility.Visible;
+                    OpenContentBody_Counter.Width = double.NaN;
+                    OpenContentBody_Counter.Margin = new Thickness(0, 0, 10, 0);
+                    break;
+                case Enumerations.OpenContent.OpenContentBodyType.Seller:
+                    OpenContentBody_Seller.Visibility = Visibility.Collapsed;
+                    OpenContentBody_Stock.Visibility = Visibility.Collapsed;
+
+                    OpenContentBody_Button3.Visibility = Visibility.Visible;
+                    OpenContentBody_Button3.Width = double.NaN;
+                    OpenContentBody_Button3_Button.Content = "Hapus Jualan";
+
+                    OpenContentBody_Counter.Visibility = Visibility.Visible;
+                    OpenContentBody_Counter.Width = double.NaN;
+                    OpenContentBody_Counter.Margin = new Thickness(0, 0, 10, 0);
+
+                    OpenContentBody_EditTitleBorder.Visibility = Visibility.Visible;
+                    OpenContentBody_Title.Visibility = Visibility.Collapsed;
+
+                    OpenContentBody_EditDescBorder.Visibility = Visibility.Visible;
+                    OpenContentBody_DescBorder.Visibility = Visibility.Collapsed;
+
+                    OpenContentBody_EditPriceBorder.Visibility = Visibility.Visible;
+                    OpenContentBody_Price.Visibility = Visibility.Collapsed;
+                    break;
+                case Enumerations.OpenContent.OpenContentBodyType.Reported:
+                    OpenContentBody_Button1.Visibility = Visibility.Visible;
+                    OpenContentBody_Button1.Width = double.NaN;
+                    OpenContentBody_Button1.Background = Variables.ColorDarkGray;
+                    OpenContentBody_Button1.Margin = new Thickness(0, 0, 10, 0);
+                    OpenContentBody_Button1_Button.Content = "Tolak";
+
+                    OpenContentBody_Button2.Visibility = Visibility.Visible;
+                    OpenContentBody_Button2.Width = double.NaN;
+                    OpenContentBody_Button2.Background = Variables.ColorAccentOrange;
+                    OpenContentBody_Button2.Margin = new Thickness(0, 0, 10, 0);
+                    OpenContentBody_Button2_Button.Content = "Takedown";
+
+                    OpenContentBody_Button3.Visibility = Visibility.Visible;
+                    OpenContentBody_Button3.Width = double.NaN;
+                    OpenContentBody_Button3_Button.Content = "Ban User";
+
+                    OpenContentBody_ReportTab.Visibility = Visibility.Visible;
+                    break;
+                case Enumerations.OpenContent.OpenContentBodyType.Banned:
+                    OpenContentBody_Button3.Visibility = Visibility.Visible;
+                    OpenContentBody_Button3.Width = double.NaN;
+                    OpenContentBody_Button3_Button.Content = "Hapus Jualan";
+                    OpenContentBody_ReportTab_Title.Text = "Produk telah di-takedown:";
+                    OpenContentBody_ReportTab.Visibility = Visibility.Visible;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void OnModeChanged(Enumerations.OpenContent.OpenContentBodyMode newValue)
+        {
+            switch (newValue)
+            {
+                case Enumerations.OpenContent.OpenContentBodyMode.Product:
+                    OpenContentBody_ModeProduct.Visibility = Visibility.Visible;
+                    break;
+                case Enumerations.OpenContent.OpenContentBodyMode.Post:
+                    OpenContentBody_ModePost.Visibility = Visibility.Visible;
+                    OpenContentBody_BorderParent.Height = double.NaN;
+                    break;
+                default:
+                    break;
+            }
+        }
+
         public OpenContentBody()
         {
             InitializeComponent();
@@ -41,9 +145,12 @@
                 // Rand numb from 1 to 2 using random from C, don't use Variables.Random, i dont have it
                 int rand = new System.Random().Next(1, 3);
 
-                OpenContentBody_CommentGrid.Children.Add(new Comment
+                OpenContentBody_CommentGrid.Children.Add(new CommentSingle
                 {
-                    Type = rand == 1 ? Comment.CommentType.Poster : Comment.CommentType.Viewer
+                    CommentType = rand == 1 ? Enumerations.Comment.CommentType.Poster : Enumerations.Comment.CommentType.Viewer,
+                    Comment_Poster = "CorArden",
+                    Comment_Content = "Ketika mimpimu yang begitu indah, tak pernah terwujud ya sudahlah. Ketika bermimpi lagi, semangat mengejar dan tak pernah sampai, ya sudahlah. Baru yang ketiga, mulai tercapai, marilah berjuang tanpa sudah.",
+                    Comment_PostDate = "6 September 969"
                 });
             }
         }
@@ -60,141 +167,6 @@
             button.Visibility = Visibility.Hidden;
             button.Width = 0;
             button.Margin = new Thickness(0);
-        }
-
-        // DependencyProperty for Type
-        public enum OpenContentBodyType
-        {
-            Default,
-            Buyer,
-            Seller,
-            Reported,
-            Banned
-        }
-
-        // DependencyProperty for Mode
-        public enum OpenContentBodyMode
-        {
-            Default,
-            Product,
-            Post
-        }
-
-        public static readonly DependencyProperty TypeProperty =
-            DependencyProperty.Register("Type", typeof(OpenContentBodyType), typeof(OpenContentBody), new PropertyMetadata(OpenContentBodyType.Default, OnTypeChanged));
-
-        public OpenContentBodyType Type
-        {
-            get { return (OpenContentBodyType)GetValue(TypeProperty); }
-            set { SetValue(TypeProperty, value); }
-        }
-
-        public static readonly DependencyProperty ModeProperty =
-            DependencyProperty.Register("Mode", typeof(OpenContentBodyMode), typeof(OpenContentBody), new PropertyMetadata(OpenContentBodyMode.Default, OnModeChanged));
-
-        public OpenContentBodyMode Mode
-        {
-            get { return (OpenContentBodyMode)GetValue(ModeProperty); }
-            set { SetValue(ModeProperty, value); }
-        }
-
-        // Callback
-        private static void OnTypeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var control = d as OpenContentBody;
-
-            if (control == null)
-                return;
-
-            OpenContentBodyType newType = (OpenContentBodyType) e.NewValue;
-
-            if (newType == OpenContentBodyType.Buyer)
-            {
-                // Show all button and counter
-                control.OpenContentBody_Button1.Visibility = Visibility.Visible;
-                control.OpenContentBody_Button1.Width = double.NaN;
-                control.OpenContentBody_Button1.Margin = new Thickness(0, 0, 10, 0);
-
-                control.OpenContentBody_Button2.Visibility = Visibility.Visible;
-                control.OpenContentBody_Button2.Width = double.NaN;
-                control.OpenContentBody_Button2.Margin = new Thickness(0, 0, 10, 0);
-
-                control.OpenContentBody_Button3.Visibility = Visibility.Visible;
-                control.OpenContentBody_Button3.Width = double.NaN;
-
-                control.OpenContentBody_Counter.Visibility = Visibility.Visible;
-                control.OpenContentBody_Counter.Width = double.NaN;
-                control.OpenContentBody_Counter.Margin = new Thickness(0, 0, 10, 0);
-            }
-            else if (newType == OpenContentBodyType.Seller)
-            {
-                control.OpenContentBody_Seller.Visibility = Visibility.Collapsed;
-                control.OpenContentBody_Stock.Visibility = Visibility.Collapsed;
-
-                control.OpenContentBody_Button3.Visibility = Visibility.Visible;
-                control.OpenContentBody_Button3.Width = double.NaN;
-                control.OpenContentBody_Button3_Button.Content = "Hapus Jualan";
-                control.OpenContentBody_Counter.Visibility = Visibility.Visible;
-                control.OpenContentBody_Counter.Width = double.NaN;
-                control.OpenContentBody_Counter.Margin = new Thickness(0, 0, 10, 0);
-
-                control.OpenContentBody_EditTitleBorder.Visibility = Visibility.Visible;
-                control.OpenContentBody_Title.Visibility = Visibility.Collapsed;
-
-                control.OpenContentBody_EditDescBorder.Visibility = Visibility.Visible;
-                control.OpenContentBody_DescBorder.Visibility = Visibility.Collapsed;
-
-                control.OpenContentBody_EditPriceBorder.Visibility = Visibility.Visible;
-                control.OpenContentBody_Price.Visibility = Visibility.Collapsed;
-            }
-            else if (newType == OpenContentBodyType.Reported)
-            {
-                control.OpenContentBody_Button1.Visibility = Visibility.Visible;
-                control.OpenContentBody_Button1.Width = double.NaN;
-                control.OpenContentBody_Button1.Background = Variables.ColorDarkGray;
-                control.OpenContentBody_Button1.Margin = new Thickness(0, 0, 10, 0);
-                control.OpenContentBody_Button1_Button.Content = "Tolak";
-
-                control.OpenContentBody_Button2.Visibility = Visibility.Visible;
-                control.OpenContentBody_Button2.Width = double.NaN;
-                control.OpenContentBody_Button2.Background = Variables.ColorAccentOrange;
-                control.OpenContentBody_Button2.Margin = new Thickness(0, 0, 10, 0);
-                control.OpenContentBody_Button2_Button.Content = "Takedown";
-
-                control.OpenContentBody_Button3.Visibility = Visibility.Visible;
-                control.OpenContentBody_Button3.Width = double.NaN;
-                control.OpenContentBody_Button3_Button.Content = "Ban User";
-
-                control.OpenContentBody_ReportTab.Visibility = Visibility.Visible;
-            }
-            else if (newType == OpenContentBodyType.Banned)
-            {
-                control.OpenContentBody_Button3.Visibility = Visibility.Visible;
-                control.OpenContentBody_Button3.Width = double.NaN;
-                control.OpenContentBody_Button3_Button.Content = "Hapus Jualan";
-                control.OpenContentBody_ReportTab_Title.Text = "Produk telah di-takedown:";
-
-                control.OpenContentBody_ReportTab.Visibility = Visibility.Visible;
-            }
-        }
-
-        private static void OnModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var control = d as OpenContentBody;
-
-            if (control == null)
-                return;
-
-            OpenContentBodyMode newMode = (OpenContentBodyMode)e.NewValue;
-
-            if (newMode == OpenContentBodyMode.Product)
-            {
-                control.OpenContentBody_ModeProduct.Visibility = Visibility.Visible;
-            } else if (newMode == OpenContentBodyMode.Post)
-            {
-                control.OpenContentBody_ModePost.Visibility = Visibility.Visible;
-                control.OpenContentBody_BorderParent.Height = double.NaN;
-            }
         }
     }
 }

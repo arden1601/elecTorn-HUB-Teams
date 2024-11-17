@@ -70,10 +70,10 @@ namespace elecTornHub_WPFBased.Pages
                 SearchDash newDash = new SearchDash
                 {
                     PreviousWindow = this,
-                    GridMode = CustomGrid.CustomGridMode.Beli,
-                    GridType = ChoiceCard.ChoiceCardType.Product,
-                    NavbarType = Navbar.NavbarType.User,
-                    NavbarChosen = Navbar.NavbarChosen.Beli
+                    ContentMode = Enumerations.CustomGrid.CustomGridMode.Beli,
+                    ContentType = Enumerations.ChoiceCard.ChoiceCardType.Product,
+                    NavbarType = Enumerations.Navbar.NavbarType.User,
+                    NavbarChosen = Enumerations.Navbar.NavbarChosen.Beli
                 };
 
                 // Set DataContext for binding if needed
@@ -90,10 +90,10 @@ namespace elecTornHub_WPFBased.Pages
                 SearchDash newDash = new SearchDash
                 {
                     PreviousWindow = this,
-                    GridMode = CustomGrid.CustomGridMode.Admin,
-                    GridType = ChoiceCard.ChoiceCardType.Product,
-                    NavbarType = Navbar.NavbarType.Admin,
-                    NavbarChosen = Navbar.NavbarChosen.Item
+                    ContentMode = Enumerations.CustomGrid.CustomGridMode.Admin,
+                    ContentType = Enumerations.ChoiceCard.ChoiceCardType.Product,
+                    NavbarType = Enumerations.Navbar.NavbarType.Admin,
+                    NavbarChosen = Enumerations.Navbar.NavbarChosen.Item
                 };
 
                 // Set DataContext for binding if needed

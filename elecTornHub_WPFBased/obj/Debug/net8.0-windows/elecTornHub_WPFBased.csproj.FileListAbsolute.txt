@@ -9,7 +9,6 @@ D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\bin\D
 D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\elecTornHub_WPFBased.csproj.AssemblyReference.cache
 D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Components\AddButton.g.cs
 D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Components\ChoiceCard.g.cs
-D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Components\Comment.g.cs
 D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Components\ConfirmPopup.g.cs
 D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Components\CounterButton.g.cs
 D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Components\LogPopup.g.cs
@@ -28,7 +27,6 @@ D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\D
 D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\App.baml
 D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Components\AddButton.baml
 D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Components\ChoiceCard.baml
-D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Components\Comment.baml
 D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Components\ConfirmPopup.baml
 D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Components\CounterButton.baml
 D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Components\LogPopup.baml
@@ -52,3 +50,5 @@ D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\D
 D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\elecTornHub_WPFBased.pdb
 D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\elecTornHub_WPFBased.genruntimeconfig.cache
 D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\ref\elecTornHub_WPFBased.dll
+D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Components\CommentSingle.g.cs
+D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\obj\Debug\net8.0-windows\Components\CommentSingle.baml

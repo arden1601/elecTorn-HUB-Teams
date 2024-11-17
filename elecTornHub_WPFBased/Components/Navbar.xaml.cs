@@ -4,27 +4,47 @@ using System.Windows.Controls;
 using System.Runtime.CompilerServices;
 using elecTornHub_WPFBased.Pages;
 using elecTornHub_WPFBased.Extras;
+using System.Diagnostics;
 
 namespace elecTornHub_WPFBased.Components
 {
     using elecTornHub_WPFBased.Extras;
-    public partial class Navbar : UserControl
+    using System.Threading.Channels;
+
+    public partial class Navbar : UserControl, Interfaces.INavbarParent
     {
-        public enum NavbarType
+        // Implementing INavbarParent interface
+        private Enumerations.Navbar.NavbarType _navbarType;
+        private Enumerations.Navbar.NavbarChosen _navbarChosen;
+
+        public Enumerations.Navbar.NavbarType NavbarType
         {
-            Default,
-            User,
-            Admin
+            get { return _navbarType; }
+            set { _navbarType = value; OnTypeChanged(value); }
         }
 
-        public enum NavbarChosen
+        public Enumerations.Navbar.NavbarChosen NavbarChosen
         {
-            Default,
-            Beli,
-            Jual,
-            Post,
-            Item
+            get { return _navbarChosen; }
+            set { _navbarChosen = value; OnChosenChanged(value); }
         }
+
+        // Create a previous page that could be a SearchDash or OpenContent
+        private SearchDash previousPage = null;
+        private OpenContent previousContent = null;
+
+        public SearchDash PreviousPage
+        {
+            get { return previousPage; }
+            set { previousPage = value; }
+        }
+
+        public OpenContent PreviousContent
+        {
+            get { return previousContent; }
+            set { previousContent = value; }
+        }
+
 
         private SearchDash parentDash;
 
@@ -42,97 +62,128 @@ namespace elecTornHub_WPFBased.Components
             set { parentContent = value; }
         }
 
+        // Function to close current parent page or content
+        private void CloseParent()
+        {
+            if (parentDash != null)
+            {
+                parentDash.Hide();
+            }
+            else if (parentContent != null)
+            {
+                parentContent.Visibility = Visibility.Hidden;
+            }
+        }
+
+        // Function to re-open previous page or content by checking which one is not null
+        private void ReturnToPrevious()
+        {
+            if (previousPage != null)
+            {
+                previousPage.Show();
+                CloseParent();
+            }
+            else if (previousContent != null)
+            {
+                previousContent.Show();
+                CloseParent();
+            }
+        }
+
         private void onClickUserNavBeli(object sender, RoutedEventArgs e)
         {
-            Chosen = NavbarChosen.Beli;
+            Enumerations.Navbar.NavbarChosen Chosen = Enumerations.Navbar.NavbarChosen.Beli;
 
             // If parentDash not null
             if (parentDash != null)
             {
-                parentDash.GridType = ChoiceCard.ChoiceCardType.Product;
-                parentDash.GridMode = CustomGrid.CustomGridMode.Beli;
+                parentDash.ContentType = Enumerations.ChoiceCard.ChoiceCardType.Product;
+                parentDash.ContentMode = Enumerations.CustomGrid.CustomGridMode.Beli;
                 parentDash.RegenerateContents();
             }
             // If parentContent not null
             else if (parentContent != null)
             {
-                parentContent.ContentType = OpenContentBody.OpenContentBodyType.Buyer;
-                parentContent.ContentMode = OpenContentBody.OpenContentBodyMode.Product;
+                // Open back previous content
+                /*ReturnToPrevious();*/
+
+                parentContent.ContentType = Enumerations.OpenContent.OpenContentBodyType.Buyer;
+                parentContent.ContentMode = Enumerations.OpenContent.OpenContentBodyMode.Product;
                 parentContent.RegenerateContents();
             }
         }
 
         private void onClickUserNavJual(object sender, RoutedEventArgs e)
         {
-            Chosen = NavbarChosen.Jual;
+            Enumerations.Navbar.NavbarChosen Chosen = Enumerations.Navbar.NavbarChosen.Jual;
 
             // If parentDash not null
             if (parentDash != null)
             {
-                parentDash.GridType = ChoiceCard.ChoiceCardType.Product;
-                parentDash.GridMode = CustomGrid.CustomGridMode.Jual;
+                parentDash.ContentType = Enumerations.ChoiceCard.ChoiceCardType.Product;
+                parentDash.ContentMode = Enumerations.CustomGrid.CustomGridMode.Jual;
                 parentDash.RegenerateContents();
             }
             // If parentContent not null
             else if (parentContent != null)
             {
-                parentContent.ContentType = OpenContentBody.OpenContentBodyType.Seller;
-                parentContent.ContentMode = OpenContentBody.OpenContentBodyMode.Product;
+                parentContent.ContentType = Enumerations.OpenContent.OpenContentBodyType.Seller;
+                parentContent.ContentMode = Enumerations.OpenContent.OpenContentBodyMode.Product;
                 parentContent.RegenerateContents();
             }
         }
 
         private void onClickUserNavPost(object sender, RoutedEventArgs e)
         {
-            Chosen = NavbarChosen.Post;
+            Enumerations.Navbar.NavbarChosen Chosen = Enumerations.Navbar.NavbarChosen.Post;
 
             // If parentDash not null
             if (parentDash != null)
             {
-                parentDash.GridType = ChoiceCard.ChoiceCardType.Post;
+                parentDash.ContentType = Enumerations.ChoiceCard.ChoiceCardType.Post;
                 parentDash.RegenerateContents();
             }
             // If parentContent not null
             else if (parentContent != null)
             {
-                parentContent.ContentType = OpenContentBody.OpenContentBodyType.Buyer;
-                parentContent.ContentMode = OpenContentBody.OpenContentBodyMode.Post;
+                parentContent.ContentType = Enumerations.OpenContent.OpenContentBodyType.Buyer;
+                parentContent.ContentMode = Enumerations.OpenContent.OpenContentBodyMode.Post;
                 parentContent.RegenerateContents();
             }
         }
 
         private void onClickAdminNavPost(object sender, RoutedEventArgs e)
         {
-            Chosen = NavbarChosen.Post;
+            Enumerations.Navbar.NavbarChosen Chosen = Enumerations.Navbar.NavbarChosen.Post;
             
             // If parentDash not null
             if (parentDash != null)
             {
-                parentDash.GridType = ChoiceCard.ChoiceCardType.Post;
+                parentDash.ContentType = Enumerations.ChoiceCard.ChoiceCardType.Post;
                 parentDash.RegenerateContents();
             }
             // If parentContent not null
             else if (parentContent != null)
             {
-                parentContent.ContentMode = OpenContentBody.OpenContentBodyMode.Post;
+                parentContent.ContentMode = Enumerations.OpenContent.OpenContentBodyMode.Post;
                 parentContent.RegenerateContents();
             }
         }
 
         private void onClickAdminNavItem(object sender, RoutedEventArgs e)
         {
-            Chosen = NavbarChosen.Item;
+            Enumerations.Navbar.NavbarChosen Chosen = Enumerations.Navbar.NavbarChosen.Item;
 
             // If parentDash not null
             if (parentDash != null)
             {
-                parentDash.GridType = ChoiceCard.ChoiceCardType.Product;
+                parentDash.ContentType = Enumerations.ChoiceCard.ChoiceCardType.Product;
                 parentDash.RegenerateContents();
             }
             // If parentContent not null
             else if (parentContent != null)
             {
-                parentContent.ContentMode = OpenContentBody.OpenContentBodyMode.Product;
+                parentContent.ContentMode = Enumerations.OpenContent.OpenContentBodyMode.Product;
                 parentContent.RegenerateContents();
             }
         }
@@ -141,11 +192,7 @@ namespace elecTornHub_WPFBased.Components
         {
             InitializeComponent();
             UpdateLayout();
-            this.DataContext = this; // Set DataContext to itself
-
-            // launch ontypechanged and onchosenchanged
-            OnTypeChanged(this, new DependencyPropertyChangedEventArgs(TypeProperty, NavbarType.Default, NavbarType.User));
-            OnChosenChanged(this, new DependencyPropertyChangedEventArgs(ChosenProperty, NavbarChosen.Default, NavbarChosen.Beli));
+            DataContext = this; // Set DataContext to itself
 
             // Nav onClicks
             Navbar_UserNavBeli.Click += onClickUserNavBeli;
@@ -153,82 +200,52 @@ namespace elecTornHub_WPFBased.Components
             Navbar_UserNavPost.Click += onClickUserNavPost;
             Navbar_AdminNavPost.Click += onClickAdminNavPost;
             Navbar_AdminNavItem.Click += onClickAdminNavItem;
-
         }
 
-        // DependencyProperty for Type
-        public static readonly DependencyProperty TypeProperty =
-            DependencyProperty.Register("Type", typeof(NavbarType), typeof(Navbar), new PropertyMetadata(NavbarType.User, OnTypeChanged));
-
-        public NavbarType Type
+        private void OnTypeChanged(Enumerations.Navbar.NavbarType newValue)
         {
-            get { return (NavbarType)GetValue(TypeProperty); }
-            set { SetValue(TypeProperty, value); }
-        }
+            Navbar_UserNav.Visibility = Visibility.Collapsed;
+            Navbar_AdminNav.Visibility = Visibility.Collapsed;
 
-        // Callback method for TypeProperty
-        private static void OnTypeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var control = d as Navbar;
-            if (control == null) return;
-
-            control.Navbar_UserNav.Visibility = Visibility.Collapsed;
-            control.Navbar_AdminNav.Visibility = Visibility.Collapsed;
-
-            switch ((NavbarType)e.NewValue)
+            switch (newValue)
             {
-                case NavbarType.User:
-                    control.Navbar_UserNav.Visibility = Visibility.Visible;
+                case Enumerations.Navbar.NavbarType.User:
+                    Navbar_UserNav.Visibility = Visibility.Visible;
                     break;
-                case NavbarType.Admin:
-                    control.Navbar_AdminNav.Visibility = Visibility.Visible;
-                    control.Navbar_Search.Width = 564;
+                case Enumerations.Navbar.NavbarType.Admin:
+                    Navbar_AdminNav.Visibility = Visibility.Visible;
+                    Navbar_Search.Width = 564;
                     break;
             }
         }
 
-        // DependencyProperty for Chosen
-        public static readonly DependencyProperty ChosenProperty =
-            DependencyProperty.Register("Chosen", typeof(NavbarChosen), typeof(Navbar), new PropertyMetadata(NavbarChosen.Beli, OnChosenChanged));
-
-        public NavbarChosen Chosen
+        private void OnChosenChanged(Enumerations.Navbar.NavbarChosen newValue)
         {
-            get { return (NavbarChosen)GetValue(ChosenProperty); }
-            set { SetValue(ChosenProperty, value); }
-        }
-
-        // Callback method for ChosenProperty
-        private static void OnChosenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var control = d as Navbar;
-            if (control == null) return;
-
             // set all background to transparent
             System.Windows.Media.Brush brush = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Transparent);
-            control.Navbar_UserNavBeliBorder.Background = brush;
-            control.Navbar_UserNavJualBorder.Background = brush;
-            control.Navbar_UserNavPostBorder.Background = brush;
-            control.Navbar_AdminNavPostBorder.Background = brush;
-            control.Navbar_AdminNavItemBorder.Background = brush;
+            Navbar_UserNavBeliBorder.Background = brush;
+            Navbar_UserNavJualBorder.Background = brush;
+            Navbar_UserNavPostBorder.Background = brush;
+            Navbar_AdminNavPostBorder.Background = brush;
+            Navbar_AdminNavItemBorder.Background = brush;
 
             // Apply selected color based on new value
-            switch ((NavbarChosen)e.NewValue)
+            switch (newValue)
             {
-                case NavbarChosen.Beli:
-                    control.Navbar_UserNavBeliBorder.Background = Variables.ColorLightGray;
-
+                case Enumerations.Navbar.NavbarChosen.Beli:
+                    Navbar_UserNavBeliBorder.Background = Variables.ColorLightGray;
                     break;
-                case NavbarChosen.Jual:
-                    control.Navbar_UserNavJualBorder.Background = Variables.ColorLightGray;
+                case Enumerations.Navbar.NavbarChosen.Jual:
+                    Navbar_UserNavJualBorder.Background = Variables.ColorLightGray;
                     break;
-                case NavbarChosen.Post:
-                    if (control.Type == NavbarType.User)
-                        control.Navbar_UserNavPostBorder.Background = Variables.ColorLightGray;
-                    else if (control.Type == NavbarType.Admin)
-                        control.Navbar_AdminNavPostBorder.Background = Variables.ColorLightGray;
+                case Enumerations.Navbar.NavbarChosen.Post:
+                    if (NavbarType == Enumerations.Navbar.NavbarType.User)
+                        Navbar_UserNavPostBorder.Background = Variables.ColorLightGray;
+                    else if (NavbarType == Enumerations.Navbar.NavbarType.Admin)
+                        Navbar_AdminNavPostBorder.Background = Variables.ColorLightGray;
                     break;
-                case NavbarChosen.Item:
-                    control.Navbar_AdminNavItemBorder.Background = Variables.ColorLightGray;
+                case Enumerations.Navbar.NavbarChosen.Item:
+                    Navbar_AdminNavItemBorder.Background = Variables.ColorLightGray;
                     break;
                 default:
                     break;

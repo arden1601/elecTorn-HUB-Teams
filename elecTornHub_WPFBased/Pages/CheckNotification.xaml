@@ -102,7 +102,8 @@
                 x:Name="ConfirmPopupControl"
                 Title="Akun tidak ditemukan!"
                 Message_0="Jika Anda yakin akun ini benar, bisa jadi akun Anda dihapus karena melanggar aturan yang berlaku."
-                Type="AkunNotFound"/>
+                ConfirmPopupType="AkunNotFound"
+            />
             
         </Grid>
     </Grid>

@@ -1,34 +1,48 @@
-﻿using System.Windows;
+﻿using System.ComponentModel; // Add this for INotifyPropertyChanged
+using elecTornHub_WPFBased.Extras;
 using System.Windows.Controls;
 
 namespace elecTornHub_WPFBased.Components
 {
-    public partial class CustomGrid : Grid
+    public partial class CustomGrid : Grid, Interfaces.IContentCard, INotifyPropertyChanged
     {
-        public enum CustomGridMode
+        // Event required for INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        // Implementing IContentCard interface
+        private Enumerations.CustomGrid.CustomGridMode _mode;
+        private Enumerations.ChoiceCard.ChoiceCardType _type;
+
+        public Enumerations.CustomGrid.CustomGridMode ContentMode
         {
-            Default,
-            Beli,
-            Jual,
-            Admin
+            get { return _mode; }
+            set
+            {
+                if (_mode != value)
+                {
+                    _mode = value;
+                    OnPropertyChanged(nameof(ContentMode));
+                }
+            }
         }
 
-        public static readonly DependencyProperty ModeProperty =
-            DependencyProperty.Register("Mode", typeof(CustomGridMode), typeof(CustomGrid), new PropertyMetadata(CustomGridMode.Default));
-
-        public CustomGridMode Mode
+        public Enumerations.ChoiceCard.ChoiceCardType ContentType
         {
-            get { return (CustomGridMode)GetValue(ModeProperty); }
-            set { SetValue(ModeProperty, value); }
+            get { return _type; }
+            set
+            {
+                if (_type != value)
+                {
+                    _type = value;
+                    OnPropertyChanged(nameof(ContentType));
+                }
+            }
         }
 
-        public static readonly DependencyProperty TypeProperty =
-            DependencyProperty.Register("Type", typeof(ChoiceCard.ChoiceCardType), typeof(CustomGrid), new PropertyMetadata(ChoiceCard.ChoiceCardType.Default));
-
-        public ChoiceCard.ChoiceCardType Type
+        // Helper method to raise PropertyChanged event
+        protected virtual void OnPropertyChanged(string propertyName)
         {
-            get { return (ChoiceCard.ChoiceCardType)GetValue(TypeProperty); }
-            set { SetValue(TypeProperty, value); }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

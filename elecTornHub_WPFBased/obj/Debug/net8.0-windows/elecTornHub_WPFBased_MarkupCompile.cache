@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 D:\Files\UGM\MatKul\Sem_V\JunPro\elecTornHub_WPFBased\elecTornHub_WPFBased\App.xaml
-14-371617296
+14377037794
 
-31464678984
+331748506376
 201797717283
-Components\AddButton.xaml;Components\ChoiceCard.xaml;Components\Comment.xaml;Components\ConfirmPopup.xaml;Components\CounterButton.xaml;Components\LogPopup.xaml;Components\Navbar.xaml;Components\OpenContentBody.xaml;Components\PostContent.xaml;Pages\CheckNotification.xaml;Pages\Login.xaml;Pages\OpenContent.xaml;Pages\Register.xaml;Pages\SearchDash.xaml;
+Components\AddButton.xaml;Components\ChoiceCard.xaml;Components\CommentSingle.xaml;Components\ConfirmPopup.xaml;Components\CounterButton.xaml;Components\LogPopup.xaml;Components\Navbar.xaml;Components\OpenContentBody.xaml;Components\PostContent.xaml;Pages\CheckNotification.xaml;Pages\Login.xaml;Pages\OpenContent.xaml;Pages\Register.xaml;Pages\SearchDash.xaml;
 
 False
 

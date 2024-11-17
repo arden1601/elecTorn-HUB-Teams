@@ -2,11 +2,61 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Runtime.CompilerServices;
+using elecTornHub_WPFBased.Extras;
 
 namespace elecTornHub_WPFBased.Components
 {
-    public partial class ConfirmPopup : UserControl, INotifyPropertyChanged
+    public partial class ConfirmPopup : UserControl, INotifyPropertyChanged, Interfaces.IConfirmPopup
     {
+        // Implementing IConfirmPopup interface
+        private Enumerations.Popup.ConfirmPopupType _confirmPopupType;
+
+        public Enumerations.Popup.ConfirmPopupType ConfirmPopupType
+        {
+            get { return _confirmPopupType; }
+            set { _confirmPopupType = value; }
+        }
+
+        private void OnTypeChanged(Enumerations.Popup.ConfirmPopupType newValue)
+        {
+            // Setup Default Values
+            ConfirmPopup_Title.Text = Title;
+            ConfirmPopup_OnYesNoButtonContainer.Visibility = Visibility.Collapsed;
+            ConfirmPopup_InputContainer.Visibility = Visibility.Collapsed;
+
+            switch (newValue)
+            {
+                case Enumerations.Popup.ConfirmPopupType.Terbeli:
+                    // Additional logic for "Terbeli" can go here
+                    break;
+                case Enumerations.Popup.ConfirmPopupType.Kontak:
+                    break;
+                case Enumerations.Popup.ConfirmPopupType.HapusJualan:
+                    ConfirmPopup_OnYesNoButtonContainer.Visibility = Visibility.Visible;
+                    ConfirmPopup_OnYesOnlyButton.Visibility = Visibility.Collapsed;
+                    break;
+                case Enumerations.Popup.ConfirmPopupType.HapusPost:
+                    break;
+                case Enumerations.Popup.ConfirmPopupType.HapusAkun:
+                    ConfirmPopup_OnYesNoButtonContainer.Visibility = Visibility.Visible;
+                    ConfirmPopup_OnYesOnlyButton.Visibility = Visibility.Collapsed;
+                    break;
+                case Enumerations.Popup.ConfirmPopupType.Lapor:
+                    ConfirmPopup_InputContainer.Visibility = Visibility.Visible;
+                    break;
+                case Enumerations.Popup.ConfirmPopupType.Takedown:
+                    ConfirmPopup_OnYesNoButtonContainer.Visibility = Visibility.Visible;
+                    ConfirmPopup_OnYesOnlyButton.Visibility = Visibility.Collapsed;
+                    ConfirmPopup_InputContainer.Visibility = Visibility.Visible;
+                    break;
+                case Enumerations.Popup.ConfirmPopupType.AkunNotFound:
+                    // Additional logic for "Akun Not Found" can go here
+                    break;
+                default:
+                    break;
+            }
+        }
+
         public ConfirmPopup()
         {
             InitializeComponent();
@@ -100,75 +150,6 @@ namespace elecTornHub_WPFBased.Components
         {
             get { return (string)GetValue(Message_7Property); }
             set { SetValue(Message_7Property, value); }
-        }
-
-        public enum ConfirmPopupType
-        {
-            Default,
-            Terbeli,
-            Kontak,
-            HapusJualan,
-            HapusPost,
-            HapusAkun,
-            Lapor,
-            Takedown,
-            AkunNotFound
-        }
-
-        // DependencyProperty for Type
-        public static readonly DependencyProperty TypeProperty =
-            DependencyProperty.Register("Type", typeof(ConfirmPopupType), typeof(ConfirmPopup), new PropertyMetadata(ConfirmPopupType.Default, OnTypeChanged));
-
-        public ConfirmPopupType Type
-        {
-            get { return (ConfirmPopupType)GetValue(TypeProperty); }
-            set { SetValue(TypeProperty, value); }
-        }
-
-        // Callback method for TypeProperty
-        private static void OnTypeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (d is ConfirmPopup control)
-            {
-                ConfirmPopupType newType = (ConfirmPopupType)e.NewValue;
-
-                // Setup Default Values
-                control.ConfirmPopup_Title.Text = control.Title;
-                control.ConfirmPopup_OnYesNoButtonContainer.Visibility = Visibility.Collapsed;
-                control.ConfirmPopup_InputContainer.Visibility = Visibility.Collapsed;
-
-                switch (newType)
-                {
-                    case ConfirmPopupType.Terbeli:
-                        // Additional logic for "Terbeli" can go here
-                        break;
-                    case ConfirmPopupType.Kontak:
-                        break;
-                    case ConfirmPopupType.HapusJualan:
-                        control.ConfirmPopup_OnYesNoButtonContainer.Visibility = Visibility.Visible;
-                        control.ConfirmPopup_OnYesOnlyButton.Visibility = Visibility.Collapsed;
-                        break;
-                    case ConfirmPopupType.HapusPost:
-                        break;
-                    case ConfirmPopupType.HapusAkun:
-                        control.ConfirmPopup_OnYesNoButtonContainer.Visibility = Visibility.Visible;
-                        control.ConfirmPopup_OnYesOnlyButton.Visibility = Visibility.Collapsed;
-                        break;
-                    case ConfirmPopupType.Lapor:
-                        control.ConfirmPopup_InputContainer.Visibility = Visibility.Visible;
-                        break;
-                    case ConfirmPopupType.Takedown:
-                        control.ConfirmPopup_OnYesNoButtonContainer.Visibility = Visibility.Visible;
-                        control.ConfirmPopup_OnYesOnlyButton.Visibility = Visibility.Collapsed;
-                        control.ConfirmPopup_InputContainer.Visibility = Visibility.Visible;
-                        break;
-                    case ConfirmPopupType.AkunNotFound:
-                        // Additional logic for "Akun Not Found" can go here
-                        break;
-                    default:
-                        break;
-                }
-            }
         }
     }
 }

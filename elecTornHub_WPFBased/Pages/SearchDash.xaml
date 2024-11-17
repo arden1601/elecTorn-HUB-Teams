@@ -77,9 +77,7 @@
                               VerticalScrollBarVisibility="Auto"
                               HorizontalScrollBarVisibility="Disabled"
                               Grid.Row="1">
-                    <localComponents:CustomGrid x:Name="CardGrids"
-                                                Mode="{Binding GridMode, Mode=TwoWay}" 
-                                                Type="{Binding GridType, Mode=TwoWay}">
+                    <localComponents:CustomGrid x:Name="CardGrids">
                         <!-- StackPanel for card layout added dynamically in code-behind -->
                     </localComponents:CustomGrid>
                 </ScrollViewer>
