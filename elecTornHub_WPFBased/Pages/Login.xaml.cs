@@ -40,8 +40,9 @@ namespace elecTornHub_WPFBased.Pages
 
             Accounts acc = new Accounts(uname, pwd, "");
             bool isLogin = await acc.Login();
-            if (isLogin)
+            if (isLogin && acc.Role != "admin")
             {
+                Console.WriteLine(acc.Role);
                 SearchDash newDash = new SearchDash
                 {
                     PreviousWindow = this,
@@ -58,9 +59,9 @@ namespace elecTornHub_WPFBased.Pages
                 this.Close();
 
                 // print success
-                MessageBox.Show("Login successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Login successful! sebagai "+acc.Role, "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             } 
-            else if (LogPopupControl.LogPopup_UsernameValue.Text == "Admin" && LogPopupControl.LogPopup_PasswordValue.Password == "admin")
+            else if (isLogin && acc.Role == "admin")
             {
                 SearchDash newDash = new SearchDash
                 {
@@ -78,10 +79,9 @@ namespace elecTornHub_WPFBased.Pages
                 this.Close();
 
                 // print success
-                MessageBox.Show("Login successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Login successful! sebagai " + acc.Role, "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             } else
             {
-                // print fail
                 MessageBox.Show("Login failed!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             LogPopupControl.ClearFields();
