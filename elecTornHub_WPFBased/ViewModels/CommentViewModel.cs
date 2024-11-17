@@ -21,7 +21,7 @@ namespace elecTornHub_WPFBased.ViewModels
                 content: content,
                 postDate: postDate,
                 postId: postId
-                );
+            );
         }
 
         // Property to get and set the title from the Comment data model

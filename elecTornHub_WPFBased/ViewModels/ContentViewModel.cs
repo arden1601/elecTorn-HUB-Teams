@@ -7,23 +7,26 @@ namespace elecTornHub_WPFBased.ViewModels
 {
     public class ContentViewModel : INotifyPropertyChanged
     {
-        private Post _post = null;
-        private Products _product = null;
+        private Post _post;
+        private Products _product;
 
+        // Constructor for Post
         public ContentViewModel(Post post)
         {
             _post = post;
+            _product = null; // Explicitly set _product to null
         }
 
+        // Constructor for Products
         public ContentViewModel(Products product)
         {
             _product = product;
+            _post = null; // Explicitly set _post to null
         }
 
-        // Temporary constructor to accept value directly
+        // Constructor for Post with individual parameters
         public ContentViewModel(string postId, User author, string title, string content, string postDate, string imgSrc, string lastEdit, CommentViewModel[] comments)
         {
-            // fill the values
             _post = new Post(
                 postId: postId,
                 authorId: author,
@@ -33,12 +36,13 @@ namespace elecTornHub_WPFBased.ViewModels
                 lastEdit: lastEdit,
                 imgSrc: imgSrc,
                 comments: comments
-                );
+            );
+            _product = null; // Explicitly set _product to null
         }
 
+        // Constructor for Product with individual parameters
         public ContentViewModel(User seller, string name, int quantity, int price, string imgSrc, string description, string productId)
         {
-            // fill the values
             _product = new Products(
                 productId: productId,
                 name: name,
@@ -47,95 +51,21 @@ namespace elecTornHub_WPFBased.ViewModels
                 imgSrc: imgSrc,
                 description: description,
                 seller: seller
-                );
+            );
+            _post = null; // Explicitly set _post to null
         }
 
-        public string ProductCard_SellerName_Selling
-        {
-            get => "dijual oleh " + _product.Seller.Username;
-        }
+        // Getter for Post and Product
+        public Post Post => _post;
+        public Products Product => _product;
 
-        public string ProductCard_Name
-            {
-            get => _product.Name;
-            set
-            {
-                if (_product.Name != value)
-                {
-                    _product.Name = value;
-                    OnPropertyChanged(nameof(ProductCard_Name));
-                }
-            }
-        }
-
-        public string ProductCard_Description
-        {
-            get => _product.Description;
-            set
-            {
-                if (_product.Description != value)
-                {
-                    _product.Description = value;
-                    OnPropertyChanged(nameof(ProductCard_Description));
-                }
-            }
-        }
-
-        public int ProductCard_Quantity
-        {
-            get => _product.Quantity;
-            set
-            {
-                if (_product.Quantity != value)
-                {
-                    _product.Quantity = value;
-                    OnPropertyChanged(nameof(ProductCard_Quantity));
-                }
-            }
-        }
-
-        public string ProductCard_QuantityLeft
-        {
-            get => "(stok tersedia " + _product.Quantity.ToString() + " buah)";
-        }
-
-        public string ProductCard_PriceOriginal
-            {
-            get => _product.Price.ToString();
-            set
-            {
-                if (_product.Price.ToString() != value)
-                {
-                    _product.Price = int.Parse(value);
-                    OnPropertyChanged(nameof(ProductCard_PriceOriginal));
-                }
-            }
-        }
-
-        public string ProductCard_Price
-        {
-            get => Functions.FormatToRupiah(_product.Price);
-        }
-
-        public string ProductCard_ImgSrc
-        {
-            get => _product.ImgSrc;
-            set
-            {
-                if (_product.ImgSrc != value)
-                {
-                    _product.ImgSrc = value;
-                    OnPropertyChanged(nameof(ProductCard_ImgSrc));
-                }
-            }
-        }
-
+        // Property checks if _post is null to avoid exceptions
         public string Post_Title
         {
-            get => _post.Title;
+            get => _post?.Title ?? string.Empty; // Return empty string if _post is null
             set
             {
-                if (_post.Title != value)
+                if (_post != null && _post.Title != value)
                 {
                     _post.Title = value;
                     OnPropertyChanged(nameof(Post_Title));
@@ -145,10 +75,10 @@ namespace elecTornHub_WPFBased.ViewModels
 
         public string Post_Content
         {
-            get => _post.Content;
+            get => _post?.Content ?? string.Empty;
             set
             {
-                if (_post.Content != value)
+                if (_post != null && _post.Content != value)
                 {
                     _post.Content = value;
                     OnPropertyChanged(nameof(Post_Content));
@@ -158,15 +88,15 @@ namespace elecTornHub_WPFBased.ViewModels
 
         public string Post_ContentBrief
         {
-            get => Functions.CutFromStart(_post.Content, 300);
+            get => _post != null ? Functions.CutFromStart(_post.Content, 300) : string.Empty;
         }
 
         public string Post_PostDate
         {
-            get => _post.PostDate;
+            get => _post?.PostDate ?? string.Empty;
             set
             {
-                if (_post.PostDate != value)
+                if (_post != null && _post.PostDate != value)
                 {
                     _post.PostDate = value;
                     OnPropertyChanged(nameof(Post_PostDate));
@@ -176,10 +106,10 @@ namespace elecTornHub_WPFBased.ViewModels
 
         public string Post_LastEdit
         {
-            get => _post.LastEdit;
+            get => _post?.LastEdit ?? string.Empty;
             set
             {
-                if (_post.LastEdit != value)
+                if (_post != null && _post.LastEdit != value)
                 {
                     _post.LastEdit = value;
                     OnPropertyChanged(nameof(Post_LastEdit));
@@ -189,39 +119,120 @@ namespace elecTornHub_WPFBased.ViewModels
 
         public string Post_AuthorName
         {
-            get => _post.AuthorId.Username;
+            get => _post?.AuthorId?.Username ?? string.Empty;
             set
             {
-                if (_post.AuthorId.Username != value)
+                if (_post != null && _post.AuthorId != null && _post.AuthorId.Username != value)
                 {
                     _post.AuthorId.Username = value;
                     OnPropertyChanged(nameof(Post_AuthorName));
-                };
+                }
             }
         }
 
         public string Post_ImgSrc
         {
-            get => _post.ImgSrc;
+            get => _post?.ImgSrc ?? "https://example.com/default-image.png"; // Default image URL if _post or ImgSrc is null
             set
             {
-                if (_post.ImgSrc != value)
+                if (_post != null && _post.ImgSrc != value)
                 {
                     _post.ImgSrc = value;
                     OnPropertyChanged(nameof(Post_ImgSrc));
-                };
+                }
             }
         }
 
         public CommentViewModel[] Post_Comments
         {
-            get => _post.Comments;
+            get => _post?.Comments ?? new CommentViewModel[0]; // Return an empty array if _post or Comments is null
             set
             {
-                if (_post.Comments != value)
+                if (_post != null && _post.Comments != value)
                 {
                     _post.Comments = value;
                     OnPropertyChanged(nameof(Post_Comments));
+                }
+            }
+        }
+
+        // Property checks if _product is null to avoid exceptions
+        public string ProductCard_SellerName_Selling
+        {
+            get => _product?.Seller?.Username != null ? $"dijual oleh {_product.Seller.Username}" : "Seller Unknown";
+        }
+
+        public string ProductCard_Name
+        {
+            get => _product?.Name ?? string.Empty;
+            set
+            {
+                if (_product != null && _product.Name != value)
+                {
+                    _product.Name = value;
+                    OnPropertyChanged(nameof(ProductCard_Name));
+                }
+            }
+        }
+
+        public string ProductCard_Description
+        {
+            get => _product?.Description ?? string.Empty;
+            set
+            {
+                if (_product != null && _product.Description != value)
+                {
+                    _product.Description = value;
+                    OnPropertyChanged(nameof(ProductCard_Description));
+                }
+            }
+        }
+
+        public int ProductCard_Quantity
+        {
+            get => _product?.Quantity ?? 0;
+            set
+            {
+                if (_product != null && _product.Quantity != value)
+                {
+                    _product.Quantity = value;
+                    OnPropertyChanged(nameof(ProductCard_Quantity));
+                }
+            }
+        }
+
+        public string ProductCard_QuantityLeft
+        {
+            get => _product != null ? $"(stok tersedia {_product.Quantity} buah)" : "(stok tidak tersedia)";
+        }
+
+        public string ProductCard_PriceOriginal
+        {
+            get => _product?.Price.ToString() ?? "0";
+            set
+            {
+                if (_product != null && _product.Price.ToString() != value)
+                {
+                    _product.Price = int.Parse(value);
+                    OnPropertyChanged(nameof(ProductCard_PriceOriginal));
+                }
+            }
+        }
+
+        public string ProductCard_Price
+        {
+            get => _product != null ? Functions.FormatToRupiah(_product.Price) : "Rp 0";
+        }
+
+        public string ProductCard_ImgSrc
+        {
+            get => _product?.ImgSrc ?? "https://example.com/default-image.png"; // Default image URL if _product or ImgSrc is null
+            set
+            {
+                if (_product != null && _product.ImgSrc != value)
+                {
+                    _product.ImgSrc = value;
+                    OnPropertyChanged(nameof(ProductCard_ImgSrc));
                 }
             }
         }

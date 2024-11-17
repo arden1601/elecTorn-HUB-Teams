@@ -13,7 +13,7 @@ namespace elecTornHub_WPFBased.Pages
 {
     public partial class SearchDash : Window, Interfaces.INavbarParent, Interfaces.IContentCard
     {
-        private readonly ContentViewModel[] TemporaryPosts = new ContentViewModel[]
+        private ContentViewModel[] TemporaryPosts = new ContentViewModel[]
         {
             new ContentViewModel(
                 postId: "1",
@@ -144,7 +144,7 @@ namespace elecTornHub_WPFBased.Pages
             )
         };
 
-        private readonly ContentViewModel[] TemporaryProducts = new ContentViewModel[]
+        private ContentViewModel[] TemporaryProducts = new ContentViewModel[]
         {
             new ContentViewModel(
                 price: 1000000,
@@ -188,6 +188,107 @@ namespace elecTornHub_WPFBased.Pages
             
         };
 
+        private ContentViewModel[] TemporarySellingProducts = new ContentViewModel[]
+        {
+            new ContentViewModel(
+                price: 1000000,
+                quantity: 10,
+                productId: "1",
+                seller: new Classes.User(
+                    username: "Cornelius Joko",
+                    password: "johnjohnson123",
+                    uuid: "5"
+                    ),
+                name: "Laptop Asus ROG Strix G531GT",
+                description: "Laptop gaming terbaik dengan spesifikasi tinggi. Dijual dengan harga terjangkau, jangan lewatkan kesempatan ini!",
+                imgSrc: "https://drive.google.com/uc?export=download&id=1rTyCsI0Byp9Mf0y_lLo120Oo57y5AWhn"
+            )
+        };
+
+        // Getter Setter for TemporaryPosts, TemporaryProducts, TemporarySellingProducts
+        public ContentViewModel[] TemporaryPostsMod
+        {
+            get { return TemporaryPosts; }
+            set { TemporaryPosts = value; }
+        }
+
+        public ContentViewModel[] TemporaryProductsMod
+        {
+            get { return TemporaryProducts; }
+            set { TemporaryProducts = value; }
+        }
+
+        public ContentViewModel[] TemporarySellingProductsMod
+        {
+            get { return TemporarySellingProducts; }
+            set { TemporarySellingProducts = value; }
+        }
+
+        // Push One for TemporaryPosts, TemporaryProducts, TemporarySellingProducts
+        public void PushOne(ContentViewModel[] arr, ContentViewModel item)
+        {
+            ContentViewModel[] newArr = new ContentViewModel[arr.Length + 1];
+            for (int i = 0; i < arr.Length; i++)
+            {
+                newArr[i] = arr[i];
+            }
+            newArr[arr.Length] = item;
+            arr = newArr;
+        }
+
+        // Delete by id for TemporaryPosts, TemporaryProducts, TemporarySellingProducts
+        public void DeleteById(ContentViewModel[] arr, string id)
+        {
+            ContentViewModel[] newArr = new ContentViewModel[arr.Length - 1];
+            int j = 0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (arr[i].Post != null && arr[i].Post.PostId != id)
+                {
+                    newArr[j] = arr[i];
+                    j++;
+                }
+                else if (arr[i].Product != null && arr[i].Product.ProductId != id)
+                {
+                    newArr[j] = arr[i];
+                    j++;
+                }
+            }
+            arr = newArr;
+        }
+
+        // Update by id for TemporaryPosts, TemporaryProducts, TemporarySellingProducts
+        public void UpdateById(ContentViewModel[] arr, string id, ContentViewModel item)
+        {
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (arr[i].Post != null && arr[i].Post.PostId == id)
+                {
+                    arr[i] = item;
+                }
+                else if (arr[i].Product != null && arr[i].Product.ProductId == id)
+                {
+                    arr[i] = item;
+                }
+            }
+        }
+
+        // Get by id for TemporaryPosts, TemporaryProducts, TemporarySellingProducts
+        public ContentViewModel GetById(ContentViewModel[] arr, string id)
+        {
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (arr[i].Post != null && arr[i].Post.PostId == id)
+                {
+                    return arr[i];
+                }
+                else if (arr[i].Product != null && arr[i].Product.ProductId == id)
+                {
+                    return arr[i];
+                }
+            }
+            return null;
+        }
 
         // Implement INavbarParent
         private Enumerations.Navbar.NavbarType _navbarType;
@@ -237,8 +338,14 @@ namespace elecTornHub_WPFBased.Pages
             }
             else if (ContentType == Enumerations.ChoiceCard.ChoiceCardType.Product)
             {
-
-                return TemporaryProducts;
+                if (ContentMode == Enumerations.CustomGrid.CustomGridMode.Beli)
+                {
+                    return TemporaryProducts;
+                }
+                else if (ContentMode == Enumerations.CustomGrid.CustomGridMode.Jual)
+                {
+                    return TemporarySellingProducts;
+                }
             }
             return [];
         }
