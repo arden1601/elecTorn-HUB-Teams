@@ -33,37 +33,6 @@ namespace elecTornHub_WPFBased.Pages
             LogPopupControl.LogPopup_LogButtonText.Click += (s, e) => CheckLogin();
         }
 
-        /*private void ConnectToDatabase()
-        {
-            // connect to databas
-            string conn = "Server=pg-izcy-mail-06ee.i.aivencloud.com;Port=24266;User Id=avnadmin;Password=;Database=defaultdb;SslMode=Require;";
-
-            try
-            {
-                using (var connection = new NpgsqlConnection(conn))
-                {
-                    connection.Open();
-                    MessageBox.Show("Connection successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                    // Try to query
-                    using (var cmd = new NpgsqlCommand("SELECT * FROM public.\"Accounts\"", connection))
-                    {
-                        using (var reader = cmd.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                MessageBox.Show("user: "+reader.GetString(0)+" pass: "+reader.GetString(1), "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }*/
-
         public async void CheckLogin()
         {
             string uname = LogPopupControl.LogPopup_UsernameValue.Text;

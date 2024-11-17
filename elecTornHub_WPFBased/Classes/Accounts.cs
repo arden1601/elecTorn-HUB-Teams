@@ -1,65 +1,73 @@
-using Newtonsoft.Json;
 using System.Net.Http;
 using System.Text;
 using System.Windows;
+using Newtonsoft.Json;
 
 namespace elecTornHub_WPFBased.Classes;
 
 public class Accounts
 {
-    public string? Username { get; set; }
-    public string? Password { get; set; }
+        public string? Username { get; set; }
+        public string? Password { get; set; }
+        public string? UserUUID { get; set; }
+        public string? Role { get; set; } // Add a Role property
 
-    public string? UserUUID { get; set; }
+        public Accounts() { }
 
-    public Accounts(){
-
-    }
-
-    public Accounts(string username, string password, string uuid)
-    {
-        Username = username;
-        Password = password;
-        UserUUID = uuid;
-    }
-
-    public async Task<bool> Login()
-    {
-        using (HttpClient client = new HttpClient())
+        public Accounts(string username, string password, string uuid, string role = "")
         {
-            string apiUrl = "https://api-junpro.vercel.app/login";
+            Username = username;
+            Password = password;
+            UserUUID = uuid;
+            Role = role;
+        }
 
-            var requestData = new
+        public async Task<bool> Login()
+        {
+            using (HttpClient client = new HttpClient())
             {
-                username = Username,
-                password = Password,
-            };
+                string apiUrl = "https://api-junpro.vercel.app/login";
 
-            string json = JsonConvert.SerializeObject(requestData);
-
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-            try
-            {
-                // Send the POST request
-                HttpResponseMessage response = await client.PostAsync(apiUrl, content);
-
-                // Check if the response is successful
-                if (response.IsSuccessStatusCode)
+                var requestData = new
                 {
-                    return true;
+                    username = Username,
+                    password = Password,
+                };
+
+                string json = JsonConvert.SerializeObject(requestData);
+
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                try
+                {
+                    // Send the POST request
+                    HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+
+                    // Check if the response is successful
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Read and parse the response
+                        string responseJson = await response.Content.ReadAsStringAsync();
+                        var responseData = JsonConvert.DeserializeObject<dynamic>(responseJson);
+
+                        // Set the UserUUID and Role properties
+                        UserUUID = responseData?.uuid;
+                        Role = responseData?.role;
+
+                        return true; // Login successful
+                    }
+                    else
+                    {
+                        return false; // Login failed
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
+                    // Handle any exceptions
                     return false;
                 }
             }
-            catch (Exception ex)
-            {
-                return false;
-            }
         }
-    }
 
     public void Register()
     {
