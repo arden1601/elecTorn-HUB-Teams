@@ -86,12 +86,6 @@ namespace elecTornHub_WPFBased.ViewModels
             }
         }
 
-        // Property to get and set the date (if you have a Date property in Post)
-        /*public string Date
-        {
-            get => _comment.CreatedAt.ToString("dd MMMM yyyy"); // Assuming CreatedAt is a DateTime in Post
-        }*/
-
         // Implement INotifyPropertyChanged interface
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)

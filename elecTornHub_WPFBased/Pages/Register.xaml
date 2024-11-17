@@ -1,11 +1,10 @@
 ﻿<Window x:Class="elecTornHub_WPFBased.Pages.Register"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:localExtras="clr-namespace:elecTornHub_WPFBased.Extras"
         xmlns:localComponents="clr-namespace:elecTornHub_WPFBased.Components"
-        mc:Ignorable="d"
         Title="Register"
         Height="{x:Static localExtras:Variables.ScreenHeight}"
         Width="{x:Static localExtras:Variables.ScreenWidth}"
@@ -20,12 +19,8 @@ WindowStyle="SingleBorderWindow"
         Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
         HorizontalAlignment="Center" VerticalAlignment="Center" Background="{x:Static localExtras:Variables.ColorOffWhite}">
         <Grid
-            Height="{Binding Source={x:Static localExtras:Variables.ScreenHeight}, 
-                           Converter={StaticResource DivisionConverter}, 
-                           ConverterParameter=2.3}"
-            Width="{Binding Source={x:Static localExtras:Variables.ScreenWidth}, 
-                           Converter={StaticResource DivisionConverter}, 
-                           ConverterParameter=3}"
+            Height="{x:Static localExtras:Variables.LoginHeight}"
+            Width="{x:Static localExtras:Variables.LoginWidth}"
             HorizontalAlignment="Center" VerticalAlignment="Center" Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
             
             >

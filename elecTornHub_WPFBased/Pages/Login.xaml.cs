@@ -86,5 +86,10 @@ namespace elecTornHub_WPFBased.Pages
             }
             LogPopupControl.ClearFields();
         }
+
+        private void LogPopupControl_Loaded()
+        {
+
+        }
     }
 }

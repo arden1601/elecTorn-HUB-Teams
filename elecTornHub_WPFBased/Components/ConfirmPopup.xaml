@@ -144,9 +144,7 @@
                         BorderThickness="2"
                         BorderBrush="Transparent"
                         Margin="0,6"
-                        Width="{Binding Source={x:Static localExtras:Variables.ScreenWidth}, 
-                           Converter={StaticResource DivisionConverter}, 
-                           ConverterParameter=2}"
+                        Width="{x:Static localExtras:Variables.ButtonWidth}"
                         Background="{x:Static localExtras:Variables.ColorAccentOrange}"
                         >
                         <Button HorizontalAlignment="Stretch"
@@ -172,9 +170,7 @@
                             BorderBrush="Transparent"
                             Margin="0,6"
                             Background="{x:Static localExtras:Variables.ColorGreen}"
-                            Width="{Binding Source={x:Static localExtras:Variables.ScreenWidth}, 
-                                   Converter={StaticResource DivisionConverter}, 
-                                   ConverterParameter=2}"
+                            Width="{x:Static localExtras:Variables.ButtonWidth}"
                             >
                             <Button HorizontalAlignment="Stretch"
                                     Content="Lanjutkan"
@@ -201,9 +197,7 @@
                         BorderBrush="Transparent"
                         Margin="0,6"
                         Background="{x:Static localExtras:Variables.ColorGreen}"
-                        Width="{Binding Source={x:Static localExtras:Variables.ScreenWidth}, 
-                               Converter={StaticResource DivisionConverter}, 
-                               ConverterParameter=2}"
+                        Width="{x:Static localExtras:Variables.ButtonWidth}"
                         >
                             <Button HorizontalAlignment="Stretch"
                                     Content="Lanjutkan"

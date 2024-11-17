@@ -22,12 +22,8 @@
 
         <Border HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Height="{Binding Source={x:Static localExtras:Variables.ScreenHeight}, 
-                           Converter={StaticResource DivisionConverter}, 
-                           ConverterParameter=1.12}"
-                Width="{Binding Source={x:Static localExtras:Variables.ScreenWidth}, 
-                           Converter={StaticResource DivisionConverter}, 
-                           ConverterParameter=1.05}"
+                Height="{x:Static localExtras:Variables.ContentHeight}"
+                Width="{x:Static localExtras:Variables.ContentWidth}"
                 Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
                 CornerRadius="15"
                 BorderThickness="1"

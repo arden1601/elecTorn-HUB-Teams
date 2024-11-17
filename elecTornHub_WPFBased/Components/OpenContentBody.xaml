@@ -6,12 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:localExtras="clr-namespace:elecTornHub_WPFBased.Extras"
     xmlns:localComponents="clr-namespace:elecTornHub_WPFBased.Components"
-    Height="{Binding Source={x:Static localExtras:Variables.ScreenHeight}, 
-                           Converter={StaticResource DivisionConverter}, 
-                           ConverterParameter=1.05}"
-    Width="{Binding Source={x:Static localExtras:Variables.ScreenWidth}, 
-                           Converter={StaticResource DivisionConverter}, 
-                           ConverterParameter=1.05}"
+    Height="{x:Static localExtras:Variables.OpenContentHeight}"
+    Width="{x:Static localExtras:Variables.OpenContentWidth}"
 >
     <Border
         x:Name="OpenContentBody_BorderParent"
@@ -103,12 +99,8 @@
                             VerticalScrollBarVisibility="Auto"
                             HorizontalScrollBarVisibility="Disabled"
                             Padding="0,0,5,0"
-                            Height="{Binding Source={x:Static localExtras:Variables.ScreenHeight}, 
-                                   Converter={StaticResource DivisionConverter}, 
-                                   ConverterParameter=1.9}"
-                            Width="{Binding Source={x:Static localExtras:Variables.ScreenWidth}, 
-                                   Converter={StaticResource DivisionConverter}, 
-                                   ConverterParameter=1}"
+                            Height="{x:Static localExtras:Variables.ScrollHeight}"
+                            Width="{x:Static localExtras:Variables.ScrollWidth}"
                         >
                             <TextBlock
                                 HorizontalAlignment="Stretch"
@@ -139,12 +131,8 @@
                         <ScrollViewer
                             VerticalScrollBarVisibility="Auto"
                             HorizontalScrollBarVisibility="Disabled"
-                            Height="{Binding Source={x:Static localExtras:Variables.ScreenHeight}, 
-                                   Converter={StaticResource DivisionConverter}, 
-                                   ConverterParameter=1.9}"
-                            Width="{Binding Source={x:Static localExtras:Variables.ScreenWidth}, 
-                                   Converter={StaticResource DivisionConverter}, 
-                                   ConverterParameter=1}"
+                            Height="{x:Static localExtras:Variables.ScrollHeight}"
+                            Width="{x:Static localExtras:Variables.ScrollWidth}"
                             Padding="6,5,6,5"
                             Margin="0,0,5,0"
                         >
@@ -331,9 +319,7 @@
                             Grid.Column="1"
                             Width="Auto"
                             Margin="20,0,0,0"
-                            Height="{Binding Source={x:Static localExtras:Variables.ScreenHeight}, 
-                                   Converter={StaticResource DivisionConverter}, 
-                                   ConverterParameter=1}"
+                            Height="{x:Static localExtras:Variables.ScreenHeight}"
                             Orientation="Vertical"
                             x:Name="OpenContentBody_ReportTab"
                             VerticalAlignment="Bottom"
@@ -360,12 +346,8 @@
                                 <ScrollViewer
                                     VerticalScrollBarVisibility="Auto"
                                     HorizontalScrollBarVisibility="Disabled"
-                                    Height="{Binding Source={x:Static localExtras:Variables.ScreenHeight}, 
-                                           Converter={StaticResource DivisionConverter}, 
-                                           ConverterParameter=1.6}"
-                                    Width="{Binding Source={x:Static localExtras:Variables.ScreenWidth}, 
-                                           Converter={StaticResource DivisionConverter}, 
-                                           ConverterParameter=1}"
+                                    Height="{x:Static localExtras:Variables.ScrollHeightBigger}"
+                                    Width="{x:Static localExtras:Variables.ScreenWidth}"
                                     x:Name="OpenContentBody_ReportDesc"
                                     VerticalAlignment="Bottom"
                                     Padding="2,4,4,4"
@@ -396,9 +378,7 @@
                 Orientation="Vertical"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
-                Height="{Binding Source={x:Static localExtras:Variables.ScreenHeight}, 
-                       Converter={StaticResource DivisionConverter}, 
-                       ConverterParameter=1}"
+                Height="{x:Static localExtras:Variables.ScreenHeight}"
             >
                 <ScrollViewer
                     Margin="10"
@@ -406,9 +386,7 @@
                     HorizontalAlignment="Center"
                     VerticalScrollBarVisibility="Visible"
                     HorizontalScrollBarVisibility="Disabled"
-                    Height="{Binding Source={x:Static localExtras:Variables.ScreenHeight}, 
-                               Converter={StaticResource DivisionConverter}, 
-                               ConverterParameter=1.1}"
+                    Height="{x:Static localExtras:Variables.ScrollHeightSmaller}"
                 >
                     <StackPanel Orientation="Vertical">
                         <!-- Post -->
@@ -456,9 +434,7 @@
                                         Margin="10, 0"
                                         BorderBrush="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
                                         Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
-                                        Width="{Binding Source={x:Static localExtras:Variables.ScreenWidth}, 
-                                                Converter={StaticResource DivisionConverter}, 
-                                                ConverterParameter=1.194}"
+                                        Width="{x:Static localExtras:Variables.InputCommentWidth}"
                                     >
                                         <Border.Effect>
                                             <DropShadowEffect

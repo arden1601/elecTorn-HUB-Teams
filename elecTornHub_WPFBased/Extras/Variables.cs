@@ -70,6 +70,32 @@ namespace elecTornHub_WPFBased.Extras
         public static double ScreenWidth { get; private set; } = 1024;
         public static double ScreenHeight { get; private set; } = 576;
 
+        // object sizes
+        public static double LoginWidth => ScreenWidth / 3;
+        public static double LoginHeight => ScreenHeight / 2.3;
+
+        public static double ContentWidth => ScreenWidth / 1.05;
+        public static double ContentHeight => ScreenHeight / 1.12;
+
+        public static double OpenContentWidth => ContentWidth / 1.05;
+        public static double OpenContentHeight => ContentHeight / 1.2;
+
+        public static double NotificationWidth => ScreenWidth / 3;
+        public static double NotificationHeight => ScreenHeight / 2.3;
+
+        public static double CommentWidth => ScreenWidth / 1.17;
+        public static double InputCommentWidth => ScreenWidth / 1.39;
+
+        public static double ButtonWidth => ScreenWidth / 8;
+
+        public static double ScrollHeight = ScreenHeight / 3.2;
+        public static double ScrollWidth = ScreenWidth / 2;
+        public static double ScrollHeightSmaller => ScreenHeight / 1.42;
+        public static double ScrollHeightBigger => ScreenHeight / 1.6;
+
+        public static double MaxImageHeight => ScreenHeight / 3;
+        public static double MaxImageWidth => ScreenWidth / 2;
+
         // font values
         public static FontFamily PrimaryFont { get; private set; } = new FontFamily(new Uri("pack://application:,,,/"), "./Resources/Fonts/#Roboto Regular");
         public static FontFamily SecondaryFont { get; private set; } = new FontFamily(new Uri("pack://application:,,,/"), "./Resources/Fonts/#Montserrat");

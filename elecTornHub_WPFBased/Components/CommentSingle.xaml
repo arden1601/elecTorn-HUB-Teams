@@ -11,9 +11,7 @@
     <Border HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Height="Auto"
-            Width="{Binding Source={x:Static localExtras:Variables.ScreenWidth}, 
-                           Converter={StaticResource DivisionConverter}, 
-                           ConverterParameter=1.02}"
+            Width="{x:Static localExtras:Variables.CommentWidth}"
             Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
             CornerRadius="8"
             BorderThickness="1"
@@ -78,7 +76,7 @@ Background="{x:Static localExtras:Variables.ColorAccentOrange}"
                             x:Name="Comment_Title"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Left"
-                    Text="{Binding Comment_Poster}" FontSize="{x:Static localExtras:Variables.FontSizeMD}"
+                            Text="{Binding Poster}" FontSize="{x:Static localExtras:Variables.FontSizeMD}"
 FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
 Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold"
                            TextWrapping="Wrap" TextAlignment="Justify"/>
@@ -87,7 +85,7 @@ Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold
                         Grid.Column="1"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Right"
-                        Text="{Binding Comment_PostDate}" FontSize="{x:Static localExtras:Variables.FontSizeMD}"
+                        Text="{Binding PostDate}" FontSize="{x:Static localExtras:Variables.FontSizeMD}"
 FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
 Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold"
                            TextWrapping="Wrap" TextAlignment="Justify"/>
@@ -95,7 +93,7 @@ Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold
 
                 <TextBlock
                     Grid.Row="1"
-                    Text="{Binding Comment_Content}"
+                    Text="{Binding Content}"
                     FontSize="{x:Static localExtras:Variables.FontSizeSM}"
                            TextWrapping="Wrap" TextAlignment="Justify"
 FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
