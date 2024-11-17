@@ -69,10 +69,52 @@ public class Accounts
             }
         }
 
-    public void Register()
+    public async Task<bool> Register()
     {
-        // Login the account
+        using (HttpClient client = new HttpClient())
+        {
+            string apiUrl = "https://api-junpro.vercel.app/user";
+
+            var requestData = new
+            {
+                role = "user",
+                username = "user3",
+                password = "user3",
+                age = 20,
+                gender = "laki-laki"
+            };
+
+            string json = JsonConvert.SerializeObject(requestData);
+
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            try
+            {
+                HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string responseJson = await response.Content.ReadAsStringAsync();
+                    var responseData = JsonConvert.DeserializeObject<dynamic>(responseJson);
+
+                    UserUUID = responseData?.uuid;
+                    Role = responseData?.role;
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
     }
+
 
     public void Logout()
     {

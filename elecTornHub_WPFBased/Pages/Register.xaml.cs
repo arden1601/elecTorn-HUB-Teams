@@ -1,18 +1,12 @@
-﻿using elecTornHub_WPFBased.Extras;
-using System.Text;
+﻿using elecTornHub_WPFBased.Classes;
+using elecTornHub_WPFBased.Extras;
+using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace elecTornHub_WPFBased.Pages
 {
     using static elecTornHub_WPFBased.Extras.Variables;
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -21,8 +15,39 @@ namespace elecTornHub_WPFBased.Pages
         public Register()
         {
             InitializeComponent();
-            UpdateLayout();
+
             LogPopupControl.PreviousWindow = this;
+
+            LogPopupControl.LogPopup_LogButtonText.Click += async (s, e) => await RegisterController();
+        }
+
+        public async Task RegisterController()
+        {
+            string uname = LogPopupControl.LogPopup_UsernameValue.Text;
+            string pwd = LogPopupControl.LogPopup_PasswordValue.Password;
+
+            Accounts acc = new Accounts(uname, pwd, "");
+            bool isSuccess = await acc.Register();
+
+            if (isSuccess)
+            {
+                Login newLogin = new Login
+                {
+                    DataContext = new Login()
+                };
+                newLogin.Show();
+
+                // Close the current Register window
+                this.Close();
+
+                // Show success message
+                MessageBox.Show("Successfully registered!");
+            }
+            else
+            {
+                // Show failure message
+                MessageBox.Show("Registration failed.");
+            }
         }
 
         public Window PreviousWindow { get; set; }
