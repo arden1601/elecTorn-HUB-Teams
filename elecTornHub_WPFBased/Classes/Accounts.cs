@@ -77,9 +77,8 @@ public class Accounts
 
             var requestData = new
             {
-                role = "user",
-                username = "user3",
-                password = "user3",
+                username = Username,
+                password = Password,
                 age = 20,
                 gender = "laki-laki"
             };

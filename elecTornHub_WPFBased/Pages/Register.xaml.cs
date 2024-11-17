@@ -31,17 +31,10 @@ namespace elecTornHub_WPFBased.Pages
 
             if (isSuccess)
             {
-                Login newLogin = new Login
-                {
-                    DataContext = new Login()
-                };
-                newLogin.Show();
-
-                // Close the current Register window
-                this.Close();
-
-                // Show success message
                 MessageBox.Show("Successfully registered!");
+                Login newLogin = new Login();
+                newLogin.Show();
+                this.Close();
             }
             else
             {
