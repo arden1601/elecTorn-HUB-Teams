@@ -115,12 +115,13 @@ Cursor="Hand"
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
 
-                <Grid x:Name="News_Image" Grid.Column="0" Grid.RowSpan="2">
-                    <Image 
-                        Source="{Binding Post_ImgSrc}"
-                        Height="200" Width="140"
-                    />
-                </Grid>
+                
+                <Image 
+                    Source="{Binding Post_ImgSrc}"
+                    Height="200" Width="140"
+                    Grid.Column="0" Grid.RowSpan="2"
+                />
+                
 
                 <StackPanel
                     Grid.Column="1"

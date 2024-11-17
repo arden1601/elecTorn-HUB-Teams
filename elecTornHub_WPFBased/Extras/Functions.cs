@@ -32,11 +32,11 @@ namespace elecTornHub_WPFBased.Extras
             // Check if the count is greater than the string length
             if (input == null || count >= input.Length)
             {
-                return string.Empty;
+                return input;
             }
 
-            // Return the modified string
-            return input.Substring(count) + "...";
+            // Return the first count characters
+            return input.Substring(0, count) + "...";
         }
 
     }

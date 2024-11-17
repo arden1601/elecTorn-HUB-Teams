@@ -5,7 +5,7 @@ public class Tutorial : Post
 {
     private string _videoUrl;
 
-    public Tutorial(string postId, User authorId, string content, string title, string videoUrl, string postDate, string imgSrc = "") : base(postId, authorId, content, title, postDate, imgSrc)
+    public Tutorial(string postId, User authorId, string content, string title, string videoUrl, string postDate, string lastEdit="", string imgSrc = "") : base(postId, authorId, content, title, postDate, lastEdit, imgSrc)
     {
         _videoUrl = videoUrl;
     }

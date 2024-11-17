@@ -39,7 +39,7 @@ Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="Regular"
                            TextWrapping="Wrap" TextAlignment="Justify"/>
                     <TextBlock
                         x:Name="PostContent_Poster"
-                    Text="Mantan Mantu Jenderal" FontSize="{x:Static localExtras:Variables.FontSizeMD}"
+                    Text="{Binding Post_AuthorName}" FontSize="{x:Static localExtras:Variables.FontSizeMD}"
 FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
 Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="Bold"
                            TextWrapping="Wrap" TextAlignment="Justify"/>
@@ -55,7 +55,7 @@ Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="Bold"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Left"
                         Margin="0,0,10,0"
-                    Text="30 September 1965" FontSize="{x:Static localExtras:Variables.FontSizeMD}"
+                    Text="{Binding Post_PostDate}" FontSize="{x:Static localExtras:Variables.FontSizeMD}"
 FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
 Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold"
                            TextWrapping="Wrap" TextAlignment="Justify"/>
@@ -220,7 +220,7 @@ Background="{x:Static localExtras:Variables.ColorAccentOrange}"
                         <TextBlock
                             x:Name="PostContent_Title"
                             HorizontalAlignment="Center"
-                    Text="Cara Menjadi Presiden yang baik"
+                    Text="{Binding Post_Title}"
                     FontSize="{x:Static localExtras:Variables.FontSizeMD}"
                            TextWrapping="Wrap" TextAlignment="Justify"
 FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
@@ -238,7 +238,7 @@ Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="Bold"/>
                                 x:Name="PostContent_EditTitle"
              VerticalAlignment="Center"
                                      HorizontalAlignment="Center"
-                                                     Text="Cara Menjadi Presiden yang baik"
+                                                     Text="{Binding Post_Title}"
                     FontSize="{x:Static localExtras:Variables.FontSizeMD}"
                            TextWrapping="Wrap" TextAlignment="Justify"
 FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
@@ -259,7 +259,7 @@ Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="Bold"/>
                             <TextBlock
                                 x:Name="PostContent_LastEdit"
                                 HorizontalAlignment="Center"
-                    Text="1 Oktober 2024"
+                    Text="{Binding Post_LastEdit}"
                     FontSize="{x:Static localExtras:Variables.FontSizeSM}"
                            TextWrapping="Wrap" TextAlignment="Justify"
 FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
@@ -267,7 +267,7 @@ Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="Bold"/>
                         </StackPanel>
                         <Image
                             x:Name="PostContent_Image"
-       Source="/elecTornHub_WPFBased;component/Resources/Images/dummy_post_long.png" 
+       Source="{Binding Post_ImgSrc}" 
                             MaxHeight="{x:Static localExtras:Variables.MaxImageHeight}"
                             MaxWidth="{x:Static localExtras:Variables.MaxImageWidth}"
                             Height="Auto"
@@ -277,13 +277,7 @@ Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="Bold"/>
                 <TextBlock
                     x:Name="PostContent_Description"
                     Margin="0,20,0,0"
-                    Text="Lorem ipsum odor amet, consectetuer adipiscing elit. Sapien scelerisque per conubia volutpat viverra tempus! Inceptos curae mi fusce proin senectus, condimentum volutpat dictum? Et risus rutrum habitasse cursus curae, accumsan integer aliquet. Suspendisse velit vel luctus id iaculis nisi. Duis platea ac consequat; blandit luctus elit. Sem maecenas primis himenaeos class fusce congue mauris nisi. Inceptos dui mollis ultricies donec congue laoreet sagittis purus.
-
-Purus habitant cras semper in est semper scelerisque. Magna aenean facilisi congue magna senectus amet? Sit tellus quisque viverra; sodales odio nulla. Venenatis magnis feugiat a ipsum tellus pulvinar. Nulla natoque sagittis quisque felis faucibus! Quisque at quam sociosqu integer libero. Vivamus morbi sapien ad et ante gravida conubia sollicitudin gravida.
-
-Lorem ipsum odor amet, consectetuer adipiscing elit. Sapien scelerisque per conubia volutpat viverra tempus! Inceptos curae mi fusce proin senectus, condimentum volutpat dictum? Et risus rutrum habitasse cursus curae, accumsan integer aliquet. Suspendisse velit vel luctus id iaculis nisi. Duis platea ac consequat; blandit luctus elit. Sem maecenas primis himenaeos class fusce congue mauris nisi. Inceptos dui mollis ultricies donec congue laoreet sagittis purus.
-
-Lorem ipsum odor amet, consectetuer adipiscing elit. Sapien scelerisque per conubia volutpat viverra tempus! Inceptos curae mi fusce proin senectus, condimentum volutpat dictum? Et risus rutrum habitasse cursus curae, accumsan integer aliquet. Suspendisse velit vel luctus id iaculis nisi. Duis platea ac consequat; blandit luctus elit. Sem maecenas primis himenaeos class fusce congue mauris nisi. Inceptos dui mollis ultricies donec congue laoreet sagittis purus."
+                    Text="{Binding Post_Content}"
                     FontSize="{x:Static localExtras:Variables.FontSizeSM}"
                            TextWrapping="Wrap" TextAlignment="Justify"
 FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
@@ -300,13 +294,7 @@ Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="Bold"/>
                                 x:Name="PostContent_EditDescription"
              VerticalAlignment="Center"
                                      HorizontalAlignment="Center"
-                                                                         Text="Lorem ipsum odor amet, consectetuer adipiscing elit. Sapien scelerisque per conubia volutpat viverra tempus! Inceptos curae mi fusce proin senectus, condimentum volutpat dictum? Et risus rutrum habitasse cursus curae, accumsan integer aliquet. Suspendisse velit vel luctus id iaculis nisi. Duis platea ac consequat; blandit luctus elit. Sem maecenas primis himenaeos class fusce congue mauris nisi. Inceptos dui mollis ultricies donec congue laoreet sagittis purus.
-
-Purus habitant cras semper in est semper scelerisque. Magna aenean facilisi congue magna senectus amet? Sit tellus quisque viverra; sodales odio nulla. Venenatis magnis feugiat a ipsum tellus pulvinar. Nulla natoque sagittis quisque felis faucibus! Quisque at quam sociosqu integer libero. Vivamus morbi sapien ad et ante gravida conubia sollicitudin gravida.
-
-Lorem ipsum odor amet, consectetuer adipiscing elit. Sapien scelerisque per conubia volutpat viverra tempus! Inceptos curae mi fusce proin senectus, condimentum volutpat dictum? Et risus rutrum habitasse cursus curae, accumsan integer aliquet. Suspendisse velit vel luctus id iaculis nisi. Duis platea ac consequat; blandit luctus elit. Sem maecenas primis himenaeos class fusce congue mauris nisi. Inceptos dui mollis ultricies donec congue laoreet sagittis purus.
-
-Lorem ipsum odor amet, consectetuer adipiscing elit. Sapien scelerisque per conubia volutpat viverra tempus! Inceptos curae mi fusce proin senectus, condimentum volutpat dictum? Et risus rutrum habitasse cursus curae, accumsan integer aliquet. Suspendisse velit vel luctus id iaculis nisi. Duis platea ac consequat; blandit luctus elit. Sem maecenas primis himenaeos class fusce congue mauris nisi. Inceptos dui mollis ultricies donec congue laoreet sagittis purus."
+                                                                         Text="{Binding Post_Content}"
                     FontSize="{x:Static localExtras:Variables.FontSizeSM}"
                            TextWrapping="Wrap" TextAlignment="Justify"
 FontFamily="{x:Static localExtras:Variables.PrimaryFont}"

@@ -69,8 +69,9 @@ namespace elecTornHub_WPFBased.Extras
                         string imgSrc = "https://lh3.googleusercontent.com/ogw/AF2bZyiQSDYdpGWlSrg8eJ1yYHSRxQ73eJvhC8K4A-htZ1bAfYA=s32-c-mo";
                         selectedContext = new ContentViewModel(
                             title: "Adakah kamu di situ?",
-                            content: "Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet ",
+                            content: "Lorem ipsum odor amet, consectetuer adipiscing elit. Sapien scelerisque per conubia volutpat viverra tempus! Inceptos curae mi fusce proin senectus, condimentum volutpat dictum? Et risus rutrum habitasse cursus curae, accumsan integer aliquet. Suspendisse velit vel luctus id iaculis nisi. Duis platea ac consequat; blandit luctus elit. Sem maecenas primis himenaeos class fusce congue mauris nisi. Inceptos dui mollis ultricies donec congue laoreet sagittis purus.\r\n\r\nPurus habitant cras semper in est semper scelerisque. Magna aenean facilisi congue magna senectus amet? Sit tellus quisque viverra; sodales odio nulla. Venenatis magnis feugiat a ipsum tellus pulvinar. Nulla natoque sagittis quisque felis faucibus! Quisque at quam sociosqu integer libero. Vivamus morbi sapien ad et ante gravida conubia sollicitudin gravida.\r\n\r\nLorem ipsum odor amet, consectetuer adipiscing elit. Sapien scelerisque per conubia volutpat viverra tempus! Inceptos curae mi fusce proin senectus, condimentum volutpat dictum? Et risus rutrum habitasse cursus curae, accumsan integer aliquet. Suspendisse velit vel luctus id iaculis nisi. Duis platea ac consequat; blandit luctus elit. Sem maecenas primis himenaeos class fusce congue mauris nisi. Inceptos dui mollis ultricies donec congue laoreet sagittis purus.\r\n\r\nLorem ipsum odor amet, consectetuer adipiscing elit. Sapien scelerisque per conubia volutpat viverra tempus! Inceptos curae mi fusce proin senectus, condimentum volutpat dictum? Et risus rutrum habitasse cursus curae, accumsan integer aliquet. Suspendisse velit vel luctus id iaculis nisi. Duis platea ac consequat; blandit luctus elit. Sem maecenas primis himenaeos class fusce congue mauris nisi. Inceptos dui mollis ultricies donec congue laoreet sagittis purus.",
                             postDate: "16 September 2024",
+                            lastEdit: "13 September 2024",
                             imgSrc: imgSrc
                         );
                         choiceCard.DataContext = selectedContext;
@@ -165,7 +166,8 @@ namespace elecTornHub_WPFBased.Extras
 
             var postContent = new PostContent
             {
-                PostType = PostType
+                PostType = PostType,
+                DataContext = DataContext
             };
 
             content.OpenContentBody_PostBody.Children.Add(postContent);

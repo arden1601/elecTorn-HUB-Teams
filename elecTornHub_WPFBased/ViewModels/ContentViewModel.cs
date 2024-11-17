@@ -21,7 +21,7 @@ namespace elecTornHub_WPFBased.ViewModels
         }
 
         // Temporary constructor to accept value directly
-        public ContentViewModel(string title, string content, string postDate, string imgSrc)
+        public ContentViewModel(string title, string content, string postDate, string imgSrc, string lastEdit)
         {
             // fill the values
             _post = new Post(
@@ -34,6 +34,7 @@ namespace elecTornHub_WPFBased.ViewModels
                 content: content,
                 title: title,
                 postDate: postDate,
+                lastEdit: lastEdit,
                 imgSrc: imgSrc
                 );
         }
@@ -163,7 +164,7 @@ namespace elecTornHub_WPFBased.ViewModels
 
         public string Post_ContentBrief
         {
-            get => Functions.CutFromStart(_post.Content, 100);
+            get => Functions.CutFromStart(_post.Content, 300);
         }
 
         public string Post_PostDate
@@ -175,6 +176,19 @@ namespace elecTornHub_WPFBased.ViewModels
                 {
                     _post.PostDate = value;
                     OnPropertyChanged(nameof(Post_PostDate));
+                }
+            }
+        }
+
+        public string Post_LastEdit
+        {
+            get => _post.LastEdit;
+            set
+            {
+                if (_post.LastEdit != value)
+                {
+                    _post.LastEdit = value;
+                    OnPropertyChanged(nameof(Post_LastEdit));
                 }
             }
         }

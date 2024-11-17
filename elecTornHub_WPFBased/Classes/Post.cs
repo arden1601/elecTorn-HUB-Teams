@@ -7,9 +7,10 @@ public class Post
     private string _content;
     private string _title;
     private string _postDate;
+    private string _lastEdit;
     private string _imgSrc;
 
-    public Post(string postId, User authorId, string content, string title, string postDate, string imgSrc)
+    public Post(string postId, User authorId, string content, string title, string postDate, string imgSrc, string lastEdit)
     {
         _postId = postId;
         _authorId = authorId;
@@ -17,6 +18,7 @@ public class Post
         _title = title;
         _postDate = postDate;
         _imgSrc = imgSrc ?? "";
+        _lastEdit = lastEdit;
     }
 
     public string PostId
@@ -47,6 +49,12 @@ public class Post
     {
         get { return _postDate; }
         set { _postDate = value; }
+    }
+
+    public string LastEdit
+    {
+        get { return _lastEdit; }
+        set { _lastEdit = value; }
     }
 
     public string ImgSrc
