@@ -2,6 +2,7 @@
 using static elecTornHub_WPFBased.Extras.Variables;
 using elecTornHub_WPFBased.Components;
 using elecTornHub_WPFBased.Extras;
+using elecTornHub_WPFBased.ViewModels;
 
 namespace elecTornHub_WPFBased.Pages
 {
@@ -61,7 +62,8 @@ namespace elecTornHub_WPFBased.Pages
                 parentGrid: OpenContentControl,
                 ContentType: ContentType,
                 ContentMode: ContentMode,
-                PostType: PostType
+                PostType: PostType,
+                DataContext: dataContext
             );
         }
 
@@ -75,6 +77,8 @@ namespace elecTornHub_WPFBased.Pages
             set { _killingParent = value; }
         }
 
+        public ContentViewModel dataContext { get; set; }
+
         public OpenContent()
         {
             InitializeComponent();
@@ -82,7 +86,7 @@ namespace elecTornHub_WPFBased.Pages
             Loaded += (s, e) =>
             {
                 DashInit.GenerateNavbar(NavbarControl, navbarType: NavbarType, navbarChosen: NavbarChosen, previousWindow: PreviousWindow, parentContent: this);
-                DashInit.GenerateContent(OpenContentControl, ContentType, ContentMode, PostType);
+                DashInit.GenerateContent(OpenContentControl, ContentType, ContentMode, PostType, dataContext);
             };
 
             Closed += OpenContent_Closed;

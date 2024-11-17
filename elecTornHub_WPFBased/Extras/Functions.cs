@@ -6,30 +6,38 @@ using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using elecTornHub_WPFBased.Components;
 using System.Windows;
+using System.Globalization;
+using System.Globalization;
 
 namespace elecTornHub_WPFBased.Extras
 {
     public class Functions
     {
-        public static BitmapImage GetDummyImage(BitmapImage dummyImage, string ImgSrc)
+
+        // Method to format number as Rp. xxx.xxx.xxx,-
+        public static string FormatToRupiah(int amount)
         {
-            if (dummyImage == null)
-            {
-                /*dummyImage = new BitmapImage();
-                dummyImage.BeginInit();
-                dummyImage.CacheOption = BitmapCacheOption.OnLoad;
-                dummyImage.UriSource = new Uri(ImgSrc, UriKind.RelativeOrAbsolute);
-                dummyImage.EndInit();*/
+            // Use "id-ID" culture for Indonesian Rupiah formatting
+            CultureInfo indonesianCulture = new CultureInfo("id-ID");
 
-                var bitmapImage = new BitmapImage();
-                bitmapImage.BeginInit();
-                bitmapImage.CacheOption = BitmapCacheOption.OnLoad; // Fully load the image into memory
-                bitmapImage.UriSource = new Uri(ImgSrc, UriKind.RelativeOrAbsolute);
-                bitmapImage.EndInit();
+            // Format the amount to currency without decimals and use grouping separator (.)
+            string formattedAmount = amount.ToString("N0", indonesianCulture);
 
-                return bitmapImage;
-            }
-            return dummyImage;
+            // Add Rp prefix and ,-
+            return $"Rp. {formattedAmount},-";
         }
+
+        public static string CutFromStart(string input, int count)
+        {
+            // Check if the count is greater than the string length
+            if (input == null || count >= input.Length)
+            {
+                return string.Empty;
+            }
+
+            // Return the modified string
+            return input.Substring(count) + "...";
+        }
+
     }
 }

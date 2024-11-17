@@ -4,7 +4,7 @@ using System.Windows.Data;
 using System.Windows.Controls;
 using elecTornHub_WPFBased.Pages;
 using elecTornHub_WPFBased.Components;
-using elecTornHub_WPFBased.Extras;
+using elecTornHub_WPFBased.ViewModels;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 
@@ -61,23 +61,32 @@ namespace elecTornHub_WPFBased.Extras
                         ContentMode = GridMode // Bind GridMode directly from SearchDash
                     };
 
-                    choiceCard.ProductCard_Name.Text = "Asek";
-                    choiceCard.ProductCard_Price.Text = "Rp. 100.000";
-                    // string imgSrc = "https://lh3.googleusercontent.com/ogw/AF2bZyiQSDYdpGWlSrg8eJ1yYHSRxQ73eJvhC8K4A-htZ1bAfYA=s32-c-mo";
-                    string imgSrc = "https://drive.google.com/uc?export=download&id=1rTyCsI0Byp9Mf0y_lLo120Oo57y5AWhn";
+                    // DataContext Import from DB
+                    ContentViewModel selectedContext = null;
 
-                    // In ProductCard_Image, add an Image object
-                    choiceCard.ProductCard_Image.Children.Clear();
-                    choiceCard.ProductCard_Image.Children.Add(new Image
+                    if (GridType == Enumerations.ChoiceCard.ChoiceCardType.Post)
                     {
-                        Source = new BitmapImage(new Uri(imgSrc)),
-                        Stretch = Stretch.Fill,
-                        Width = 100,
-                        Height = 100
-                    });
-
-                    // Set the DataContext to the current instance of SearchDash
-                    choiceCard.DataContext = parent;
+                        string imgSrc = "https://lh3.googleusercontent.com/ogw/AF2bZyiQSDYdpGWlSrg8eJ1yYHSRxQ73eJvhC8K4A-htZ1bAfYA=s32-c-mo";
+                        selectedContext = new ContentViewModel(
+                            title: "Adakah kamu di situ?",
+                            content: "Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet ",
+                            postDate: "16 September 2024",
+                            imgSrc: imgSrc
+                        );
+                        choiceCard.DataContext = selectedContext;
+                    }
+                    else if (GridType == Enumerations.ChoiceCard.ChoiceCardType.Product)
+                    {
+                        string imgSrc = "https://drive.google.com/uc?export=download&id=1rTyCsI0Byp9Mf0y_lLo120Oo57y5AWhn";
+                        selectedContext = new ContentViewModel(
+                            title: "Laptop ACER Intel Core",
+                            description: "Laptop ini merupakan laptop kesayangan saya, tapi laptop ini terlalu bagus untuk saya sehingga saya memutuskan untuk menjualnya. Spesifikasi masih bagus, dijual murah karena kebetulan lagi butuh uang untuk memenuhi kebutuhan anak dan istri. Bagi siapapun yang berniat membantu saya, mohon beli produk ini. Jika Anda tidak mau membeli padahal sudah membaca sampai sini, saya akan gunakan IP Address Anda untuk melacak posisi Anda dan mengejar Anda sampai ke pelaminan. Sekian terima kasih, terima lah lagu ini dari orang biasa. Mohon maaf jika ada salah kata, akhir kata saya mengucapkan minta maaf. Sampai jumpa dalam LAPTOP ACER INTEL 2025! Wassalamu’alaikum warahmatullahi wabarakatuh. Laptop ini merupakan laptop kesayangan saya, tapi laptop ini terlalu bagus untuk saya sehingga saya memutuskan untuk menjualnya. Spesifikasi masih bagus, dijual murah karena kebetulan lagi butuh uang untuk memenuhi kebutuhan anak dan istri. Bagi siapapun yang berniat membantu saya, mohon beli produk ini. Jika Anda tidak mau membeli padahal sudah membaca sampai sini, saya akan gunakan IP Address Anda untuk melacak posisi Anda dan mengejar Anda sampai ke pelaminan. Sekian terima kasih, terima lah lagu ini dari orang biasa. Mohon maaf jika ada salah kata, akhir kata saya mengucapkan minta maaf. Sampai jumpa dalam LAPTOP ACER INTEL 2025! Wassalamu’alaikum warahmatullahi wabarakatuh.",
+                            quantity: 1,
+                            price: 696969,
+                            imgSrc: imgSrc
+                        );
+                        choiceCard.DataContext = selectedContext;
+                    }
 
                     // onClick action based on card type
                     if (GridType == Enumerations.ChoiceCard.ChoiceCardType.Product)
@@ -87,7 +96,8 @@ namespace elecTornHub_WPFBased.Extras
                             var newContent = new OpenContent
                             {
                                 PreviousWindow = parent,
-                                NavbarType = Enumerations.Navbar.NavbarType.User
+                                NavbarType = Enumerations.Navbar.NavbarType.User,
+                                dataContext = selectedContext
                             };
 
                             if (GridMode == Enumerations.CustomGrid.CustomGridMode.Jual)
@@ -117,7 +127,8 @@ namespace elecTornHub_WPFBased.Extras
                                 ContentType = Enumerations.OpenContent.OpenContentBodyType.Buyer,
                                 ContentMode = Enumerations.OpenContent.OpenContentBodyMode.Post,
                                 NavbarChosen = Enumerations.Navbar.NavbarChosen.Post,
-                                NavbarType = Enumerations.Navbar.NavbarType.User
+                                NavbarType = Enumerations.Navbar.NavbarType.User,
+                                dataContext = selectedContext
                             };
 
                             newContent.Show();
@@ -140,13 +151,14 @@ namespace elecTornHub_WPFBased.Extras
             CardGrids.UpdateLayout();
         }
 
-        public static void GenerateContent(Grid parentGrid, Enumerations.OpenContent.OpenContentBodyType ContentType, Enumerations.OpenContent.OpenContentBodyMode ContentMode, Enumerations.PostContent.PostContentType PostType)
+        public static void GenerateContent(Grid parentGrid, Enumerations.OpenContent.OpenContentBodyType ContentType, Enumerations.OpenContent.OpenContentBodyMode ContentMode, Enumerations.PostContent.PostContentType PostType, ContentViewModel DataContext)
         {
             parentGrid.Children.Clear();
             var content = new OpenContentBody
             {
                 ContentType = ContentType,
-                ContentMode = ContentMode
+                ContentMode = ContentMode,
+                DataContext = DataContext
             };
 
             content.OpenContentBody_PostBody.Children.Clear();

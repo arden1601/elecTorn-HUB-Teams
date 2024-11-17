@@ -95,6 +95,7 @@ namespace elecTornHub_WPFBased.Extras
 
         public static double MaxImageHeight => ScreenHeight / 3;
         public static double MaxImageWidth => ScreenWidth / 2;
+        public static double MaxImageContent => ContentWidth / 2.7;
 
         // font values
         public static FontFamily PrimaryFont { get; private set; } = new FontFamily(new Uri("pack://application:,,,/"), "./Resources/Fonts/#Roboto Regular");
