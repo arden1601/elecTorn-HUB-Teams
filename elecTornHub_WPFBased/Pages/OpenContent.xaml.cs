@@ -29,7 +29,7 @@ namespace elecTornHub_WPFBased.Pages
                     NavbarControl: NavbarControl,
                     NavbarType: NavbarType,
                     NavbarChosen: NavbarChosen
-                ); 
+                );
         }
 
         // Implement IContent
@@ -65,7 +65,15 @@ namespace elecTornHub_WPFBased.Pages
             );
         }
 
-        public Window PreviousWindow { get; set; }
+        public SearchDash PreviousWindow { get; set; }
+
+        private Boolean _killingParent = true;
+
+        public Boolean KillingParent
+        {
+            get { return _killingParent; }
+            set { _killingParent = value; }
+        }
 
         public OpenContent()
         {
@@ -73,9 +81,21 @@ namespace elecTornHub_WPFBased.Pages
             DataContext = this;
             Loaded += (s, e) =>
             {
-                DashInit.GenerateNavbar(NavbarControl, navbarType: NavbarType, navbarChosen: NavbarChosen, parentContent: this);
+                DashInit.GenerateNavbar(NavbarControl, navbarType: NavbarType, navbarChosen: NavbarChosen, previousWindow: PreviousWindow, parentContent: this);
                 DashInit.GenerateContent(OpenContentControl, ContentType, ContentMode, PostType);
             };
+
+            Closed += OpenContent_Closed;
+        }
+
+        // Cleanup when the window is closed
+        public void OpenContent_Closed(object sender, EventArgs e)
+        {
+            if (KillingParent)
+            {
+                PreviousWindow?.Close();
+                PreviousWindow = null;
+            }
         }
     }
 }

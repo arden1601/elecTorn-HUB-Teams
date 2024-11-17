@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "6MNY29NxBaE=",
+  "dgSpecHash": "q6F6HCoQO9Q=",
   "success": true,
   "projectFilePath": "D:\\Files\\UGM\\MatKul\\Sem_V\\JunPro\\elecTornHub_WPFBased\\elecTornHub_WPFBased\\elecTornHub_WPFBased.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\yitzh\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\yitzh\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.0\\microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\yitzh\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\yitzh\\.nuget\\packages\\npgsql\\8.0.5\\npgsql.8.0.5.nupkg.sha512"
   ],
   "logs": []

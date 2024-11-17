@@ -31,7 +31,6 @@ namespace elecTornHub_WPFBased.Components
 
         // Create a previous page that could be a SearchDash or OpenContent
         private SearchDash previousPage = null;
-        private OpenContent previousContent = null;
 
         public SearchDash PreviousPage
         {
@@ -39,14 +38,8 @@ namespace elecTornHub_WPFBased.Components
             set { previousPage = value; }
         }
 
-        public OpenContent PreviousContent
-        {
-            get { return previousContent; }
-            set { previousContent = value; }
-        }
-
-
         private SearchDash parentDash;
+        private OpenContent parentContent;
 
         public SearchDash ParentDash
         {
@@ -54,40 +47,23 @@ namespace elecTornHub_WPFBased.Components
             set { parentDash = value; }
         }
 
-        private OpenContent parentContent;
-
         public OpenContent ParentContent
         {
             get { return parentContent; }
             set { parentContent = value; }
         }
 
-        // Function to close current parent page or content
-        private void CloseParent()
-        {
-            if (parentDash != null)
-            {
-                parentDash.Hide();
-            }
-            else if (parentContent != null)
-            {
-                parentContent.Visibility = Visibility.Hidden;
-            }
-        }
-
         // Function to re-open previous page or content by checking which one is not null
-        private void ReturnToPrevious()
+        private void ReturnToPrevious(Enumerations.Navbar.NavbarChosen navbarChosen, Enumerations.CustomGrid.CustomGridMode navbarMode, Enumerations.ChoiceCard.ChoiceCardType cardType)
         {
-            if (previousPage != null)
-            {
-                previousPage.Show();
-                CloseParent();
-            }
-            else if (previousContent != null)
-            {
-                previousContent.Show();
-                CloseParent();
-            }
+            previousPage.NavbarChosen = navbarChosen;
+            previousPage.ContentType = cardType;
+            previousPage.ContentMode = navbarMode;
+            previousPage.RegenerateContents();
+
+            parentContent.KillingParent = false;
+            parentContent.Close();
+            previousPage.Show();
         }
 
         private void onClickUserNavBeli(object sender, RoutedEventArgs e)
@@ -100,19 +76,19 @@ namespace elecTornHub_WPFBased.Components
                 parentDash.ContentType = Enumerations.ChoiceCard.ChoiceCardType.Product;
                 parentDash.ContentMode = Enumerations.CustomGrid.CustomGridMode.Beli;
                 parentDash.RegenerateContents();
+
+                OnChosenChanged(Chosen);
             }
             // If parentContent not null
-            else if (parentContent != null)
+            else if (previousPage != null)
             {
                 // Open back previous content
-                /*ReturnToPrevious();*/
-
-                parentContent.ContentType = Enumerations.OpenContent.OpenContentBodyType.Buyer;
-                parentContent.ContentMode = Enumerations.OpenContent.OpenContentBodyMode.Product;
-                parentContent.RegenerateContents();
+                ReturnToPrevious(
+                    navbarChosen: Enumerations.Navbar.NavbarChosen.Beli,
+                    cardType: Enumerations.ChoiceCard.ChoiceCardType.Product,
+                    navbarMode: Enumerations.CustomGrid.CustomGridMode.Beli
+                );
             }
-
-            OnChosenChanged(Chosen);
         }
 
         private void onClickUserNavJual(object sender, RoutedEventArgs e)
@@ -125,16 +101,19 @@ namespace elecTornHub_WPFBased.Components
                 parentDash.ContentType = Enumerations.ChoiceCard.ChoiceCardType.Product;
                 parentDash.ContentMode = Enumerations.CustomGrid.CustomGridMode.Jual;
                 parentDash.RegenerateContents();
+
+                OnChosenChanged(Chosen);
             }
             // If parentContent not null
             else if (parentContent != null)
             {
-                parentContent.ContentType = Enumerations.OpenContent.OpenContentBodyType.Seller;
-                parentContent.ContentMode = Enumerations.OpenContent.OpenContentBodyMode.Product;
-                parentContent.RegenerateContents();
+                // Open back previous content
+                ReturnToPrevious(
+                    navbarChosen: Enumerations.Navbar.NavbarChosen.Jual,
+                    cardType: Enumerations.ChoiceCard.ChoiceCardType.Product,
+                    navbarMode: Enumerations.CustomGrid.CustomGridMode.Jual
+                );
             }
-
-            OnChosenChanged(Chosen);
         }
 
         private void onClickUserNavPost(object sender, RoutedEventArgs e)
@@ -146,16 +125,19 @@ namespace elecTornHub_WPFBased.Components
             {
                 parentDash.ContentType = Enumerations.ChoiceCard.ChoiceCardType.Post;
                 parentDash.RegenerateContents();
+
+                OnChosenChanged(Chosen);
             }
             // If parentContent not null
             else if (parentContent != null)
             {
-                parentContent.ContentType = Enumerations.OpenContent.OpenContentBodyType.Buyer;
-                parentContent.ContentMode = Enumerations.OpenContent.OpenContentBodyMode.Post;
-                parentContent.RegenerateContents();
+                // Open back previous content
+                ReturnToPrevious(
+                    navbarChosen: Enumerations.Navbar.NavbarChosen.Post,
+                    cardType: Enumerations.ChoiceCard.ChoiceCardType.Post,
+                    navbarMode: Enumerations.CustomGrid.CustomGridMode.Default
+                );
             }
-
-            OnChosenChanged(Chosen);
         }
 
         private void onClickAdminNavPost(object sender, RoutedEventArgs e)
@@ -167,15 +149,19 @@ namespace elecTornHub_WPFBased.Components
             {
                 parentDash.ContentType = Enumerations.ChoiceCard.ChoiceCardType.Post;
                 parentDash.RegenerateContents();
+
+                OnChosenChanged(Chosen);
             }
             // If parentContent not null
             else if (parentContent != null)
             {
-                parentContent.ContentMode = Enumerations.OpenContent.OpenContentBodyMode.Post;
-                parentContent.RegenerateContents();
+                // Open back previous content
+                ReturnToPrevious(
+                    navbarChosen: Enumerations.Navbar.NavbarChosen.Post,
+                    cardType: Enumerations.ChoiceCard.ChoiceCardType.Post,
+                    navbarMode: Enumerations.CustomGrid.CustomGridMode.Default
+                );
             }
-
-            OnChosenChanged(Chosen);
         }
 
         private void onClickAdminNavItem(object sender, RoutedEventArgs e)
@@ -187,15 +173,19 @@ namespace elecTornHub_WPFBased.Components
             {
                 parentDash.ContentType = Enumerations.ChoiceCard.ChoiceCardType.Product;
                 parentDash.RegenerateContents();
+
+                OnChosenChanged(Chosen);
             }
             // If parentContent not null
             else if (parentContent != null)
             {
-                parentContent.ContentMode = Enumerations.OpenContent.OpenContentBodyMode.Product;
-                parentContent.RegenerateContents();
+                // Open back previous content
+                ReturnToPrevious(
+                    navbarChosen: Enumerations.Navbar.NavbarChosen.Item,
+                    cardType: Enumerations.ChoiceCard.ChoiceCardType.Product,
+                    navbarMode: Enumerations.CustomGrid.CustomGridMode.Default
+                );
             }
-
-            OnChosenChanged(Chosen);
         }
 
         public Navbar()

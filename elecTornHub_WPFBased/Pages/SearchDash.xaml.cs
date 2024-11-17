@@ -69,7 +69,7 @@ namespace elecTornHub_WPFBased.Pages
                 CardGrids.ContentType = ContentType;
 
                 DashInit.GenerateNavbar(NavbarControl, navbarType: NavbarType, navbarChosen: NavbarChosen, parentSearch: this);
-                DashInit.GenerateChoiceCards(CardGrids, GridType: ContentType, GridMode: ContentMode, parent:this, count: 10);
+                DashInit.GenerateChoiceCards(CardGrids, GridType: ContentType, GridMode: ContentMode, parent: this, count: 10);
                 DashInit.UpdateAddButtonVisibility(SearchDash_AddButton, GridType: ContentType, GridMode: ContentMode);
             };
         }

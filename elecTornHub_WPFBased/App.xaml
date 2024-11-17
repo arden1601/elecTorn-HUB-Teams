@@ -4,7 +4,8 @@
              xmlns:local="clr-namespace:elecTornHub_WPFBased"
              xmlns:localExtras="clr-namespace:elecTornHub_WPFBased.Extras"
              xmlns:localComponents="clr-namespace:elecTornHub_WPFBased.Components"
-             StartupUri="Pages/Login.xaml"> 
+             StartupUri="Pages/Login.xaml"
+             > 
     <Application.Resources>
         <ResourceDictionary>
             <Style x:Key="NoHoverButtonStyle" TargetType="Button">

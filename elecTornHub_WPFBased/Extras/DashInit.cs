@@ -10,22 +10,16 @@ namespace elecTornHub_WPFBased.Extras
 {
     public class DashInit
     {
-        public static void GenerateNavbar(Grid NavbarControl, Enumerations.Navbar.NavbarType navbarType = Enumerations.Navbar.NavbarType.Default, Enumerations.Navbar.NavbarChosen navbarChosen = Enumerations.Navbar.NavbarChosen.Default, SearchDash parentSearch = null, OpenContent parentContent = null)
+        public static void GenerateNavbar(Grid NavbarControl, Enumerations.Navbar.NavbarType navbarType = Enumerations.Navbar.NavbarType.Default, Enumerations.Navbar.NavbarChosen navbarChosen = Enumerations.Navbar.NavbarChosen.Default, SearchDash parentSearch = null, OpenContent parentContent = null, SearchDash previousWindow = null)
         {
             NavbarControl.Children.Clear();
             var navbar = new Navbar { 
                 NavbarType = navbarType,
-                NavbarChosen = navbarChosen
+                NavbarChosen = navbarChosen,
+                ParentDash = parentSearch,
+                ParentContent = parentContent,
+                PreviousPage = previousWindow
             };
-
-            if (parentSearch != null)
-            {
-                navbar.ParentDash = parentSearch;
-            }
-            else if (parentContent != null)
-            {
-                navbar.ParentContent = parentContent;
-            }
 
             NavbarControl.Children.Add(navbar);
         }
@@ -39,7 +33,7 @@ namespace elecTornHub_WPFBased.Extras
             }
         }
 
-        public static void GenerateChoiceCards(CustomGrid CardGrids, Enumerations.ChoiceCard.ChoiceCardType GridType, Enumerations.CustomGrid.CustomGridMode GridMode, Window parent, int count)
+        public static void GenerateChoiceCards(CustomGrid CardGrids, Enumerations.ChoiceCard.ChoiceCardType GridType, Enumerations.CustomGrid.CustomGridMode GridMode, SearchDash parent, int count)
         {
             // Use StackPanel for a simpler vertical layout in a scrollable container
             CardGrids.Children.Clear();
@@ -76,14 +70,23 @@ namespace elecTornHub_WPFBased.Extras
                             var newContent = new OpenContent
                             {
                                 PreviousWindow = parent,
-                                ContentType = Enumerations.OpenContent.OpenContentBodyType.Buyer,
-                                ContentMode = Enumerations.OpenContent.OpenContentBodyMode.Product,
-                                NavbarChosen = Enumerations.Navbar.NavbarChosen.Beli,
                                 NavbarType = Enumerations.Navbar.NavbarType.User
                             };
 
+                            if (GridMode == Enumerations.CustomGrid.CustomGridMode.Jual)
+                            {
+                                newContent.ContentType = Enumerations.OpenContent.OpenContentBodyType.Seller;
+                                newContent.ContentMode = Enumerations.OpenContent.OpenContentBodyMode.Product;
+                                newContent.NavbarChosen = Enumerations.Navbar.NavbarChosen.Jual;
+                            } else if (GridMode == Enumerations.CustomGrid.CustomGridMode.Beli)
+                            {
+                                newContent.ContentType = Enumerations.OpenContent.OpenContentBodyType.Buyer;
+                                newContent.ContentMode = Enumerations.OpenContent.OpenContentBodyMode.Product;
+                                newContent.NavbarChosen = Enumerations.Navbar.NavbarChosen.Beli;
+                            }
+
                             newContent.Show();
-                            parent.Close();
+                            parent.Hide();
 
                         };
                     }
@@ -101,7 +104,7 @@ namespace elecTornHub_WPFBased.Extras
                             };
 
                             newContent.Show();
-                            parent.Close();
+                            parent.Hide();
                         };
                     }
 

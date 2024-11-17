@@ -73,7 +73,7 @@
                             Background="Transparent"
                             Padding="6,5"
                         />
-                        
+
                     </Border>
 
                     <TextBlock
@@ -393,7 +393,7 @@
                         <Grid x:Name="OpenContentBody_PostBody">
                             <!-- Here -->
                         </Grid>
-                        
+
                         <!-- Comment Group -->
                         <StackPanel
                             Orientation="Vertical"
