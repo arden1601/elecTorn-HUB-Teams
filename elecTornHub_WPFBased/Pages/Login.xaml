@@ -20,8 +20,12 @@ WindowStyle="SingleBorderWindow"
         Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
         HorizontalAlignment="Center" VerticalAlignment="Center" Background="{x:Static localExtras:Variables.ColorOffWhite}">
         <Grid
-            Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=2.3}"
-            Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=3}"
+            Height="{Binding Source={x:Static localExtras:Variables.ScreenHeight}, 
+                           Converter={StaticResource DivisionConverter}, 
+                           ConverterParameter=3}"
+            Width="{Binding Source={x:Static localExtras:Variables.ScreenWidth}, 
+                           Converter={StaticResource DivisionConverter}, 
+                           ConverterParameter=2.3}"
             HorizontalAlignment="Center" VerticalAlignment="Center" Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
             
             >

@@ -25,7 +25,7 @@
                 </Setter>
             </Style>
         
-            <localExtras:GridSizeConverter x:Key="GridSizeConverter"/>
+            <localExtras:DivisionConverter x:Key="DivisionConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

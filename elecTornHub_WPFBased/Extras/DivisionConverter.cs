@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 
 namespace elecTornHub_WPFBased.Extras
 {
-    public class GridSizeConverter : IValueConverter
+    public class DivisionConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is double gridSize && parameter is string divisorStr && double.TryParse(divisorStr, out double divisor))
+            if (value is double number && parameter is double divisor)
             {
-                return gridSize / divisor;
+                return number / divisor;
             }
             return value;
         }

@@ -107,7 +107,9 @@ Foreground="{x:Static localExtras:Variables.ColorAccentOrange}" FontWeight="Bold
                                         />
 
                 <Grid Height="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Right"
-                      Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1}"
+                      Width="{Binding Source={x:Static localExtras:Variables.ScreenWidth}, 
+                           Converter={StaticResource DivisionConverter}, 
+                           ConverterParameter=1}"
                       >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -140,7 +142,9 @@ Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
                 Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
                 TextWrapping="Wrap"
                 Width="Auto"
-                                MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.9}"
+                                MaxWidth="{Binding Source={x:Static localExtras:Variables.ScreenWidth}, 
+                           Converter={StaticResource DivisionConverter}, 
+                           ConverterParameter=1.9}"
                 />
                         </ScrollViewer>
                     </Border>
@@ -268,8 +272,12 @@ Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="Bold"/>
                         <Image
                             x:Name="PostContent_Image"
        Source="/elecTornHub_WPFBased;component/Resources/Images/dummy_post_long.png" 
-                           MaxHeight="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=2}"
-                           MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=2}"
+                            MaxHeight="{Binding Source={x:Static localExtras:Variables.ScreenHeight}, 
+                                   Converter={StaticResource DivisionConverter}, 
+                                   ConverterParameter=2}"
+                            MaxWidth="{Binding Source={x:Static localExtras:Variables.ScreenWidth}, 
+                                   Converter={StaticResource DivisionConverter}, 
+                                   ConverterParameter=2}"
                             Height="Auto"
                             Width="Auto"
                            Margin="0,10"/>

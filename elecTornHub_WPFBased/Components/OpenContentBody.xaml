@@ -6,8 +6,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:localExtras="clr-namespace:elecTornHub_WPFBased.Extras"
     xmlns:localComponents="clr-namespace:elecTornHub_WPFBased.Components"
-    Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.05}"
-    Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.05}"
+    Height="{Binding Source={x:Static localExtras:Variables.ScreenHeight}, 
+                           Converter={StaticResource DivisionConverter}, 
+                           ConverterParameter=1.05}"
+    Width="{Binding Source={x:Static localExtras:Variables.ScreenWidth}, 
+                           Converter={StaticResource DivisionConverter}, 
+                           ConverterParameter=1.05}"
 >
     <Border
         x:Name="OpenContentBody_BorderParent"
@@ -99,8 +103,12 @@
                             VerticalScrollBarVisibility="Auto"
                             HorizontalScrollBarVisibility="Disabled"
                             Padding="0,0,5,0"
-                            Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.9}"
-                            Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1}"
+                            Height="{Binding Source={x:Static localExtras:Variables.ScreenHeight}, 
+                                   Converter={StaticResource DivisionConverter}, 
+                                   ConverterParameter=1.9}"
+                            Width="{Binding Source={x:Static localExtras:Variables.ScreenWidth}, 
+                                   Converter={StaticResource DivisionConverter}, 
+                                   ConverterParameter=1}"
                         >
                             <TextBlock
                                 HorizontalAlignment="Stretch"
@@ -131,8 +139,12 @@
                         <ScrollViewer
                             VerticalScrollBarVisibility="Auto"
                             HorizontalScrollBarVisibility="Disabled"
-                            Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.9}"
-                            Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1}"
+                            Height="{Binding Source={x:Static localExtras:Variables.ScreenHeight}, 
+                                   Converter={StaticResource DivisionConverter}, 
+                                   ConverterParameter=1.9}"
+                            Width="{Binding Source={x:Static localExtras:Variables.ScreenWidth}, 
+                                   Converter={StaticResource DivisionConverter}, 
+                                   ConverterParameter=1}"
                             Padding="6,5,6,5"
                             Margin="0,0,5,0"
                         >
@@ -319,7 +331,9 @@
                             Grid.Column="1"
                             Width="Auto"
                             Margin="20,0,0,0"
-                            Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1}"
+                            Height="{Binding Source={x:Static localExtras:Variables.ScreenHeight}, 
+                                   Converter={StaticResource DivisionConverter}, 
+                                   ConverterParameter=1}"
                             Orientation="Vertical"
                             x:Name="OpenContentBody_ReportTab"
                             VerticalAlignment="Bottom"
@@ -346,8 +360,12 @@
                                 <ScrollViewer
                                     VerticalScrollBarVisibility="Auto"
                                     HorizontalScrollBarVisibility="Disabled"
-                                    Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.6}"
-                                    Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1}"
+                                    Height="{Binding Source={x:Static localExtras:Variables.ScreenHeight}, 
+                                           Converter={StaticResource DivisionConverter}, 
+                                           ConverterParameter=1.6}"
+                                    Width="{Binding Source={x:Static localExtras:Variables.ScreenWidth}, 
+                                           Converter={StaticResource DivisionConverter}, 
+                                           ConverterParameter=1}"
                                     x:Name="OpenContentBody_ReportDesc"
                                     VerticalAlignment="Bottom"
                                     Padding="2,4,4,4"
@@ -378,7 +396,9 @@
                 Orientation="Vertical"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
-                Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Border}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1}"
+                Height="{Binding Source={x:Static localExtras:Variables.ScreenHeight}, 
+                       Converter={StaticResource DivisionConverter}, 
+                       ConverterParameter=1}"
             >
                 <ScrollViewer
                     Margin="10"
@@ -386,7 +406,9 @@
                     HorizontalAlignment="Center"
                     VerticalScrollBarVisibility="Visible"
                     HorizontalScrollBarVisibility="Disabled"
-                    Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.1}"
+                    Height="{Binding Source={x:Static localExtras:Variables.ScreenHeight}, 
+                               Converter={StaticResource DivisionConverter}, 
+                               ConverterParameter=1.1}"
                 >
                     <StackPanel Orientation="Vertical">
                         <!-- Post -->
@@ -434,7 +456,9 @@
                                         Margin="10, 0"
                                         BorderBrush="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
                                         Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
-                                        Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}, Converter={StaticResource GridSizeConverter}, ConverterParameter=1.194}"
+                                        Width="{Binding Source={x:Static localExtras:Variables.ScreenWidth}, 
+                                                Converter={StaticResource DivisionConverter}, 
+                                                ConverterParameter=1.194}"
                                     >
                                         <Border.Effect>
                                             <DropShadowEffect
