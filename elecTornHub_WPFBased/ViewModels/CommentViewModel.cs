@@ -20,16 +20,8 @@ namespace elecTornHub_WPFBased.ViewModels
                 postId: "lol",
                 authorId: new User(
                     username: "lol",
-                    fullName: poster,
-                    email: "lol",
                     password: "lol",
-                    dateOfBirth: "lol",
-                    phoneNumber: "lol",
-                    address: "lol",
-                    city: "lol",
-                    state: "lol",
-                    zipCode: "lol",
-                    country: "lol"
+                    uuid: "lalala"
                 ),
                 content: content,
                 title: "",
@@ -41,12 +33,12 @@ namespace elecTornHub_WPFBased.ViewModels
         // Property to get and set the title from the Comment data model
         public string Poster
         {
-            get => _comment.AuthorId.FullName;
+            get => _comment.AuthorId.Username;
             set
             {
-                if (_comment.AuthorId.FullName != value)
+                if (_comment.AuthorId.Username != value)
                 {
-                    _comment.AuthorId.FullName = value;
+                    _comment.AuthorId.Username = value;
                     OnPropertyChanged(nameof(Poster));
                 }
             }

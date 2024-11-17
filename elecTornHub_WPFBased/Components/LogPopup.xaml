@@ -75,7 +75,7 @@
                                      Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
                                      BorderThickness="0"
                                      Background="Transparent"
-                                     Padding="6,5" />
+                                     Padding="6,5" TextChanged="LogPopup_UsernameValue_TextChanged" />
                         </Border>
                     </StackPanel>
 

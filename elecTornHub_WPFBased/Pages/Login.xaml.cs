@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Npgsql;
+using elecTornHub_WPFBased.Classes;
 
 namespace elecTornHub_WPFBased.Pages
 {
@@ -63,9 +64,14 @@ namespace elecTornHub_WPFBased.Pages
             }
         }*/
 
-        public void CheckLogin()
+        public async void CheckLogin()
         {
-            if (LogPopupControl.LogPopup_UsernameValue.Text == "Lorem" && LogPopupControl.LogPopup_PasswordValue.Password == "Ipsum")
+            string uname = LogPopupControl.LogPopup_UsernameValue.Text;
+            string pwd = LogPopupControl.LogPopup_PasswordValue.Password;
+
+            Accounts acc = new Accounts(uname, pwd, "");
+            bool isLogin = await acc.Login();
+            if (isLogin)
             {
                 SearchDash newDash = new SearchDash
                 {

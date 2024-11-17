@@ -1,44 +1,67 @@
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Text;
+using System.Windows;
+
 namespace elecTornHub_WPFBased.Classes;
 
 public class Accounts
 {
     public string? Username { get; set; }
     public string? Password { get; set; }
-    public string? Email { get; set; }
-    public string? PhoneNumber { get; set; }
-    public string? FullName { get; set; }
-    public string? Address { get; set; }
-    public string? City { get; set; }
-    public string? State { get; set; }
-    public string? ZipCode { get; set; }
-    public string? Country { get; set; }
-    public string? DateOfBirth { get; set; }
+
+    public string? UserUUID { get; set; }
 
     public Accounts(){
 
     }
 
-    public Accounts(string username, string password, string email, string phoneNumber, string fullName, string address, string city, string state, string zipCode, string country, string dateOfBirth)
+    public Accounts(string username, string password, string uuid)
     {
         Username = username;
         Password = password;
-        Email = email;
-        PhoneNumber = phoneNumber;
-        FullName = fullName;
-        Address = address;
-        City = city;
-        State = state;
-        ZipCode = zipCode;
-        Country = country;
-        DateOfBirth = dateOfBirth;
+        UserUUID = uuid;
+    }
+
+    public async Task<bool> Login()
+    {
+        using (HttpClient client = new HttpClient())
+        {
+            string apiUrl = "https://api-junpro.vercel.app/login";
+
+            var requestData = new
+            {
+                username = Username,
+                password = Password,
+            };
+
+            string json = JsonConvert.SerializeObject(requestData);
+
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            try
+            {
+                // Send the POST request
+                HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+
+                // Check if the response is successful
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 
     public void Register()
-    {
-        // Register the account
-    }
-
-    public void Login()
     {
         // Login the account
     }

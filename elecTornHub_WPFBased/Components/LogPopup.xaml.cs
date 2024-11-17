@@ -86,5 +86,10 @@ namespace elecTornHub_WPFBased.Components
             LogPopup_UsernameValue.Text = string.Empty;
             LogPopup_PasswordValue.Password = string.Empty;
         }
+
+        private void LogPopup_UsernameValue_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
