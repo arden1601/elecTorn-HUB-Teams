@@ -13,6 +13,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Npgsql;
 using elecTornHub_WPFBased.Classes;
+using elecTornHub_WPFBased.ViewModels;
+using Newtonsoft.Json;
 
 namespace elecTornHub_WPFBased.Pages
 {
@@ -35,6 +37,12 @@ namespace elecTornHub_WPFBased.Pages
 
         public async void CheckLogin()
         {
+            var data = await ContentViewModel.getData();
+            // Convert the list to a formatted JSON string
+            string formattedJson = JsonConvert.SerializeObject(data, Formatting.Indented);
+            MessageBox.Show(formattedJson);
+
+            return;
             string uname = LogPopupControl.LogPopup_UsernameValue.Text;
             string pwd = LogPopupControl.LogPopup_PasswordValue.Password;
 

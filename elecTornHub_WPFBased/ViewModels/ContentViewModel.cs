@@ -1,12 +1,16 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
+using System.Net.Http;
 using elecTornHub_WPFBased.Classes;
 using elecTornHub_WPFBased.Extras;
+using Newtonsoft.Json;
+
 
 namespace elecTornHub_WPFBased.ViewModels
 {
     public class ContentViewModel : INotifyPropertyChanged
     {
+        private const string uri = "https://api-junpro.vercel.app/post";
         private Post _post;
         private Products _product;
 
@@ -53,6 +57,20 @@ namespace elecTornHub_WPFBased.ViewModels
                 seller: seller
             );
             _post = null; // Explicitly set _post to null
+        }
+
+        public static async Task<List<dynamic>> getData()
+        {
+            var data = new List<dynamic>();
+            using (HttpClient httpClient = new HttpClient()) 
+            { 
+                HttpResponseMessage response = await httpClient.GetAsync(uri);
+
+                var jsonData = await response.Content.ReadAsStringAsync();
+                data = JsonConvert.DeserializeObject<List<dynamic>>(jsonData);
+                Console.WriteLine(data);
+                return data;
+            }
         }
 
         // Getter for Post and Product
