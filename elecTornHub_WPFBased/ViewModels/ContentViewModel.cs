@@ -59,20 +59,6 @@ namespace elecTornHub_WPFBased.ViewModels
             _post = null; // Explicitly set _post to null
         }
 
-        public static async Task<List<dynamic>> getData()
-        {
-            var data = new List<dynamic>();
-            using (HttpClient httpClient = new HttpClient()) 
-            { 
-                HttpResponseMessage response = await httpClient.GetAsync(uri);
-
-                var jsonData = await response.Content.ReadAsStringAsync();
-                data = JsonConvert.DeserializeObject<List<dynamic>>(jsonData);
-                Console.WriteLine(data);
-                return data;
-            }
-        }
-
         // Getter for Post and Product
         public Post Post => _post;
         public Products Product => _product;
@@ -490,6 +476,87 @@ namespace elecTornHub_WPFBased.ViewModels
 
         // CRUD Functions
         // Push One for TemporaryPosts, TemporaryProducts, TemporarySellingProducts
+        public static async Task<List<dynamic>> getData()
+        {
+            var data = new List<dynamic>();
+            using (HttpClient httpClient = new HttpClient())
+            {
+                HttpResponseMessage response = await httpClient.GetAsync(uri);
+
+                var jsonData = await response.Content.ReadAsStringAsync();
+                data = JsonConvert.DeserializeObject<List<dynamic>>(jsonData);
+                Console.WriteLine(data);
+                return data;
+            }
+        }
+
+        public static async ContentViewModel[] GetAllContent()
+        {
+            List<ContentViewModel> newData = new List<ContentViewModel>();
+
+            var data = await getData();
+
+            for (int i = 0; i < data.Count; i++)
+            {
+                // Create new ContentViewModel objects
+                User newUser = new User
+                    (
+                    username: data[i],
+                    password: data[i],
+                    uuid: data[i]
+                    );
+
+                List<CommentViewModel> newComments = new List<CommentViewModel>();
+
+                int commentSize = 10;
+                for (int j = 0; j < commentSize; j++)
+                {
+                    User newCommentor = new User
+                    (
+                        username: "",
+                        password: "",
+                        uuid: ""
+                    );
+
+                    CommentViewModel newComment = new CommentViewModel
+                    (
+                        postId: "",
+                        author: newCommentor,
+                        content: "",
+                        postDate: ""
+                    );
+
+                    newComments.Add(newComment);
+                };
+
+                CommentViewModel[] commentsArray = newComments.ToArray();
+
+                Post newPost = new Post
+                (
+                    postId: "",
+                    authorId: newUser,
+                    content: "",
+                    title: "",
+                    postDate: "",
+                    imgSrc: "",
+                    lastEdit: "",
+                    comments: commentsArray
+                );
+
+                ContentViewModel newItem = new ContentViewModel(
+                    post: newPost
+                );
+
+                // Add items to the list
+                newData.Add(newItem);
+            }
+
+            // If you still need an array, you can convert the list back to an array
+            ContentViewModel[] newArray = newData.ToArray();
+
+            return newArray;
+        }
+
         public static void PushOne(ContentViewModel[] arr, ContentViewModel item)
         {
             ContentViewModel[] newArr = new ContentViewModel[arr.Length + 1];
@@ -504,6 +571,10 @@ namespace elecTornHub_WPFBased.ViewModels
         // Delete by id for TemporaryPosts, TemporaryProducts, TemporarySellingProducts
         public static void DeleteById(ContentViewModel[] arr, string id)
         {
+            // To DB
+
+
+            // Local Data
             ContentViewModel[] newArr = new ContentViewModel[arr.Length - 1];
             int j = 0;
             for (int i = 0; i < arr.Length; i++)
