@@ -11,7 +11,7 @@ namespace elecTornHub_WPFBased.Components
     using elecTornHub_WPFBased.Extras;
     using System.Threading.Channels;
 
-    public partial class Navbar : UserControl, Interfaces.INavbarParent
+    public partial class Navbar : UserControl, Interfaces.INavbar
     {
         // Implementing INavbarParent interface
         private Enumerations.Navbar.NavbarType _navbarType;
@@ -64,6 +64,15 @@ namespace elecTornHub_WPFBased.Components
             parentContent.KillingParent = false;
             parentContent.Close();
             previousPage.Show();
+        }
+
+        public void ReturnToPrevious()
+        {
+            ReturnToPrevious(
+                navbarChosen: previousPage.NavbarChosen,
+                navbarMode: previousPage.ContentMode,
+                cardType: previousPage.ContentType
+                );
         }
 
         private void onClickUserNavBeli(object sender, RoutedEventArgs e)
