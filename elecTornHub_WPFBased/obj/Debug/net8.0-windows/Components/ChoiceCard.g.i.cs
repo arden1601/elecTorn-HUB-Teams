@@ -109,7 +109,7 @@ namespace elecTornHub_WPFBased.Components {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/elecTornHub_WPFBased;component/components/choicecard.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/elecTornHub_WPFBased;V1.0.0.0;component/components/choicecard.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Components\ChoiceCard.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
