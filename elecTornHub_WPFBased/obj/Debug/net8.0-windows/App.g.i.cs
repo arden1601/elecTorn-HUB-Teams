@@ -61,7 +61,7 @@ namespace elecTornHub_WPFBased {
             
             #line default
             #line hidden
-            System.Uri resourceLocater = new System.Uri("/elecTornHub_WPFBased;V1.0.0.0;component/app.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/elecTornHub_WPFBased;component/app.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\App.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -69,7 +69,7 @@ namespace elecTornHub_WPFBased.Components
         public void ReturnToPrevious()
         {
             ReturnToPrevious(
-                navbarChosen: previousPage.NavbarChosen,
+                navbarChosen: NavbarChosen,
                 navbarMode: previousPage.ContentMode,
                 cardType: previousPage.ContentType
                 );

@@ -490,7 +490,7 @@ namespace elecTornHub_WPFBased.ViewModels
             }
         }
 
-        public static async ContentViewModel[] GetAllContent()
+        public static async Task<ContentViewModel[]> GetAllContent()
         {
             List<ContentViewModel> newData = new List<ContentViewModel>();
 
@@ -498,32 +498,36 @@ namespace elecTornHub_WPFBased.ViewModels
 
             for (int i = 0; i < data.Count; i++)
             {
+                var selectedObj = data[i];
+
                 // Create new ContentViewModel objects
                 User newUser = new User
                     (
-                    username: data[i],
-                    password: data[i],
-                    uuid: data[i]
+                    username: selectedObj.author.username,
+                    password: "",
+                    uuid: selectedObj.author.uuid
                     );
 
                 List<CommentViewModel> newComments = new List<CommentViewModel>();
 
-                int commentSize = 10;
+                int commentSize = selectedObj.comments.Count;
                 for (int j = 0; j < commentSize; j++)
                 {
+                    var selectedComm = selectedObj.comments[j];
+
                     User newCommentor = new User
                     (
-                        username: "",
+                        username: selectedComm.author.username,
                         password: "",
-                        uuid: ""
+                        uuid: selectedComm.author.uuid
                     );
 
                     CommentViewModel newComment = new CommentViewModel
                     (
-                        postId: "",
+                        postId: selectedComm.postId,
                         author: newCommentor,
-                        content: "",
-                        postDate: ""
+                        content: selectedComm.content,
+                        postDate: selectedComm.postDate
                     );
 
                     newComments.Add(newComment);
@@ -533,13 +537,13 @@ namespace elecTornHub_WPFBased.ViewModels
 
                 Post newPost = new Post
                 (
-                    postId: "",
+                    postId: selectedObj.postId,
                     authorId: newUser,
-                    content: "",
-                    title: "",
-                    postDate: "",
-                    imgSrc: "",
-                    lastEdit: "",
+                    content: selectedObj.content,
+                    title: selectedObj.title,
+                    postDate: selectedObj.postDate,
+                    imgSrc: selectedObj.imgSrc,
+                    lastEdit: selectedObj.lastEdit,
                     comments: commentsArray
                 );
 
@@ -557,24 +561,23 @@ namespace elecTornHub_WPFBased.ViewModels
             return newArray;
         }
 
-        public static void PushOne(ContentViewModel[] arr, ContentViewModel item)
+        public static void PushOne(ContentViewModel[] arrIn, ContentViewModel item)
         {
+            var arr = arrIn;
+
             ContentViewModel[] newArr = new ContentViewModel[arr.Length + 1];
             for (int i = 0; i < arr.Length; i++)
             {
                 newArr[i] = arr[i];
             }
             newArr[arr.Length] = item;
-            arr = newArr;
         }
 
         // Delete by id for TemporaryPosts, TemporaryProducts, TemporarySellingProducts
-        public static void DeleteById(ContentViewModel[] arr, string id)
+        public static ContentViewModel[] DeleteById(ContentViewModel[] arrIn, string id)
         {
-            // To DB
+            var arr = arrIn;
 
-
-            // Local Data
             ContentViewModel[] newArr = new ContentViewModel[arr.Length - 1];
             int j = 0;
             for (int i = 0; i < arr.Length; i++)
@@ -590,12 +593,14 @@ namespace elecTornHub_WPFBased.ViewModels
                     j++;
                 }
             }
-            arr = newArr;
+            return newArr;
         }
 
         // Update by id for TemporaryPosts, TemporaryProducts, TemporarySellingProducts
-        public static void UpdateById(ContentViewModel[] arr, string id, ContentViewModel item)
+        public static ContentViewModel[] UpdateById(ContentViewModel[] arrIn, string id, ContentViewModel item)
         {
+            var arr = arrIn;
+
             for (int i = 0; i < arr.Length; i++)
             {
                 if (arr[i].Post != null && arr[i].Post.PostId == id)
@@ -607,6 +612,8 @@ namespace elecTornHub_WPFBased.ViewModels
                     arr[i] = item;
                 }
             }
+
+            return arr;
         }
 
         // Get by id for TemporaryPosts, TemporaryProducts, TemporarySellingProducts

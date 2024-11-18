@@ -80,8 +80,8 @@
                             if (viewModel.Post_Id != null)
                             {
                                 string selectedId = viewModel.ProductCard_Id;
-                                ContentViewModel.DeleteById(
-                                    arr: ContentViewModel.TemporarySellingProductsMod,
+                                ContentViewModel.TemporarySellingProductsMod = ContentViewModel.DeleteById(
+                                    arrIn: ContentViewModel.TemporarySellingProductsMod,
                                     id: selectedId
                                 );
 

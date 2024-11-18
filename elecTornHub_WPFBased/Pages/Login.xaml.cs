@@ -37,12 +37,6 @@ namespace elecTornHub_WPFBased.Pages
 
         public async void CheckLogin()
         {
-            var data = await ContentViewModel.getData();
-            // Convert the list to a formatted JSON string
-            string formattedJson = JsonConvert.SerializeObject(data, Formatting.Indented);
-            MessageBox.Show(formattedJson);
-
-            return;
             string uname = LogPopupControl.LogPopup_UsernameValue.Text;
             string pwd = LogPopupControl.LogPopup_PasswordValue.Password;
 
@@ -50,7 +44,8 @@ namespace elecTornHub_WPFBased.Pages
             bool isLogin = await acc.Login();
             if (isLogin && acc.Role != "admin")
             {
-                Console.WriteLine(acc.Role);
+                ContentViewModel.TemporaryPostsMod = await ContentViewModel.GetAllContent();
+
                 SearchDash newDash = new SearchDash
                 {
                     PreviousWindow = this,
