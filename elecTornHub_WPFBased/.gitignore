@@ -346,5 +346,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-/obj/
-/bin/
+# Obj Bin
+obj
+bin
