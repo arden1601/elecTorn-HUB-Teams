@@ -1,16 +1,20 @@
 ﻿namespace elecTornHub_WPFBased.Components
 {
     using elecTornHub_WPFBased.Extras;
+    using elecTornHub_WPFBased.Pages;
     using elecTornHub_WPFBased.ViewModels;
+    using System.Net.Mime;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Media;
 
     public partial class OpenContentBody : UserControl, Interfaces.IOpenContent
     {
+
         // Implement IOpenContent interface
         private Enumerations.OpenContent.OpenContentBodyType _openContentType;
         private Enumerations.OpenContent.OpenContentBodyMode _openContentMode;
+        private OpenContent _parentContent;
 
         public Enumerations.OpenContent.OpenContentBodyType ContentType
         {
@@ -22,6 +26,12 @@
         {
             get { return _openContentMode; }
             set { _openContentMode = value; OnModeChanged(value); }
+        }
+
+        public OpenContent parentContent
+        {
+            get { return _parentContent; }
+            set { _parentContent = value; }
         }
 
         private void OnTypeChanged(Enumerations.OpenContent.OpenContentBodyType newValue)
@@ -47,10 +57,47 @@
                 case Enumerations.OpenContent.OpenContentBodyType.Seller:
                     OpenContentBody_Seller.Visibility = Visibility.Collapsed;
                     OpenContentBody_Stock.Visibility = Visibility.Collapsed;
+                    
+                    OpenContentBody_Button1.Visibility = Visibility.Visible;
+                    OpenContentBody_Button1.Width = double.NaN;
+                    OpenContentBody_Button1_Button.Content = "Verifikasi Perubahan";
+                    OpenContentBody_Button1.Margin = new Thickness(0, 0, 10, 0);
+
+                    OpenContentBody_Button1_Button.Click += (s, e) =>
+                    {
+                        /*MessageBox.Show($"New DataContext type: {DataContext.GetType().FullName}");*/
+                    };
 
                     OpenContentBody_Button3.Visibility = Visibility.Visible;
                     OpenContentBody_Button3.Width = double.NaN;
                     OpenContentBody_Button3_Button.Content = "Hapus Jualan";
+
+                    OpenContentBody_Button3_Button.Click += (s, e) =>
+                    {
+                        // Access the DataContext directly inside the handler
+                        if (DataContext is ContentViewModel viewModel)
+                        {
+                            if (viewModel.Post_Id != null)
+                            {
+                                string selectedId = viewModel.ProductCard_Id;
+                                ContentViewModel.DeleteById(
+                                    arr: ContentViewModel.TemporarySellingProductsMod,
+                                    id: selectedId
+                                );
+
+                                parentContent.NavbarControlMod.ReturnToPrevious();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Post_Id is null or inaccessible.");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("DataContext is not of type ContentViewModel.");
+                        }
+                    };
+
 
                     OpenContentBody_Counter.Visibility = Visibility.Visible;
                     OpenContentBody_Counter.Width = double.NaN;
@@ -112,11 +159,15 @@
             }
         }
 
-        public OpenContentBody()
+        public OpenContentBody(OpenContent parentContent, Enumerations.OpenContent.OpenContentBodyType contentType, Enumerations.OpenContent.OpenContentBodyMode contentMode, ContentViewModel dataContext)
         {
             InitializeComponent();
             Initialize();
             DataContextChanged += OnDataContextChanged;
+            this.parentContent = parentContent;
+            ContentType = contentType;
+            ContentMode = contentMode;
+            DataContext = dataContext;
         }
 
         private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)

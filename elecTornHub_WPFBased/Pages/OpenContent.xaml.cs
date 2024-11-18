@@ -63,7 +63,8 @@ namespace elecTornHub_WPFBased.Pages
                 ContentType: ContentType,
                 ContentMode: ContentMode,
                 PostType: PostType,
-                DataContext: dataContext
+                DataContext: DataContext,
+                parentContent: this
             );
         }
 
@@ -77,16 +78,38 @@ namespace elecTornHub_WPFBased.Pages
             set { _killingParent = value; }
         }
 
-        public ContentViewModel dataContext { get; set; }
+        public ContentViewModel DataContext { get; set; }
+
+        // Navbar Accessor
+        private Navbar _navbar = null;
+
+        public Navbar NavbarControlMod
+        {
+            get { return _navbar; }
+            set { _navbar = value; }
+        }
 
         public OpenContent()
         {
             InitializeComponent();
-            DataContext = this;
             Loaded += (s, e) =>
             {
-                DashInit.GenerateNavbar(NavbarControl, navbarType: NavbarType, navbarChosen: NavbarChosen, previousWindow: PreviousWindow, parentContent: this);
-                DashInit.GenerateContent(OpenContentControl, ContentType, ContentMode, PostType, dataContext);
+                NavbarControlMod = DashInit.GenerateNavbar(
+                    NavbarControl: NavbarControl,
+                    navbarType: NavbarType,
+                    navbarChosen: NavbarChosen,
+                    previousWindow: PreviousWindow,
+                    parentContent: this
+                    );
+                /*DashInit.GenerateContent(OpenContentControl, ContentType, ContentMode, PostType, DataContext);*/
+                DashInit.GenerateContent(
+                    parentGrid: OpenContentControl,
+                    ContentType: ContentType,
+                    ContentMode: ContentMode,
+                    PostType: PostType,
+                    DataContext: DataContext,
+                    parentContent: this
+                    );
             };
 
             Closed += OpenContent_Closed;

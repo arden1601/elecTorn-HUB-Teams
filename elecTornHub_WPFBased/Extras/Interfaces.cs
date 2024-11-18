@@ -1,4 +1,5 @@
 ﻿using elecTornHub_WPFBased.Components;
+using elecTornHub_WPFBased.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,15 @@ namespace elecTornHub_WPFBased.Extras
 {
     public class Interfaces
     {
-        public interface INavbarParent
+        public interface INavbar
         {
             Enumerations.Navbar.NavbarType NavbarType { get; }
             Enumerations.Navbar.NavbarChosen NavbarChosen { get; }
+        }
+
+        public interface INavbarParent : INavbar
+        {
+            Navbar NavbarControlMod { get; set; }
         }
 
         public interface IPostContent

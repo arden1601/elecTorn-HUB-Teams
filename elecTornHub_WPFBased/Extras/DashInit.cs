@@ -12,10 +12,10 @@ namespace elecTornHub_WPFBased.Extras
 {
     public class DashInit
     {
-        public static void GenerateNavbar(Grid NavbarControl, Enumerations.Navbar.NavbarType navbarType = Enumerations.Navbar.NavbarType.Default, Enumerations.Navbar.NavbarChosen navbarChosen = Enumerations.Navbar.NavbarChosen.Default, SearchDash parentSearch = null, OpenContent parentContent = null, SearchDash previousWindow = null)
+        public static Navbar GenerateNavbar(Grid NavbarControl, Enumerations.Navbar.NavbarType navbarType = Enumerations.Navbar.NavbarType.Default, Enumerations.Navbar.NavbarChosen navbarChosen = Enumerations.Navbar.NavbarChosen.Default, SearchDash parentSearch = null, OpenContent parentContent = null, SearchDash previousWindow = null)
         {
             NavbarControl.Children.Clear();
-            var navbar = new Navbar { 
+            var navbarControlMod = new Navbar { 
                 NavbarType = navbarType,
                 NavbarChosen = navbarChosen,
                 ParentDash = parentSearch,
@@ -23,7 +23,8 @@ namespace elecTornHub_WPFBased.Extras
                 PreviousPage = previousWindow
             };
 
-            NavbarControl.Children.Add(navbar);
+            NavbarControl.Children.Add(navbarControlMod);
+            return navbarControlMod;
         }
 
         public static void UpdateNavbar(Grid NavbarControl, Enumerations.Navbar.NavbarType NavbarType, Enumerations.Navbar.NavbarChosen NavbarChosen)
@@ -76,7 +77,7 @@ namespace elecTornHub_WPFBased.Extras
                             {
                                 PreviousWindow = parent,
                                 NavbarType = Enumerations.Navbar.NavbarType.User,
-                                dataContext = selectedContext
+                                DataContext = selectedContext
                             };
 
                             if (GridMode == Enumerations.CustomGrid.CustomGridMode.Jual)
@@ -107,7 +108,7 @@ namespace elecTornHub_WPFBased.Extras
                                 ContentMode = Enumerations.OpenContent.OpenContentBodyMode.Post,
                                 NavbarChosen = Enumerations.Navbar.NavbarChosen.Post,
                                 NavbarType = Enumerations.Navbar.NavbarType.User,
-                                dataContext = selectedContext
+                                DataContext = selectedContext
                             };
 
                             newContent.Show();
@@ -130,15 +131,15 @@ namespace elecTornHub_WPFBased.Extras
             CardGrids.UpdateLayout();
         }
 
-        public static void GenerateContent(Grid parentGrid, Enumerations.OpenContent.OpenContentBodyType ContentType, Enumerations.OpenContent.OpenContentBodyMode ContentMode, Enumerations.PostContent.PostContentType PostType, ContentViewModel DataContext)
+        public static void GenerateContent(Grid parentGrid, Enumerations.OpenContent.OpenContentBodyType ContentType, Enumerations.OpenContent.OpenContentBodyMode ContentMode, Enumerations.PostContent.PostContentType PostType, ContentViewModel DataContext, OpenContent parentContent)
         {
             parentGrid.Children.Clear();
-            var content = new OpenContentBody
-            {
-                ContentType = ContentType,
-                ContentMode = ContentMode,
-                DataContext = DataContext
-            };
+            var content = new OpenContentBody(
+                parentContent: parentContent,
+                contentType: ContentType,
+                contentMode: ContentMode,
+                dataContext: DataContext
+            );
 
             content.OpenContentBody_PostBody.Children.Clear();
 
