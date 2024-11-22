@@ -1,3 +1,8 @@
+using elecTornHub_WPFBased.Extras;
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Text;
+
 namespace elecTornHub_WPFBased.Classes
 {
     // Make Comment class public
@@ -45,6 +50,41 @@ namespace elecTornHub_WPFBased.Classes
         {
             get { return _destinationPostId; }
             set { _destinationPostId = value; }
+        }
+
+        public async Task PostCommentAsync(string endpointUrl)
+        {
+            var requestBody = new
+            {
+                content = this.content,
+                postId = this.postId
+            };
+
+            using (HttpClient httpClient = new HttpClient())
+            {
+                // Serialize the request body to JSON
+                var jsonContent = new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json");
+
+                try
+                {
+                    // Send POST request
+                    HttpResponseMessage response = await httpClient.PostAsync(endpointUrl, jsonContent);
+
+                    // Check if the response is successful
+                    response.EnsureSuccessStatusCode();
+
+                    // Read response content
+                    var jsonData = await response.Content.ReadAsStringAsync();
+
+                    // Deserialize response if necessary
+                    var data = JsonConvert.DeserializeObject<dynamic>(jsonData);
+                    Console.WriteLine($"Response: {data}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"An error occurred: {ex.Message}");
+                }
+            }
         }
     }
 }

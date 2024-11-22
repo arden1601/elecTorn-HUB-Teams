@@ -490,9 +490,9 @@ namespace elecTornHub_WPFBased.ViewModels
                 // Create new ContentViewModel objects
                 User newUser = new User
                     (
-                     username: selectedObj.author.username.ToString(),
-                    password: "",
-                    uuid: selectedObj.author.uuid.ToString()
+                         username: selectedObj.author.username.ToString(),
+                         password: "",
+                         uuid: selectedObj.author.uuid.ToString()
                     );
 
                 List<CommentViewModel> newComments = new List<CommentViewModel>();
@@ -549,6 +549,37 @@ namespace elecTornHub_WPFBased.ViewModels
 
             return newArray;
         }
+
+        //public static async Task<ContentViewModel[]> getAllProduct()
+        //{
+        //    var products = await Products.getAllProduct(); // Assuming this fetches a list of products
+        //    List<ContentViewModel> newData = new List<ContentViewModel>();
+
+        //    foreach (var product in products)
+        //    {
+        //        var contentViewModel = new ContentViewModel
+        //        (
+        //            price = product.price,
+        //            quantity = product.quantity,
+        //            productId = product.productId,
+        //            name = product.name,
+        //            description = product.description,
+        //            imgSrc = product.image.Trim(), // Ensure no leading/trailing spaces
+        //            seller = new User
+        //            {
+        //                username = product.user_table.username,
+        //                uuid = product.user_table.userId
+        //                // Password is not provided, can be left empty or handled differently
+        //            }
+        //        );
+
+        //        // Add the created ContentViewModel to the list
+        //        newData.Add(contentViewModel);
+        //    }
+
+        //    // Convert the List<ContentViewModel> to an array and return it
+        //    return newData.ToArray();
+        //}
 
         public static void PushOne(ContentViewModel[] arrIn, ContentViewModel item)
         {
