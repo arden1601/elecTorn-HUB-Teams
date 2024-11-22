@@ -40,11 +40,25 @@ namespace elecTornHub_WPFBased.Pages
             string uname = LogPopupControl.LogPopup_UsernameValue.Text;
             string pwd = LogPopupControl.LogPopup_PasswordValue.Password;
 
+            List<ContentViewModel> newData = new List<ContentViewModel>();
+            
+            // udah bisa keluar bang
+            var data = await Products.getAllProduct();
+            var selectedObj = data[0];
+            Console.WriteLine(selectedObj.productId.ToString());
+            
+            // udah bisa keluar bang
+            var data_lagi = await Products.getOwnProduct();
+            var selectedObj_lagi = data_lagi[0];
+            Console.WriteLine("hahahah");
+            Console.WriteLine(selectedObj_lagi.productId.ToString());
+
+
             Accounts acc = new Accounts(uname, pwd, "");
             bool isLogin = await acc.Login();
             if (isLogin && acc.Role != "admin")
             {
-                ContentViewModel.TemporaryPostsMod = await ContentViewModel.GetAllContent();
+                 ContentViewModel.TemporaryPostsMod = await ContentViewModel.GetAllContent();
 
                 SearchDash newDash = new SearchDash
                 {

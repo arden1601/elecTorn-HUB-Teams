@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
 using System.Net.Http;
+using System.Windows;
 using elecTornHub_WPFBased.Classes;
 using elecTornHub_WPFBased.Extras;
 using Newtonsoft.Json;
@@ -10,7 +11,6 @@ namespace elecTornHub_WPFBased.ViewModels
 {
     public class ContentViewModel : INotifyPropertyChanged
     {
-        private const string uri = "https://api-junpro.vercel.app/post";
         private Post _post;
         private Products _product;
 
@@ -476,25 +476,12 @@ namespace elecTornHub_WPFBased.ViewModels
 
         // CRUD Functions
         // Push One for TemporaryPosts, TemporaryProducts, TemporarySellingProducts
-        public static async Task<List<dynamic>> getData()
-        {
-            var data = new List<dynamic>();
-            using (HttpClient httpClient = new HttpClient())
-            {
-                HttpResponseMessage response = await httpClient.GetAsync(uri);
-
-                var jsonData = await response.Content.ReadAsStringAsync();
-                data = JsonConvert.DeserializeObject<List<dynamic>>(jsonData);
-                Console.WriteLine(data);
-                return data;
-            }
-        }
 
         public static async Task<ContentViewModel[]> GetAllContent()
         {
             List<ContentViewModel> newData = new List<ContentViewModel>();
 
-            var data = await getData();
+            var data = await Post.getPosting();
 
             for (int i = 0; i < data.Count; i++)
             {
@@ -503,9 +490,9 @@ namespace elecTornHub_WPFBased.ViewModels
                 // Create new ContentViewModel objects
                 User newUser = new User
                     (
-                    username: selectedObj.author.username,
+                     username: selectedObj.author.username.ToString(),
                     password: "",
-                    uuid: selectedObj.author.uuid
+                    uuid: selectedObj.author.uuid.ToString()
                     );
 
                 List<CommentViewModel> newComments = new List<CommentViewModel>();
@@ -517,17 +504,19 @@ namespace elecTornHub_WPFBased.ViewModels
 
                     User newCommentor = new User
                     (
-                        username: selectedComm.author.username,
+                        username: selectedComm.author.username.ToString(),
                         password: "",
-                        uuid: selectedComm.author.uuid
+                        uuid: selectedComm.author.uuid.ToString()
                     );
+
+                    Console.WriteLine(selectedComm.author.username.ToString());
 
                     CommentViewModel newComment = new CommentViewModel
                     (
-                        postId: selectedComm.postId,
+                        postId: selectedComm.postId.ToString(),
                         author: newCommentor,
-                        content: selectedComm.content,
-                        postDate: selectedComm.postDate
+                        content: selectedComm.content.ToString(),
+                        postDate: selectedComm.postDate.ToString()
                     );
 
                     newComments.Add(newComment);
@@ -537,13 +526,13 @@ namespace elecTornHub_WPFBased.ViewModels
 
                 Post newPost = new Post
                 (
-                    postId: selectedObj.postId,
+                    postId: selectedObj.postId.ToString(),
                     authorId: newUser,
-                    content: selectedObj.content,
-                    title: selectedObj.title,
-                    postDate: selectedObj.postDate,
-                    imgSrc: selectedObj.imgSrc,
-                    lastEdit: selectedObj.lastEdit,
+                    content: selectedObj.content.ToString(),
+                    title: selectedObj.title.ToString(),
+                    postDate: selectedObj.postDate.ToString(),
+                    imgSrc: selectedObj.imgSrc.ToString(),
+                    lastEdit: selectedObj.lastEdit.ToString(),
                     comments: commentsArray
                 );
 

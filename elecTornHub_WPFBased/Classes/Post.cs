@@ -1,4 +1,8 @@
 using elecTornHub_WPFBased.ViewModels;
+using Newtonsoft.Json;
+using System.Net.Http;
+using System;
+using elecTornHub_WPFBased.Extras;
 namespace elecTornHub_WPFBased.Classes;
 
 public class Post
@@ -76,4 +80,20 @@ public class Post
     {
         _content = "This post has been taken down.";
     }
+
+    public static async Task<List<dynamic>> getPosting()
+    {
+        var data = new List<dynamic>();
+        using (HttpClient httpClient = new HttpClient())
+        {
+            HttpResponseMessage response = await httpClient.GetAsync(Variables.contentURI);
+
+            var jsonData = await response.Content.ReadAsStringAsync();
+            data = JsonConvert.DeserializeObject<List<dynamic>>(jsonData);
+            Console.WriteLine(data);
+            return data;
+        }
+    }
+
+    
 }

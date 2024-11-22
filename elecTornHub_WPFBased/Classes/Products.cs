@@ -1,3 +1,7 @@
+using elecTornHub_WPFBased.Extras;
+using Newtonsoft.Json;
+using System.Net.Http;
+
 namespace elecTornHub_WPFBased.Classes;
 
 
@@ -35,5 +39,35 @@ public class Products
     public void Edit()
     {
         Console.WriteLine("Editing Logic is running here");
+    }
+
+    // get all products untuk tab beli
+    public static async Task<List<dynamic>> getAllProduct() 
+    {
+        var data = new List<dynamic>();
+        using (HttpClient httpClient = new HttpClient())
+        {
+            HttpResponseMessage response = await httpClient.GetAsync(Variables.getAllProductURI);
+
+            var jsonData = await response.Content.ReadAsStringAsync();
+            data = JsonConvert.DeserializeObject<List<dynamic>>(jsonData);
+            Console.WriteLine(data);
+            return data;
+        }
+    }
+
+    // get all products untuk tab jual karena ini adalah product pribadi
+    public static async Task<List<dynamic>> getOwnProduct()
+    {
+        var data = new List<dynamic>();
+        using (HttpClient httpClient = new HttpClient())
+        {
+            HttpResponseMessage response = await httpClient.GetAsync(Variables.getAllProductURI);
+
+            var jsonData = await response.Content.ReadAsStringAsync();
+            data = JsonConvert.DeserializeObject<List<dynamic>>(jsonData);
+            Console.WriteLine(data);
+            return data;
+        }
     }
 }

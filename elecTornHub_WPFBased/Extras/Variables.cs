@@ -6,6 +6,15 @@ namespace elecTornHub_WPFBased.Extras
 {
     public static class Variables
     {
+        // uri
+        public const string contentURI = "https://api-junpro.vercel.app/post";
+
+        // get all product uri
+        public const string getAllProductURI = "https://api-junpro.vercel.app/getAllproduct";
+
+        // get all product uri
+        public const string prodcuctURI = "https://api-junpro.vercel.app/product";
+
         // screen icon
 
         // Function to export the icon as a BitmapImage
