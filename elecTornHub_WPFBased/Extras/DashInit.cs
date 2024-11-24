@@ -7,6 +7,7 @@ using elecTornHub_WPFBased.Components;
 using elecTornHub_WPFBased.ViewModels;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
+using elecTornHub_WPFBased.Classes;
 
 namespace elecTornHub_WPFBased.Extras
 {
@@ -22,6 +23,49 @@ namespace elecTornHub_WPFBased.Extras
                 ParentContent = parentContent,
                 PreviousPage = previousWindow
             };
+
+            navbarControlMod.Navbar_Logout.Click += async (s, e) =>
+            {
+                // Perform logout action
+                bool isLoggedOut = await ContentViewModel.ActiveAccount.Logout();
+
+                if (isLoggedOut)
+                {
+                    // Create new Login Page
+                    Login newLogin = new Login();
+                    newLogin.Show();
+
+                    // Check if parentSearch and its PreviousWindow are valid before calling Close
+                    if (parentSearch != null && parentSearch.IsLoaded)
+                    {
+                        parentSearch.Close();
+                    }
+
+                    if (parentSearch?.PreviousWindow != null && parentSearch.PreviousWindow.IsLoaded)
+                    {
+                        parentSearch.PreviousWindow.Close();
+                    }
+
+                    // Check if parentContent and its PreviousWindow are valid before calling Close
+                    if (parentContent != null && parentContent.IsLoaded)
+                    {
+                        parentContent.Close();
+                    }
+
+                    if (parentContent?.PreviousWindow != null && parentContent.PreviousWindow.IsLoaded)
+                    {
+                        parentContent.PreviousWindow.Close();
+                    }
+
+                    // Response
+                    MessageBox.Show("Logged out successfully!");
+                }
+                else
+                {
+                    MessageBox.Show("Failed to log out!");
+                }
+            };
+
 
             NavbarControl.Children.Add(navbarControlMod);
             return navbarControlMod;

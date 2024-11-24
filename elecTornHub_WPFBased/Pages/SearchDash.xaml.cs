@@ -119,12 +119,6 @@ namespace elecTornHub_WPFBased.Pages
                                 NavbarChosen = Enumerations.Navbar.NavbarChosen.Jual
                             };
 
-                            User seller = new User(
-                                username: "",
-                                password: "",
-                                uuid: ""
-                                );
-
                             Products newProduct = new Products(
                                 productId: "",
                                 name: "Isi nama produk...",
@@ -132,12 +126,16 @@ namespace elecTornHub_WPFBased.Pages
                                 price: 0,
                                 imgSrc: "https://xelltechnology.com/wp-content/uploads/2022/04/dummy1.jpg",
                                 description: "Isi deskripsi...",
-                                seller
+                                seller: new User(
+                                    username: ContentViewModel.ActiveAccount.Username,
+                                    password: "",
+                                    uuid: ContentViewModel.ActiveAccount.UserUUID
+                                )
                             );
 
                             ContentViewModel newDataContext = new ContentViewModel(
                                 product: newProduct
-                                );
+                            );
 
                             newAddProduct.DataContext = newDataContext;
                             newAddProduct.Show();

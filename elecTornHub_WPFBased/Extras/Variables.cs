@@ -9,9 +9,11 @@ namespace elecTornHub_WPFBased.Extras
         public static class APIURI
         {
             // public const string mainURI = "https://api-junpro.vercel.app";
-            public const string mainURI = "http://localhost:4000";
-            public const string contentURI = mainURI + "/post";
-            public const string getAllProductURI = mainURI + "/getAllproduct";
+            public const string main = "http://localhost:4000";
+            public const string content = main + "/post";
+            public const string getAllProduct = main + "/getAllproduct";
+            public const string login = main + "/login";
+            public const string logout = main + "/logout";
         }
 
         // screen icon

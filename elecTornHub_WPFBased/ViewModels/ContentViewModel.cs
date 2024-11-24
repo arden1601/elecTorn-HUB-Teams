@@ -287,6 +287,8 @@ namespace elecTornHub_WPFBased.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        private static Accounts activeAccount = new Accounts("", "", "");
+
         private static ContentViewModel[] TemporaryPosts = new ContentViewModel[]
         {
             new ContentViewModel(
@@ -496,6 +498,12 @@ namespace elecTornHub_WPFBased.ViewModels
         {
             get { return TemporarySellingProducts; }
             set { TemporarySellingProducts = value; }
+        }
+
+        public static Accounts ActiveAccount
+        {
+            get { return activeAccount; }
+            set { activeAccount = value; }
         }
 
         // CRUD Functions

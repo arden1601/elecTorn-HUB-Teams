@@ -55,7 +55,8 @@ namespace elecTornHub_WPFBased.Pages
             bool isLogin = await acc.Login();
             if (isLogin && acc.Role != "admin")
             {
-                 ContentViewModel.TemporaryPostsMod = await ContentViewModel.GetAllContent();
+                ContentViewModel.ActiveAccount = acc;
+                ContentViewModel.TemporaryPostsMod = await ContentViewModel.GetAllContent();
 
                 SearchDash newDash = new SearchDash
                 {
@@ -77,6 +78,7 @@ namespace elecTornHub_WPFBased.Pages
             } 
             else if (isLogin && acc.Role == "admin")
             {
+                ContentViewModel.ActiveAccount = acc;
                 SearchDash newDash = new SearchDash
                 {
                     PreviousWindow = this,
