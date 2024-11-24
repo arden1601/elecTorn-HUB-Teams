@@ -175,11 +175,27 @@ namespace elecTornHub_WPFBased.ViewModels
         public string ProductCard_Id
         {
             get => _product?.ProductId ?? string.Empty; // Return empty string if _product is null
+            set
+            {
+                if (_product != null && _product.ProductId != value)
+                {
+                    _product.ProductId = value;
+                    OnPropertyChanged(nameof(ProductCard_Id));
+                }
+            }
         }
 
         public string ProductCard_SellerName_Selling
         {
             get => _product?.Seller?.Username != null ? $"dijual oleh {_product.Seller.Username}" : "Seller Unknown";
+            set
+            {
+                if (_product != null && _product.Seller.Username != value)
+                {
+                    _product.Seller.Username = value;
+                    OnPropertyChanged(nameof(ProductCard_SellerName_Selling));
+                }
+            }
         }
 
         public string ProductCard_Name
@@ -224,6 +240,14 @@ namespace elecTornHub_WPFBased.ViewModels
         public string ProductCard_QuantityLeft
         {
             get => _product != null ? $"(stok tersedia {_product.Quantity} buah)" : "(stok tidak tersedia)";
+            set
+            {
+                if (_product != null && _product.Quantity.ToString() != value)
+                {
+                    _product.Quantity = int.Parse(value);
+                    OnPropertyChanged(nameof(ProductCard_QuantityLeft));
+                }
+            }
         }
 
         public string ProductCard_PriceOriginal
@@ -509,8 +533,6 @@ namespace elecTornHub_WPFBased.ViewModels
                         uuid: selectedComm.author.uuid.ToString()
                     );
 
-                    Console.WriteLine(selectedComm.author.username.ToString());
-
                     CommentViewModel newComment = new CommentViewModel
                     (
                         postId: selectedComm.postId.ToString(),
@@ -581,7 +603,7 @@ namespace elecTornHub_WPFBased.ViewModels
         //    return newData.ToArray();
         //}
 
-        public static void PushOne(ContentViewModel[] arrIn, ContentViewModel item)
+        public static ContentViewModel[] PushOne(ContentViewModel[] arrIn, ContentViewModel item)
         {
             var arr = arrIn;
 
@@ -591,6 +613,7 @@ namespace elecTornHub_WPFBased.ViewModels
                 newArr[i] = arr[i];
             }
             newArr[arr.Length] = item;
+            return newArr;
         }
 
         // Delete by id for TemporaryPosts, TemporaryProducts, TemporarySellingProducts

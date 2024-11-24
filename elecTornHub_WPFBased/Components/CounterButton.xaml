@@ -4,82 +4,74 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:localExtras="clr-namespace:elecTornHub_WPFBased.Extras"
-             Width="Auto" Height="Auto"
-             >
+             Width="Auto" Height="Auto">
 
     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-        <Border
-CornerRadius="6,0,0,6"
-Background="{x:Static localExtras:Variables.ColorLightGray}"
-                                            BorderThickness="2.5,2.5,0,2.5"
-                                            BorderBrush="{x:Static localExtras:Variables.ColorDarkGray}"
-            Height="22"
->
+        <TextBlock
+            VerticalAlignment="Center"
+            Text="{Binding ProductCard_Name}" />
+        <Border CornerRadius="6,0,0,6"
+                Background="{x:Static localExtras:Variables.ColorLightGray}"
+                BorderThickness="2.5,2.5,0,2.5"
+                BorderBrush="{x:Static localExtras:Variables.ColorDarkGray}"
+                Height="22">
             <Button
-                    
+                    x:Name="Counter_Min"
                     HorizontalAlignment="Left"
-    VerticalAlignment="Center"
-    Content="-"
-    Style="{StaticResource NoHoverButtonStyle}"
-    FontSize="{x:Static localExtras:Variables.FontSizeXL}"
-    FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
-    Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
-    Background="Transparent"
-    BorderThickness="0"
-    BorderBrush="Transparent"
-    Margin="0,-9,0,-5"
-                Width="20"
-    Cursor="Hand"
-/>
+                    VerticalAlignment="Center"
+                    Content="-"
+                    Style="{StaticResource NoHoverButtonStyle}"
+                    FontSize="{x:Static localExtras:Variables.FontSizeXL}"
+                    FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+                    Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    BorderBrush="Transparent"
+                    Margin="0,-9,0,-5"
+                    Width="20"
+                    Cursor="Hand"/>
         </Border>
-        <Border
-CornerRadius="3"
-Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
-                                            BorderThickness="2.5"
-                                            BorderBrush="{x:Static localExtras:Variables.ColorDarkGray}"
+        <Border CornerRadius="3"
+                Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
+                BorderThickness="2.5"
+                BorderBrush="{x:Static localExtras:Variables.ColorDarkGray}"
                 HorizontalAlignment="Center"
-VerticalAlignment="Center"
->
+                VerticalAlignment="Center">
             <TextBox
                     x:Name="CounterButton_TextBox"
-                                HorizontalAlignment="Center"
-VerticalAlignment="Center"
-                Text="0"
-                TextAlignment="Center"
-                FontSize="{x:Static localExtras:Variables.FontSizeMD}"
-                FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
-                Foreground="{x:Static localExtras:Variables.ColorDarkGray}"                
-                Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
-                BorderThickness="0"
-                Margin="2"
-                Width="20"
-                Height="20"
-                />
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Text="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=Count, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    TextAlignment="Center"
+                    FontSize="{x:Static localExtras:Variables.FontSizeMD}"
+                    FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+                    Foreground="{x:Static localExtras:Variables.ColorDarkGray}"                
+                    Background="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
+                    BorderThickness="0"
+                    Margin="2"
+                    Width="20"
+                    Height="20"/>
         </Border>
-        <Border
-CornerRadius="0,6,6,0"
-Background="{x:Static localExtras:Variables.ColorLightGray}"
-                                            BorderThickness="0,2.5,2.5,2.5"
-            Height="22"
-                                            BorderBrush="{x:Static localExtras:Variables.ColorDarkGray}"
->
+        <Border CornerRadius="0,6,6,0"
+                Background="{x:Static localExtras:Variables.ColorLightGray}"
+                BorderThickness="0,2.5,2.5,2.5"
+                Height="22"
+                BorderBrush="{x:Static localExtras:Variables.ColorDarkGray}">
             <Button
-                    
+                    x:Name="Counter_Add"
                     HorizontalAlignment="Left"
-    VerticalAlignment="Center"
-    Content="+"
-    Style="{StaticResource NoHoverButtonStyle}"
-    FontSize="{x:Static localExtras:Variables.FontSizeXL}"
-    FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
-    Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
-    Background="Transparent"
-    BorderThickness="0"
-    BorderBrush="Transparent"
-    Margin="0,-7,0,0"
-                Width="20"
-    Cursor="Hand"
-/>
+                    VerticalAlignment="Center"
+                    Content="+"
+                    Style="{StaticResource NoHoverButtonStyle}"
+                    FontSize="{x:Static localExtras:Variables.FontSizeXL}"
+                    FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+                    Foreground="{x:Static localExtras:Variables.ColorDarkGray}"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    BorderBrush="Transparent"
+                    Margin="0,-7,0,0"
+                    Width="20"
+                    Cursor="Hand"/>
         </Border>
-
     </StackPanel>
 </UserControl>

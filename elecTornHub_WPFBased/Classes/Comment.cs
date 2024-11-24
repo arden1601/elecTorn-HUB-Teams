@@ -78,7 +78,6 @@ namespace elecTornHub_WPFBased.Classes
 
                     // Deserialize response if necessary
                     var data = JsonConvert.DeserializeObject<dynamic>(jsonData);
-                    Console.WriteLine($"Response: {data}");
                 }
                 catch (Exception ex)
                 {

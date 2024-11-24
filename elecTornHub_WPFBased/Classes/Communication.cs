@@ -12,7 +12,6 @@ public class Communication
         {
             throw new ArgumentNullException("there is no message");
         }
-        Console.WriteLine(MessageContent);
     }
 
     public void ReceiveMessage()

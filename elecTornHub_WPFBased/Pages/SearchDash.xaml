@@ -90,7 +90,8 @@
                         Height="40"
                         CornerRadius="25"
                         Background="{x:Static localExtras:Variables.ColorDarkGray}">
-                    <Button Style="{StaticResource NoHoverButtonStyle}"
+                    <Button x:Name="SearchDash_AddButton_Button"
+                            Style="{StaticResource NoHoverButtonStyle}"
                             BorderThickness="0"
                             BorderBrush="Transparent"
                             Background="Transparent"

@@ -6,14 +6,13 @@ namespace elecTornHub_WPFBased.Extras
 {
     public static class Variables
     {
-        // uri
-        public const string contentURI = "https://api-junpro.vercel.app/post";
-
-        // get all product uri
-        public const string getAllProductURI = "https://api-junpro.vercel.app/getAllproduct";
-
-        // get all product uri
-        public const string prodcuctURI = "https://api-junpro.vercel.app/product";
+        public static class APIURI
+        {
+            // public const string mainURI = "https://api-junpro.vercel.app";
+            public const string mainURI = "http://localhost:4000";
+            public const string contentURI = mainURI + "/post";
+            public const string getAllProductURI = mainURI + "/getAllproduct";
+        }
 
         // screen icon
 

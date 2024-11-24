@@ -9,6 +9,7 @@ using System.Windows;
 using System.Globalization;
 using System.Globalization;
 using elecTornHub_WPFBased.ViewModels;
+using elecTornHub_WPFBased.Pages;
 
 namespace elecTornHub_WPFBased.Extras
 {
@@ -39,25 +40,15 @@ namespace elecTornHub_WPFBased.Extras
             return input.Substring(0, count) + "...";
         }
 
-        public static void ClickDataHandler(ContentViewModel DataContext, )
+        public static void ClickDataHandler<T>(
+            T DataContext,
+            Action<ContentViewModel> callback
+            )
         {
             // Access the DataContext directly inside the handler
             if (DataContext is ContentViewModel viewModel)
             {
-                if (viewModel.Post_Id != null)
-                {
-                    string selectedId = viewModel.ProductCard_Id;
-                    ContentViewModel.TemporarySellingProductsMod = ContentViewModel.DeleteById(
-                        arrIn: ContentViewModel.TemporarySellingProductsMod,
-                        id: selectedId
-                    );
-
-                    parentContent.NavbarControlMod.ReturnToPrevious();
-                }
-                else
-                {
-                    MessageBox.Show("Post_Id is null or inaccessible.");
-                }
+                callback(viewModel);
             }
             else
             {

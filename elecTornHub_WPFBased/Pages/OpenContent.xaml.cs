@@ -101,7 +101,7 @@ namespace elecTornHub_WPFBased.Pages
                     previousWindow: PreviousWindow,
                     parentContent: this
                     );
-                /*DashInit.GenerateContent(OpenContentControl, ContentType, ContentMode, PostType, DataContext);*/
+
                 DashInit.GenerateContent(
                     parentGrid: OpenContentControl,
                     ContentType: ContentType,

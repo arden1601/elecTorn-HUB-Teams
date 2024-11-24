@@ -106,7 +106,7 @@
                             <TextBlock
                                 HorizontalAlignment="Stretch"
                                 Text="{Binding ProductCard_Description}"
-                                VerticalAlignment="Center"
+                                VerticalAlignment="Top"
                                 x:Name="OpenContentBody_Desc"
                                 FontSize="{x:Static localExtras:Variables.FontSizeMD}"
                                 FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
@@ -140,7 +140,7 @@
                             <TextBox
                                 HorizontalAlignment="Stretch"
                                 Text="{Binding ProductCard_Description}"
-                                VerticalAlignment="Center"
+                                VerticalAlignment="Top"
                                 x:Name="OpenContentBody_EditDesc"
                                 FontSize="{x:Static localExtras:Variables.FontSizeMD}"
                                 FontFamily="{x:Static localExtras:Variables.PrimaryFont}"
@@ -244,10 +244,9 @@
                                 VerticalAlignment="Center"
                                 Width="Auto"
                             >
-                                <localComponents:CounterButton
-                                    x:Name="OpenContentBody_Counter"
-                                    Margin="0, 0, 10, 0"
-                                />
+                                <StackPanel x:Name="OpenContentBody_CounterButtonContainer" Margin="0, 0, 10, 0">
+                                    <!-- Counter Here -->
+                                </StackPanel>
                                 <Border
                                     x:Name="OpenContentBody_Button1"
                                     CornerRadius="3"

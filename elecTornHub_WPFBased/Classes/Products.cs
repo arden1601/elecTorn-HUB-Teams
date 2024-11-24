@@ -47,11 +47,11 @@ public class Products
         var data = new List<dynamic>();
         using (HttpClient httpClient = new HttpClient())
         {
-            HttpResponseMessage response = await httpClient.GetAsync(Variables.getAllProductURI);
+            HttpResponseMessage response = await httpClient.GetAsync(Variables.APIURI.getAllProductURI);
 
             var jsonData = await response.Content.ReadAsStringAsync();
             data = JsonConvert.DeserializeObject<List<dynamic>>(jsonData);
-            Console.WriteLine(data);
+            
             return data;
         }
     }
@@ -62,11 +62,11 @@ public class Products
         var data = new List<dynamic>();
         using (HttpClient httpClient = new HttpClient())
         {
-            HttpResponseMessage response = await httpClient.GetAsync(Variables.getAllProductURI);
+            HttpResponseMessage response = await httpClient.GetAsync(Variables.APIURI.getAllProductURI);
 
             var jsonData = await response.Content.ReadAsStringAsync();
             data = JsonConvert.DeserializeObject<List<dynamic>>(jsonData);
-            Console.WriteLine(data);
+            
             return data;
         }
     }

@@ -36,6 +36,61 @@
 
         private void OnTypeChanged(Enumerations.OpenContent.OpenContentBodyType newValue)
         {
+            CounterButton counterButton = new CounterButton();
+            
+            counterButton.Counter_Add.Click += (s, e) =>
+            {
+                Functions.ClickDataHandler(
+                    DataContext: DataContext,
+                    callback: (viewModel) =>
+                    {
+                        if (viewModel.ProductCard_Id != null)
+                        {
+                            if (viewModel.ProductCard_Quantity + 1 <= 99)
+                            {
+                                viewModel.ProductCard_Quantity += 1;
+                                counterButton.Count = viewModel.ProductCard_Quantity;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Stock is null or inaccessible.");
+                        }
+                    }
+                );
+            };
+
+            counterButton.Counter_Min.Click += (s, e) =>
+            {
+                Functions.ClickDataHandler(
+                    DataContext: DataContext,
+                    callback: (viewModel) =>
+                    {
+                        if (viewModel.ProductCard_Id != null)
+                        {
+                            if (viewModel.ProductCard_Quantity - 1 >= 0)
+                            {
+                                viewModel.ProductCard_Quantity -= 1;
+                                counterButton.Count = viewModel.ProductCard_Quantity;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Post_Id is null or inaccessible.");
+                        }
+                    }
+                );
+            };
+
+            counterButton.Loaded += (s, e) =>
+            {
+                if (DataContext is ContentViewModel viewModel)
+                {
+                    // Set the initial value of Count when the DataContext is available
+                    counterButton.Count = viewModel.ProductCard_Quantity;
+                }
+            };
+
             switch (newValue)
             {
                 case Enumerations.OpenContent.OpenContentBodyType.Buyer:
@@ -50,22 +105,47 @@
                     OpenContentBody_Button3.Visibility = Visibility.Visible;
                     OpenContentBody_Button3.Width = double.NaN;
 
-                    OpenContentBody_Counter.Visibility = Visibility.Visible;
-                    OpenContentBody_Counter.Width = double.NaN;
-                    OpenContentBody_Counter.Margin = new Thickness(0, 0, 10, 0);
+                    OpenContentBody_CounterButtonContainer.Children.Add(counterButton);
+
                     break;
                 case Enumerations.OpenContent.OpenContentBodyType.Seller:
                     OpenContentBody_Seller.Visibility = Visibility.Collapsed;
                     OpenContentBody_Stock.Visibility = Visibility.Collapsed;
-                    
+
                     OpenContentBody_Button1.Visibility = Visibility.Visible;
                     OpenContentBody_Button1.Width = double.NaN;
-                    OpenContentBody_Button1_Button.Content = "Verifikasi Perubahan";
+                    OpenContentBody_Button1_Button.Content = "Konfirmasi";
                     OpenContentBody_Button1.Margin = new Thickness(0, 0, 10, 0);
 
                     OpenContentBody_Button1_Button.Click += (s, e) =>
                     {
-                        /*MessageBox.Show($"New DataContext type: {DataContext.GetType().FullName}");*/
+                        Functions.ClickDataHandler(
+                            DataContext: DataContext,
+                            callback: (viewModel) =>
+                            {
+                                if (viewModel.ProductCard_Id == "")
+                                {
+                                    // Random id generator (not using Math)
+                                    viewModel.ProductCard_Id = new System.Random().Next(100000, 999999).ToString();
+
+                                    ContentViewModel.TemporarySellingProductsMod = ContentViewModel.PushOne(
+                                        arrIn: ContentViewModel.TemporarySellingProductsMod,
+                                        item: viewModel
+                                    );
+
+                                    parentContent.NavbarControlMod.ReturnToPrevious();
+                                }
+                                else if (viewModel.ProductCard_Id != null)
+                                {
+
+                                    parentContent.NavbarControlMod.ReturnToPrevious();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Post_Id is null or inaccessible.");
+                                }
+                            }
+                            );
                     };
 
                     OpenContentBody_Button3.Visibility = Visibility.Visible;
@@ -74,34 +154,29 @@
 
                     OpenContentBody_Button3_Button.Click += (s, e) =>
                     {
-                        // Access the DataContext directly inside the handler
-                        if (DataContext is ContentViewModel viewModel)
-                        {
-                            if (viewModel.Post_Id != null)
+                        Functions.ClickDataHandler(
+                            DataContext: DataContext,
+                            callback: (viewModel) =>
                             {
-                                string selectedId = viewModel.ProductCard_Id;
-                                ContentViewModel.TemporarySellingProductsMod = ContentViewModel.DeleteById(
-                                    arrIn: ContentViewModel.TemporarySellingProductsMod,
-                                    id: selectedId
-                                );
+                                if (viewModel.ProductCard_Id != null)
+                                {
+                                    string selectedId = viewModel.ProductCard_Id;
+                                    ContentViewModel.TemporarySellingProductsMod = ContentViewModel.DeleteById(
+                                        arrIn: ContentViewModel.TemporarySellingProductsMod,
+                                        id: selectedId
+                                    );
 
-                                parentContent.NavbarControlMod.ReturnToPrevious();
+                                    parentContent.NavbarControlMod.ReturnToPrevious();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Post_Id is null or inaccessible.");
+                                }
                             }
-                            else
-                            {
-                                MessageBox.Show("Post_Id is null or inaccessible.");
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("DataContext is not of type ContentViewModel.");
-                        }
+                         );
                     };
 
-
-                    OpenContentBody_Counter.Visibility = Visibility.Visible;
-                    OpenContentBody_Counter.Width = double.NaN;
-                    OpenContentBody_Counter.Margin = new Thickness(0, 0, 10, 0);
+                    OpenContentBody_CounterButtonContainer.Children.Add(counterButton);
 
                     OpenContentBody_EditTitleBorder.Visibility = Visibility.Visible;
                     OpenContentBody_Title.Visibility = Visibility.Collapsed;
@@ -141,6 +216,11 @@
                 default:
                     break;
             }
+        }
+
+        private void Counter_Add_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void OnModeChanged(Enumerations.OpenContent.OpenContentBodyMode newValue)
@@ -187,11 +267,10 @@
             OpenContentBody_ModePost.Visibility = Visibility.Collapsed;
             OpenContentBody_ModeProduct.Visibility = Visibility.Collapsed;
 
-            // Hide all buttons and counter
+            // Hide all buttons
             ClearProps(OpenContentBody_Button1);
             ClearProps(OpenContentBody_Button2);
             ClearProps(OpenContentBody_Button3);
-            ClearProps(OpenContentBody_Counter);
             OpenContentBody_ReportTab.Visibility = Visibility.Collapsed;
             OpenContentBody_EditTitleBorder.Visibility = Visibility.Collapsed;
             OpenContentBody_EditDescBorder.Visibility = Visibility.Collapsed;

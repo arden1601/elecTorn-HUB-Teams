@@ -86,11 +86,10 @@ public class Post
         var data = new List<dynamic>();
         using (HttpClient httpClient = new HttpClient())
         {
-            HttpResponseMessage response = await httpClient.GetAsync(Variables.contentURI);
+            HttpResponseMessage response = await httpClient.GetAsync(Variables.APIURI.contentURI);
 
             var jsonData = await response.Content.ReadAsStringAsync();
             data = JsonConvert.DeserializeObject<List<dynamic>>(jsonData);
-            Console.WriteLine(data);
             return data;
         }
     }

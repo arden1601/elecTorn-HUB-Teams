@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using static elecTornHub_WPFBased.Extras.Variables;
-using elecTornHub_WPFBased.Components;
+using elecTornHub_WPFBased.Classes;
 using System.Windows.Data;
 using System.Runtime.CompilerServices;
 using elecTornHub_WPFBased.Extras;
@@ -102,7 +102,70 @@ namespace elecTornHub_WPFBased.Pages
                 NavbarControlMod = DashInit.GenerateNavbar(NavbarControl: NavbarControl, navbarType: NavbarType, navbarChosen: NavbarChosen, parentSearch: this);
                 DashInit.GenerateChoiceCards(CardGrids: CardGrids, GridType: ContentType, GridMode: ContentMode, parent: this, ContentData: Contents);
                 DashInit.UpdateAddButtonVisibility(SearchDash_AddButton: SearchDash_AddButton, GridType: ContentType, GridMode: ContentMode);
+
+                // Add functionality for SearchDash_AddButton
+                SearchDash_AddButton_Button.Click += (s, e) =>
+                {
+                    if (ContentType == Enumerations.ChoiceCard.ChoiceCardType.Product)
+                    {
+                        if (ContentMode == Enumerations.CustomGrid.CustomGridMode.Jual)
+                        {
+                            OpenContent newAddProduct = new OpenContent
+                            {
+                                PreviousWindow = this,
+                                ContentMode = Enumerations.OpenContent.OpenContentBodyMode.Product,
+                                ContentType = Enumerations.OpenContent.OpenContentBodyType.Seller,
+                                NavbarType = Enumerations.Navbar.NavbarType.User,
+                                NavbarChosen = Enumerations.Navbar.NavbarChosen.Jual
+                            };
+
+                            User seller = new User(
+                                username: "",
+                                password: "",
+                                uuid: ""
+                                );
+
+                            Products newProduct = new Products(
+                                productId: "",
+                                name: "Isi nama produk...",
+                                quantity: 0,
+                                price: 0,
+                                imgSrc: "https://xelltechnology.com/wp-content/uploads/2022/04/dummy1.jpg",
+                                description: "Isi deskripsi...",
+                                seller
+                            );
+
+                            ContentViewModel newDataContext = new ContentViewModel(
+                                product: newProduct
+                                );
+
+                            newAddProduct.DataContext = newDataContext;
+                            newAddProduct.Show();
+                            this.Hide();
+                        }
+                    }
+                    else if (ContentType == Enumerations.ChoiceCard.ChoiceCardType.Post)
+                    {
+                        /*AddPost newAddPost = new AddPost
+                        {
+                            PreviousWindow = this,
+                            ContentMode = Enumerations.CustomGrid.CustomGridMode.Post,
+                            ContentType = Enumerations.ChoiceCard.ChoiceCardType.Post,
+                            NavbarType = Enumerations.Navbar.NavbarType.User,
+                            NavbarChosen = Enumerations.Navbar.NavbarChosen.Post
+                        };
+
+                        newAddPost.DataContext = newAddPost;
+                        newAddPost.Show();
+                        this.Close();*/
+                    }
+                };
             };
+        }
+
+        private void SearchDash_AddButton_Button_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }
