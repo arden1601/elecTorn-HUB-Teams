@@ -8,12 +8,12 @@ using elecTornHub_WPFBased.Components;
 using System.Windows;
 using System.Globalization;
 using System.Globalization;
+using elecTornHub_WPFBased.ViewModels;
 
 namespace elecTornHub_WPFBased.Extras
 {
     public class Functions
     {
-
         // Method to format number as Rp. xxx.xxx.xxx,-
         public static string FormatToRupiah(int amount)
         {
@@ -39,5 +39,30 @@ namespace elecTornHub_WPFBased.Extras
             return input.Substring(0, count) + "...";
         }
 
+        public static void ClickDataHandler(ContentViewModel DataContext, )
+        {
+            // Access the DataContext directly inside the handler
+            if (DataContext is ContentViewModel viewModel)
+            {
+                if (viewModel.Post_Id != null)
+                {
+                    string selectedId = viewModel.ProductCard_Id;
+                    ContentViewModel.TemporarySellingProductsMod = ContentViewModel.DeleteById(
+                        arrIn: ContentViewModel.TemporarySellingProductsMod,
+                        id: selectedId
+                    );
+
+                    parentContent.NavbarControlMod.ReturnToPrevious();
+                }
+                else
+                {
+                    MessageBox.Show("Post_Id is null or inaccessible.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("DataContext is not of type ContentViewModel.");
+            }
+        }
     }
 }
