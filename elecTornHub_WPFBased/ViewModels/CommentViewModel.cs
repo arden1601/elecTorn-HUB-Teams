@@ -13,10 +13,11 @@ namespace elecTornHub_WPFBased.ViewModels
         }
 
         // Temporary constructor to accept value directly
-        public CommentViewModel(User author, string content, string postDate, string postId)
+        public CommentViewModel(User author, string content, string postDate, string postId, string commentId)
         {
             // fill the values
             _comment = new Comment(
+                commentId: commentId,
                 authorId: author,
                 content: content,
                 postDate: postDate,
@@ -24,15 +25,66 @@ namespace elecTornHub_WPFBased.ViewModels
             );
         }
 
-        // Property to get and set the title from the Comment data model
-        public string Poster
+        // CRUD operations
+        public static async Task<CommentViewModel[]> PushOne(string postId, CommentViewModel comment)
         {
-            get => _comment.AuthorId.Username;
+            // Get the content
+            ContentViewModel getContent = ContentViewModel.GetById(ContentViewModel.TemporaryPostsMod, postId);
+            CommentViewModel[] existingComments = getContent.Post_Comments;
+
+            // Append
+            List<CommentViewModel> newComments = new List<CommentViewModel>(existingComments);
+            newComments.Add(comment);
+
+            // Update
+            getContent.Post_Comments = newComments.ToArray();
+
+            // Return the updated comments
+            return newComments.ToArray();
+        }
+
+        public static async Task<CommentViewModel[]> DeleteOne(string postId, string commentId)
+        {
+            // Split the selected content with the rest
+            ContentViewModel getContent = ContentViewModel.GetById(ContentViewModel.TemporaryPostsMod, postId);
+            
+            // Get the comments
+            CommentViewModel[] existingComments = getContent.Post_Comments;
+
+            // Remove the selected comment
+            List<CommentViewModel> newComments = new List<CommentViewModel>(existingComments);
+            newComments.RemoveAll(comment => comment.CommentId == commentId);
+
+            // Update
+            getContent.Post_Comments = newComments.ToArray();
+
+            // Return the updated comments
+            return newComments.ToArray();
+        }
+
+        // Property to get and set the title from the Comment data model
+
+        public string CommentId
+        {
+            get => _comment.CommentId;
             set
             {
-                if (_comment.AuthorId.Username != value)
+                if (_comment.CommentId != value)
                 {
-                    _comment.AuthorId.Username = value;
+                    _comment.CommentId = value;
+                    OnPropertyChanged(nameof(CommentId));
+                }
+            }
+        }
+
+        public User Poster
+        {
+            get => _comment.AuthorId;
+            set
+            {
+                if (_comment.AuthorId != value)
+                {
+                    _comment.AuthorId = value;
                     OnPropertyChanged(nameof(Poster));
                 }
             }
@@ -66,16 +118,15 @@ namespace elecTornHub_WPFBased.ViewModels
             }
         }
 
-        // Property to get and set the destination post ID
-        public string DestinationPostId
-        {
-            get => _comment.DestinationPostId;
+        public string PostId
+            {
+            get => _comment.PostId;
             set
             {
-                if (_comment.DestinationPostId != value)
+                if (_comment.PostId != value)
                 {
-                    _comment.DestinationPostId = value;
-                    OnPropertyChanged(nameof(DestinationPostId));
+                    _comment.PostId = value;
+                    OnPropertyChanged(nameof(PostId));
                 }
             }
         }

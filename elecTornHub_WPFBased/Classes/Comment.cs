@@ -8,11 +8,17 @@ namespace elecTornHub_WPFBased.Classes
     // Make Comment class public
     public class Comment
     {
+        private string commentId;
         private string postId;
         private User authorId;
         private string content;
-        private string _destinationPostId;
         private string postDate;
+
+        public string CommentId
+        {
+            get { return commentId; }
+            set { commentId = value; }
+        }
 
         public string PostId
         {
@@ -38,18 +44,13 @@ namespace elecTornHub_WPFBased.Classes
             set { postDate = value; }
         }
 
-        public Comment(string postId, User authorId, string content, string postDate) 
+        public Comment(string commentId, string postId, User authorId, string content, string postDate) 
         {
+            this.commentId = commentId;
             this.postId = postId;
             this.authorId = authorId;
             this.content = content;
             this.postDate = postDate;
-        }
-
-        public string DestinationPostId
-        {
-            get { return _destinationPostId; }
-            set { _destinationPostId = value; }
         }
 
         public async Task PostCommentAsync(string endpointUrl)

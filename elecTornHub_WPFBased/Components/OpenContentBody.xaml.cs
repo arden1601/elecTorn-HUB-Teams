@@ -7,6 +7,8 @@
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Media;
+    using elecTornHub_WPFBased.Extras;
+    using elecTornHub_WPFBased.Classes;
 
     public partial class OpenContentBody : UserControl, Interfaces.IOpenContent
     {
@@ -240,6 +242,54 @@
                 case Enumerations.OpenContent.OpenContentBodyMode.Post:
                     OpenContentBody_ModePost.Visibility = Visibility.Visible;
                     OpenContentBody_BorderParent.Height = double.NaN;
+
+                    OpenContentBody_SendComment.Click += async (s, e) =>
+                    {
+                        // Check if DataContext is ContentViewModel
+                        if (DataContext is ContentViewModel viewModel)
+                        {
+                            // Check if the comment is not empty
+                            if (OpenContentBody_Comment.Text != "")
+                            {
+                                // Generate random number
+                                int randomId = new System.Random().Next(100000, 999999);
+
+                                CommentViewModel newComment = new CommentViewModel(
+                                    comment: new Comment(
+                                        commentId: randomId.ToString(),
+                                        postId: viewModel.Post_Id,
+                                        authorId: new User(
+                                                username: ContentViewModel.ActiveAccount.Username,
+                                                password: "",
+                                                uuid: ContentViewModel.ActiveAccount.UserUUID
+                                            ),
+                                        content: OpenContentBody_Comment.Text,
+                                        postDate: DateTime.Now.ToString()
+                                    )
+                                );
+
+                                // Add the new comment to the existing comments
+                                CommentViewModel[] newComments = await CommentViewModel.PushOne(
+                                    postId: viewModel.Post_Id,
+                                    comment: newComment
+                                );
+
+                                // Refresh the comments
+                                GenerateComments(newComments);
+
+                                // Clear the comment box
+                                OpenContentBody_Comment.Text = "";
+                            }
+                            else
+                            {
+                                MessageBox.Show("Empty comment!");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("DataContext is not of type ContentViewModel.");
+                        };
+                    };
                     break;
                 default:
                     break;
@@ -291,19 +341,38 @@
             int count = comments.Length;
             for (int i = 0; i < count; i++)
             {
-                // Rand numb from 1 to 2 using random from C, don't use Variables.Random, i dont have it
-                int rand = new System.Random().Next(1, 3);
+                // Capture the current comment in a local variable to avoid the closure issue
+                CommentViewModel currentComment = comments[i];
 
-                OpenContentBody_CommentGrid.Children.Add(new CommentSingle
+                Enumerations.Comment.CommentType commentType = currentComment.Poster.UserUUID == ContentViewModel.ActiveAccount.UserUUID ? Enumerations.Comment.CommentType.Poster : Enumerations.Comment.CommentType.Viewer;
+                
+                CommentSingle newComment = new CommentSingle
                 {
-                    CommentType = rand == 1 ? Enumerations.Comment.CommentType.Poster : Enumerations.Comment.CommentType.Viewer,
-                    DataContext = comments[i]
-                });
+                    CommentType = commentType,
+                    DataContext = currentComment
+                };
+
+                if (commentType == Enumerations.Comment.CommentType.Poster)
+                {
+                    newComment.Comment_Button.Click += async (s, e) =>
+                    {
+                        CommentViewModel[] newComments = await CommentViewModel.DeleteOne(
+                            postId: currentComment.PostId,
+                            commentId: currentComment.CommentId
+                        );
+
+                        // Refresh the comments
+                        GenerateComments(newComments);
+                    };
+                }
+
+                OpenContentBody_CommentGrid.Children.Add(newComment);
 
                 OpenContentBody_CommentGrid.UpdateLayout();
                 UpdateLayout();
             }
         }
+
 
         private void ClearProps(Border border)
         {

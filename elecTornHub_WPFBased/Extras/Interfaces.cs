@@ -1,5 +1,5 @@
 ﻿using elecTornHub_WPFBased.Components;
-using elecTornHub_WPFBased.Pages;
+using elecTornHub_WPFBased.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +46,7 @@ namespace elecTornHub_WPFBased.Extras
         public interface IComment
         {
             Enumerations.Comment.CommentType CommentType { get; }
-            string Comment_Poster { get; }
+            User Comment_Poster { get; }
             string Comment_Content { get; }
             string Comment_PostDate { get; }
         }

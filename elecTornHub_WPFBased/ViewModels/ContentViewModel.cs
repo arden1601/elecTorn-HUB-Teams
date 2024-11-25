@@ -293,7 +293,7 @@ namespace elecTornHub_WPFBased.ViewModels
         {
             new ContentViewModel(
                 postId: "1",
-                author: new Classes.User(
+                author: new User(
                 username: "Cornelius Joko",
                 password: "johnjohnson123",
                 uuid: "5"
@@ -306,7 +306,8 @@ namespace elecTornHub_WPFBased.ViewModels
                 comments: new CommentViewModel[]
                 {
                     new CommentViewModel(
-                        author: new Classes.User(
+                        commentId: "12",
+                        author: new User(
                             username: "John Doe",
                             password: "johndoe123",
                             uuid: "1"
@@ -316,7 +317,8 @@ namespace elecTornHub_WPFBased.ViewModels
                         postDate: "22 September 2024"
                     ),
                     new CommentViewModel(
-                        author: new Classes.User(
+                        commentId: "123",
+                        author: new User(
                             username: "Jane Doe",
                             password: "janedoe123",
                             uuid: "2"
@@ -326,7 +328,8 @@ namespace elecTornHub_WPFBased.ViewModels
                         postDate: "29 September 2024"
                     ),
                     new CommentViewModel(
-                        author: new Classes.User(
+                        commentId: "124",
+                        author: new User(
                             username: "John Smith",
                             password: "johnsmith123",
                             uuid: "3"
@@ -344,7 +347,7 @@ namespace elecTornHub_WPFBased.ViewModels
                 postDate: "22 September 2024",
                 lastEdit: "20 September 2024",
                 imgSrc: "https://lh3.googleusercontent.com/ogw/AF2bZyiQSDYdpGWlSrg8eJ1yYHSRxQ73eJvhC8K4A-htZ1bAfYA=s32-c-mo",
-                author: new Classes.User(
+                author: new User(
                     username: "Cornelius Joko",
                     password: "johnjohnson123",
                     uuid: "5"
@@ -352,8 +355,9 @@ namespace elecTornHub_WPFBased.ViewModels
                 comments: new CommentViewModel[]
                 {
                     new CommentViewModel(
+                        commentId: "125",
                         author:
-                        new Classes.User(
+                        new User(
                             username: "John Doe",
                             password: "johndoe123",
                             uuid: "1"
@@ -363,8 +367,9 @@ namespace elecTornHub_WPFBased.ViewModels
                         postDate: "29 September 2024"
                     ),
                     new CommentViewModel(
+                        commentId: "126",
                         author:
-                        new Classes.User(
+                        new User(
                             username: "Jane Doe",
                             password: "janedoe123",
                             uuid: "2"
@@ -378,7 +383,7 @@ namespace elecTornHub_WPFBased.ViewModels
             new ContentViewModel(
                 postId: "3",
                 author:
-                new Classes.User(
+                new User(
                     username: "Cornelius Joko",
                     password: "johnjohnson123",
                     uuid: "5"
@@ -391,8 +396,9 @@ namespace elecTornHub_WPFBased.ViewModels
                 comments: new CommentViewModel[]
                 {
                     new CommentViewModel(
+                        commentId: "127",
                         author:
-                        new Classes.User(
+                        new User(
                             username: "Jane Doe",
                             password: "janedoe123",
                             uuid: "2"
@@ -406,7 +412,7 @@ namespace elecTornHub_WPFBased.ViewModels
             new ContentViewModel(
                 postId: "4",
                 author:
-                new Classes.User(
+                new User(
                     username: "Cornelius Joko",
                     password: "johnjohnson123",
                     uuid: "5"
@@ -426,7 +432,7 @@ namespace elecTornHub_WPFBased.ViewModels
                 price: 1000000,
                 quantity: 10,
                 productId: "1",
-                seller: new Classes.User(
+                seller: new User(
                     username: "Cornelius Joko",
                     password: "johnjohnson123",
                     uuid: "5"
@@ -439,7 +445,7 @@ namespace elecTornHub_WPFBased.ViewModels
                 price: 265765,
                 quantity: 5,
                 productId: "2",
-                seller: new Classes.User(
+                seller: new User(
                     username: "Cornelius Joko",
                     password: "johnjohnson123",
                     uuid: "5"
@@ -452,7 +458,7 @@ namespace elecTornHub_WPFBased.ViewModels
                 price: 1000000,
                 quantity: 1,
                 productId: "3",
-                seller: new Classes.User(
+                seller: new User(
                     username: "Cornelius Joko",
                     password: "johnjohnson123",
                     uuid: "5"
@@ -470,7 +476,7 @@ namespace elecTornHub_WPFBased.ViewModels
                 price: 1000000,
                 quantity: 10,
                 productId: "1",
-                seller: new Classes.User(
+                seller: new User(
                     username: "Cornelius Joko",
                     password: "johnjohnson123",
                     uuid: "5"
@@ -543,6 +549,7 @@ namespace elecTornHub_WPFBased.ViewModels
 
                     CommentViewModel newComment = new CommentViewModel
                     (
+                        commentId: selectedComm.commentId.ToString(),
                         postId: selectedComm.postId.ToString(),
                         author: newCommentor,
                         content: selectedComm.content.ToString(),
@@ -580,36 +587,59 @@ namespace elecTornHub_WPFBased.ViewModels
             return newArray;
         }
 
-        //public static async Task<ContentViewModel[]> getAllProduct()
-        //{
-        //    var products = await Products.getAllProduct(); // Assuming this fetches a list of products
-        //    List<ContentViewModel> newData = new List<ContentViewModel>();
+        public static async Task GetAllProduct()
+        {
+            var products = await Products.getAllProduct(); // Assuming this fetches a list of products
 
-        //    foreach (var product in products)
-        //    {
-        //        var contentViewModel = new ContentViewModel
-        //        (
-        //            price = product.price,
-        //            quantity = product.quantity,
-        //            productId = product.productId,
-        //            name = product.name,
-        //            description = product.description,
-        //            imgSrc = product.image.Trim(), // Ensure no leading/trailing spaces
-        //            seller = new User
-        //            {
-        //                username = product.user_table.username,
-        //                uuid = product.user_table.userId
-        //                // Password is not provided, can be left empty or handled differently
-        //            }
-        //        );
+            List<ContentViewModel> myData = new List<ContentViewModel>();
+            List<ContentViewModel> theirData = new List<ContentViewModel>();
 
-        //        // Add the created ContentViewModel to the list
-        //        newData.Add(contentViewModel);
-        //    }
+            for (int i = 0; i < products.Count; i++)
+            {
+                var selectedObj = products[i];
 
-        //    // Convert the List<ContentViewModel> to an array and return it
-        //    return newData.ToArray();
-        //}
+                // Create new ContentViewModel objects
+                User newUser = new User
+                    (
+                         username: selectedObj.seller.username.ToString(),
+                         password: "",
+                         uuid: selectedObj.seller.uuid.ToString()
+                    );
+
+                Products newProduct = new Products
+                    (
+                    productId: selectedObj.productId.ToString(),
+                    name: selectedObj.name.ToString(),
+                    quantity: int.Parse(selectedObj.quantity.ToString()),
+                    price: int.Parse(selectedObj.price.ToString()),
+                    imgSrc: selectedObj.imgSrc.ToString(),
+                    description: selectedObj.description.ToString(),
+                    seller: newUser
+                );
+
+                ContentViewModel newItem = new ContentViewModel(
+                    product: newProduct
+                );
+
+                // If the user is the seller, add the product to myData
+                if (newUser.UserUUID == ActiveAccount.UserUUID)
+                {
+                    myData.Add(newItem);
+                }
+                else
+                {
+                    theirData.Add(newItem);
+                }
+            }
+
+            // If you still need an array, you can convert the list back to an array
+            ContentViewModel[] myArray = myData.ToArray();
+            ContentViewModel[] theirArray = theirData.ToArray();
+
+            // Insert to static storage
+            ContentViewModel.TemporarySellingProductsMod = myArray;
+            ContentViewModel.TemporaryProductsMod = theirArray;
+        }
 
         public static ContentViewModel[] PushOne(ContentViewModel[] arrIn, ContentViewModel item)
         {

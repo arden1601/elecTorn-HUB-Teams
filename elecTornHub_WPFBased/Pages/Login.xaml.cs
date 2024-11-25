@@ -40,23 +40,14 @@ namespace elecTornHub_WPFBased.Pages
             string uname = LogPopupControl.LogPopup_UsernameValue.Text;
             string pwd = LogPopupControl.LogPopup_PasswordValue.Password;
 
-            List<ContentViewModel> newData = new List<ContentViewModel>();
-            
-            // udah bisa keluar bang
-            var data = await Products.getAllProduct();
-            var selectedObj = data[0];
-            
-            // udah bisa keluar bang
-            var data_lagi = await Products.getOwnProduct();
-            var selectedObj_lagi = data_lagi[0];
-
-
             Accounts acc = new Accounts(uname, pwd, "");
             bool isLogin = await acc.Login();
+
             if (isLogin && acc.Role != "admin")
             {
                 ContentViewModel.ActiveAccount = acc;
-                ContentViewModel.TemporaryPostsMod = await ContentViewModel.GetAllContent();
+                //ContentViewModel.TemporaryPostsMod = await ContentViewModel.GetAllContent();
+                //await ContentViewModel.GetAllProduct();
 
                 SearchDash newDash = new SearchDash
                 {
@@ -79,6 +70,8 @@ namespace elecTornHub_WPFBased.Pages
             else if (isLogin && acc.Role == "admin")
             {
                 ContentViewModel.ActiveAccount = acc;
+                ContentViewModel.TemporaryPostsMod = await ContentViewModel.GetAllContent();
+
                 SearchDash newDash = new SearchDash
                 {
                     PreviousWindow = this,

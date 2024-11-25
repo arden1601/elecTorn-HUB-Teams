@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Runtime.CompilerServices;
-using elecTornHub_WPFBased.ViewModels;
+using elecTornHub_WPFBased.Classes;
 using elecTornHub_WPFBased.Extras;
 
 namespace elecTornHub_WPFBased.Components
@@ -11,7 +11,7 @@ namespace elecTornHub_WPFBased.Components
     {
         // Implementing IComment interface
         private Enumerations.Comment.CommentType _commentType;
-        private string _commentPoster;
+        private User _commentPoster;
         private string _commentContent;
         private string _commentPostDate;
 
@@ -21,7 +21,7 @@ namespace elecTornHub_WPFBased.Components
             set { _commentType = value; OnTypeChange(value); }
         }
 
-        public string Comment_Poster
+        public User Comment_Poster
         {
             get { return _commentPoster; }
             set { _commentPoster = value; }

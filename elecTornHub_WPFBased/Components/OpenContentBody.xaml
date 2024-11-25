@@ -482,6 +482,7 @@
                                             />
                                         </Border.Effect>
                                         <Button
+                                            x:Name="OpenContentBody_SendComment"
                                             Style="{StaticResource NoHoverButtonStyle}"
                                             Content="Kirim"
                                             Cursor="Hand"

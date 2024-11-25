@@ -76,7 +76,7 @@ Background="{x:Static localExtras:Variables.ColorAccentOrange}"
                             x:Name="Comment_Title"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Left"
-                            Text="{Binding Poster}" FontSize="{x:Static localExtras:Variables.FontSizeMD}"
+                            Text="{Binding Poster.Username}" FontSize="{x:Static localExtras:Variables.FontSizeMD}"
 FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
 Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold"
                            TextWrapping="Wrap" TextAlignment="Justify"/>
