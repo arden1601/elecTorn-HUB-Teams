@@ -60,6 +60,7 @@ FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
 Foreground="{x:Static localExtras:Variables.ColorDarkGray}" FontWeight="DemiBold"
                            TextWrapping="Wrap" TextAlignment="Justify"/>
                     <Border
+                        x:Name="PostContent_TopButton_Border"
 VerticalAlignment="Bottom"
 CornerRadius="4"
 BorderBrush="Transparent"
@@ -70,6 +71,30 @@ Background="{x:Static localExtras:Variables.ColorAccentOrange}"
                     HorizontalAlignment="Left"
     VerticalAlignment="Center"
     Content="Lapor"
+    Style="{StaticResource NoHoverButtonStyle}"
+    FontSize="{x:Static localExtras:Variables.FontSizeSM}"
+    FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"
+    Foreground="{x:Static localExtras:Variables.ColorAbsoluteWhite}"
+    Background="Transparent"
+    BorderThickness="0"
+    BorderBrush="Transparent"
+    Cursor="Hand"
+                                Margin="4"
+/>
+                    </Border>
+                    <Border
+                        x:Name="PostContent_TopButton_Border_Delete"
+                        Margin="8,0,0,0"
+VerticalAlignment="Bottom"
+CornerRadius="4"
+BorderBrush="Transparent"
+Background="{x:Static localExtras:Variables.ColorAccentOrange}"
+>
+                        <Button
+                            x:Name="PostContent_TopButton_Delete"
+                    HorizontalAlignment="Left"
+    VerticalAlignment="Center"
+    Content="Delete"
     Style="{StaticResource NoHoverButtonStyle}"
     FontSize="{x:Static localExtras:Variables.FontSizeSM}"
     FontFamily="{x:Static localExtras:Variables.SecondaryFontBold}"

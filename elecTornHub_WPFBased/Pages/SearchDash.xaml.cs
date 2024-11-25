@@ -85,7 +85,6 @@ namespace elecTornHub_WPFBased.Pages
         {
             ContentViewModel[] Contents = TemporaryPick();
             DashInit.GenerateChoiceCards(CardGrids: CardGrids, GridType: ContentType, GridMode: ContentMode, parent: this, ContentData: Contents);
-            DashInit.UpdateAddButtonVisibility(SearchDash_AddButton: SearchDash_AddButton, GridType: ContentType, GridMode: ContentMode);
         }
 
         public SearchDash()
@@ -101,7 +100,12 @@ namespace elecTornHub_WPFBased.Pages
 
                 NavbarControlMod = DashInit.GenerateNavbar(NavbarControl: NavbarControl, navbarType: NavbarType, navbarChosen: NavbarChosen, parentSearch: this);
                 DashInit.GenerateChoiceCards(CardGrids: CardGrids, GridType: ContentType, GridMode: ContentMode, parent: this, ContentData: Contents);
-                DashInit.UpdateAddButtonVisibility(SearchDash_AddButton: SearchDash_AddButton, GridType: ContentType, GridMode: ContentMode);
+
+                User currentUser = new User(
+                                    username: ContentViewModel.ActiveAccount.Username,
+                                    password: "",
+                                    uuid: ContentViewModel.ActiveAccount.UserUUID
+                                    );
 
                 // Add functionality for SearchDash_AddButton
                 SearchDash_AddButton_Button.Click += (s, e) =>
@@ -126,11 +130,7 @@ namespace elecTornHub_WPFBased.Pages
                                 price: 0,
                                 imgSrc: "https://xelltechnology.com/wp-content/uploads/2022/04/dummy1.jpg",
                                 description: "Isi deskripsi...",
-                                seller: new User(
-                                    username: ContentViewModel.ActiveAccount.Username,
-                                    password: "",
-                                    uuid: ContentViewModel.ActiveAccount.UserUUID
-                                )
+                                seller: currentUser
                             );
 
                             ContentViewModel newDataContext = new ContentViewModel(
@@ -144,26 +144,37 @@ namespace elecTornHub_WPFBased.Pages
                     }
                     else if (ContentType == Enumerations.ChoiceCard.ChoiceCardType.Post)
                     {
-                        /*AddPost newAddPost = new AddPost
+                        OpenContent newAddPost = new OpenContent
                         {
                             PreviousWindow = this,
-                            ContentMode = Enumerations.CustomGrid.CustomGridMode.Post,
-                            ContentType = Enumerations.ChoiceCard.ChoiceCardType.Post,
+                            ContentMode = Enumerations.OpenContent.OpenContentBodyMode.Post,
+                            ContentType = Enumerations.OpenContent.OpenContentBodyType.Default,
                             NavbarType = Enumerations.Navbar.NavbarType.User,
-                            NavbarChosen = Enumerations.Navbar.NavbarChosen.Post
+                            NavbarChosen = Enumerations.Navbar.NavbarChosen.Post,
+                            PostType = Enumerations.PostContent.PostContentType.Poster
                         };
 
-                        newAddPost.DataContext = newAddPost;
+                        Post newPost = new Post(
+                            postId: "",
+                            title: "Isi judul post...",
+                            content: "Isi konten post...",
+                            postDate: "",
+                            imgSrc: "https://xelltechnology.com/wp-content/uploads/2022/04/dummy1.jpg",
+                            lastEdit: "",
+                            comments: [],
+                            authorId: currentUser
+                        );
+
+                        ContentViewModel newDataContext = new ContentViewModel(
+                            post: newPost
+                        );
+
+                        newAddPost.DataContext = newDataContext;
                         newAddPost.Show();
-                        this.Close();*/
+                        this.Hide();
                     }
                 };
             };
-        }
-
-        private void SearchDash_AddButton_Button_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
         }
     }
 }

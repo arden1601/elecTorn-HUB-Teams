@@ -97,6 +97,7 @@
                         x:Name="OpenContentBody_DescBorder"
                     >
                         <ScrollViewer
+                            HorizontalAlignment="Stretch"
                             VerticalScrollBarVisibility="Auto"
                             HorizontalScrollBarVisibility="Disabled"
                             Padding="0,0,5,0"
@@ -130,6 +131,7 @@
                         x:Name="OpenContentBody_EditDescBorder"
                     >
                         <ScrollViewer
+                            HorizontalAlignment="Stretch"
                             VerticalScrollBarVisibility="Auto"
                             HorizontalScrollBarVisibility="Disabled"
                             Height="{x:Static localExtras:Variables.ScrollHeight}"

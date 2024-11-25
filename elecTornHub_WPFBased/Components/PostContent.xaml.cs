@@ -25,6 +25,7 @@ namespace elecTornHub_WPFBased.Components
             PostContent_EditDescription.Visibility = Visibility.Collapsed;
             PostContent_EditTitle.Visibility = Visibility.Collapsed;
             PostContent_ReportSection.Visibility = Visibility.Collapsed;
+            PostContent_TopButton_Border_Delete.Visibility = Visibility.Collapsed;
         }
 
         public void OnTypeChange(Enumerations.PostContent.PostContentType newValue)
@@ -36,10 +37,14 @@ namespace elecTornHub_WPFBased.Components
                 case Enumerations.PostContent.PostContentType.Poster:
                     PostContent_EditTitle.Visibility = Visibility.Visible;
                     PostContent_EditDescription.Visibility = Visibility.Visible;
+                    PostContent_TopButton_Border_Delete.Visibility = Visibility.Visible;
 
                     PostContent_Title.Visibility = Visibility.Collapsed;
                     PostContent_Description.Visibility = Visibility.Collapsed;
                     PostContent_LogEdit.Visibility = Visibility.Collapsed;
+
+                    PostContent_TopButton_Border.Background = Variables.ColorGreen;
+                    PostContent_TopButton.Content = "Konfirmasi";
                     break;
                 case Enumerations.PostContent.PostContentType.Reported:
                     PostContent_ReportSection.Visibility = Visibility.Visible;

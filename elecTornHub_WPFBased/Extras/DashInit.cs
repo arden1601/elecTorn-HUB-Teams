@@ -8,6 +8,7 @@ using elecTornHub_WPFBased.ViewModels;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using elecTornHub_WPFBased.Classes;
+using Npgsql.PostgresTypes;
 
 namespace elecTornHub_WPFBased.Extras
 {
@@ -145,11 +146,16 @@ namespace elecTornHub_WPFBased.Extras
                     {
                         choiceCard.MouseLeftButtonUp += (s, e) =>
                         {
+                            Enumerations.PostContent.PostContentType postType = Enumerations.PostContent.PostContentType.Default;
+
+                            if (selectedContext.Post.AuthorId.UserUUID == ContentViewModel.ActiveAccount.UserUUID) postType = Enumerations.PostContent.PostContentType.Poster;
+
                             var newContent = new OpenContent
                             {
                                 PreviousWindow = parent,
                                 ContentType = Enumerations.OpenContent.OpenContentBodyType.Buyer,
                                 ContentMode = Enumerations.OpenContent.OpenContentBodyMode.Post,
+                                PostType = postType,
                                 NavbarChosen = Enumerations.Navbar.NavbarChosen.Post,
                                 NavbarType = Enumerations.Navbar.NavbarType.User,
                                 DataContext = selectedContext
@@ -193,12 +199,89 @@ namespace elecTornHub_WPFBased.Extras
                 DataContext = DataContext
             };
 
+            // Handle Post type
+            switch (PostType)
+            {
+                case Enumerations.PostContent.PostContentType.Poster:
+                    postContent.PostContent_TopButton.Click += (s, e) =>
+                    {
+                        Functions.ClickDataHandler(
+                            DataContext: parentContent.DataContext,
+                            callback: (viewModel) => {
+                                if (viewModel.Post_Id == "")
+                                {
+                                    // Random id generator (not using Math)
+                                    viewModel.Post_Id = new System.Random().Next(100000, 999999).ToString();
+
+                                    ContentViewModel.TemporaryPostsMod = ContentViewModel.PushOne(
+                                        arrIn: ContentViewModel.TemporaryPostsMod,
+                                        item: viewModel
+                                    );
+
+                                    parentContent.NavbarControlMod.ReturnToPrevious();
+                                }
+                                else if (viewModel.Post_Id != null)
+                                {
+                                    string selectedId = viewModel.Post_Id;
+                                    ContentViewModel.TemporaryPostsMod = ContentViewModel.UpdateById(
+                                        arrIn: ContentViewModel.TemporaryPostsMod,
+                                        id: selectedId,
+                                        item: viewModel
+                                    );
+
+                                    parentContent.NavbarControlMod.ReturnToPrevious();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Post_Id is null or inaccessible.");
+                                }
+                            }
+                        );
+                    };
+
+                    postContent.PostContent_TopButton_Delete.Click += (s, e) =>
+                    {
+                        Functions.ClickDataHandler(
+                            DataContext: parentContent.DataContext,
+                            callback: (viewModel) => {
+                                if (viewModel.Post_Id != null)
+                                {
+                                    string selectedId = viewModel.Post_Id;
+                                    ContentViewModel.TemporaryPostsMod = ContentViewModel.DeleteById(
+                                        arrIn: ContentViewModel.TemporaryPostsMod,
+                                        id: selectedId
+                                    );
+
+                                    parentContent.NavbarControlMod.ReturnToPrevious();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Post_Id is null or inaccessible.");
+                                }
+                            }
+                        );
+                    };
+
+                    break;
+                case Enumerations.PostContent.PostContentType.Takedown:
+                    break;
+                case Enumerations.PostContent.PostContentType.Reported:
+                    break;
+                default:
+                    break;
+            }
+
             content.OpenContentBody_PostBody.Children.Add(postContent);
 
             content.OpenContentBody_PostBody.UpdateLayout();
 
             parentGrid.Children.Add(content);
             parentGrid.UpdateLayout();
+        }
+
+        private static void PostContent_TopButton_Delete_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         public static void UpdateAddButtonVisibility(Border SearchDash_AddButton, Enumerations.CustomGrid.CustomGridMode GridMode, Enumerations.ChoiceCard.ChoiceCardType GridType)

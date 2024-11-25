@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("elecTornHub_WPFBased")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+69e88975f9099a711fd0cb3b9cc5d58c702f325d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a53f6d2e2a92610b82c5b05948d2a70c319e7b15")]
 [assembly: System.Reflection.AssemblyProductAttribute("elecTornHub_WPFBased")]
 [assembly: System.Reflection.AssemblyTitleAttribute("elecTornHub_WPFBased")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

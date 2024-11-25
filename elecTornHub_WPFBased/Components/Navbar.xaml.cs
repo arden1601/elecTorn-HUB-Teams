@@ -9,6 +9,7 @@ using System.Diagnostics;
 namespace elecTornHub_WPFBased.Components
 {
     using elecTornHub_WPFBased.Extras;
+    using System.Net.Mime;
     using System.Threading.Channels;
 
     public partial class Navbar : UserControl, Interfaces.INavbar

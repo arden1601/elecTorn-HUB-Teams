@@ -76,7 +76,7 @@
                         }
                         else
                         {
-                            MessageBox.Show("Post_Id is null or inaccessible.");
+                            MessageBox.Show("Product_Id is null or inaccessible.");
                         }
                     }
                 );
@@ -137,12 +137,19 @@
                                 }
                                 else if (viewModel.ProductCard_Id != null)
                                 {
+                                    string selectedId = viewModel.ProductCard_Id;
+
+                                    ContentViewModel.TemporarySellingProductsMod = ContentViewModel.UpdateById(
+                                        arrIn: ContentViewModel.TemporarySellingProductsMod,
+                                        id: selectedId,
+                                        item: viewModel
+                                    );
 
                                     parentContent.NavbarControlMod.ReturnToPrevious();
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Post_Id is null or inaccessible.");
+                                    MessageBox.Show("Product_Id is null or inaccessible.");
                                 }
                             }
                             );
@@ -170,7 +177,7 @@
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Post_Id is null or inaccessible.");
+                                    MessageBox.Show("Product_Id is null or inaccessible.");
                                 }
                             }
                          );
